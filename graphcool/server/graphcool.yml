@@ -1,0 +1,152 @@
+# Welcome to Graphcool!
+#
+# This file is the main config file for your Graphcool Service.
+# It's very minimal at this point and uses default values.
+# We've included a hello world function here.
+# Just run `graphcool deploy` to have the first running Graphcool Service.
+#
+# Check out some examples:
+#    github.com/graphcool/examples
+#
+# Here are the reference docs of this definition format:
+# https://docs-next.graph.cool/reference/basics/project-configuration-opheidaix3
+#
+# Happy Coding!
+
+
+# In the types.graphql you define your data schema
+types: ./types.graphql
+
+
+functions:
+
+# added by username-password template:
+  signup:
+    type: resolver
+    schema: src/username-password/signup.graphql
+    handler:
+      code: src/username-password/signup.js
+
+  authenticate:
+    type: resolver
+    schema: src/username-password/authenticate.graphql
+    handler:
+      code: src/username-password/authenticate.js
+
+  loggedInUser:
+    type: resolver
+    schema: src/username-password/loggedInUser.graphql
+    handler:
+      code: src/username-password/loggedInUser.js
+
+
+
+# Model/Relation permissions are used to limit the API access
+# To take the burden of thinking about those while development, we 
+# preconfigured the wildcard ("*") permission that allows everything
+# Read more here:
+# https://docs-next.graph.cool/reference/auth/authorization/overview-iegoo0heez
+permissions:
+  # Everyone can read the id, name and email fields of users
+
+
+
+
+- operation: "*"
+
+# - operation: User.read
+#   fields:
+#     - id
+#     - username
+#     - email
+#     - role
+
+# - operation: User.create
+# - operation: User.update
+# - operation: User.delete
+# - operation: Containment.read
+# - operation: Containment.create
+# - operation: Containment.update
+# - operation: Containment.delete
+# - operation: Customer.read
+# - operation: Customer.create
+# - operation: Customer.update
+# - operation: Customer.delete
+# - operation: CustomerNote.read
+# - operation: CustomerNote.create
+# - operation: CustomerNote.update
+# - operation: CustomerNote.delete
+# - operation: Driver.read
+# - operation: Driver.create
+# - operation: Driver.update
+# - operation: Driver.delete
+# - operation: File.read
+# - operation: File.create
+# - operation: File.update
+# - operation: File.delete
+# - operation: Location.read
+# - operation: Location.create
+# - operation: Location.update
+# - operation: Location.delete
+# - operation: LocationNote.read
+# - operation: LocationNote.create
+# - operation: LocationNote.update
+# - operation: LocationNote.delete
+# - operation: OilCollectionNote.read
+# - operation: OilCollectionNote.create
+# - operation: OilCollectionNote.update
+# - operation: OilCollectionNote.delete
+# - operation: OilCollectionRecord.read
+# - operation: OilCollectionRecord.create
+# - operation: OilCollectionRecord.update
+# - operation: OilCollectionRecord.delete
+# - operation: OilCollectionService.read
+# - operation: OilCollectionService.create
+# - operation: OilCollectionService.update
+# - operation: OilCollectionService.delete
+# - operation: OilCollectionState.read
+# - operation: OilCollectionState.create
+# - operation: OilCollectionState.update
+# - operation: OilCollectionState.delete
+# - operation: Service.read
+# - operation: Service.create
+# - operation: Service.update
+# - operation: Service.delete
+# - operation: SetUpNote.read
+# - operation: SetUpNote.create
+# - operation: SetUpNote.update
+# - operation: SetUpNote.delete
+# - operation: SetUpService.read
+# - operation: SetUpService.create
+# - operation: SetUpService.update
+# - operation: SetUpService.delete
+# - operation: Truck.read
+# - operation: Truck.create
+# - operation: Truck.update
+# - operation: Truck.delete
+# - operation: ContainmentOnOilCollection.connect
+# - operation: ContainmentOnOilCollection.disconnect
+# - operation: CustomerLocations.connect
+# - operation: CustomerLocations.disconnect
+# - operation: CustomerNotes.*
+# - operation: DriverOnUser.connect
+# - operation: DriverOnUser.disconnect
+# - operation: LocationNotes.*
+# - operation: OilCollectionNoteOnService.*
+# - operation: OilCollectionRecordOnOilCollectionService.*
+# - operation: OilCollectionOnService.*
+# - operation: OilCollectionServiceOnTruck.*
+# - operation: OilCollectionStateOnOilCollection.*
+# - operation: ServiceOnLocation.*
+# - operation: SetUpNotes.*
+# - operation: SetUpOnService.*
+# - operation: SetUpServiceOnTruck.*
+# - operation: TruckOnDriver.connect
+# - operation: TruckOnDriver.disconnect
+  
+# Your root tokens used for functions to get full access to the API
+# Read more here:
+# https://docs-next.graph.cool/reference/auth/authentication/authentication-tokens-eip7ahqu5o
+rootTokens:
+- mytoken
+

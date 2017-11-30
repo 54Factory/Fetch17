@@ -1,0 +1,181 @@
+type User @model {
+  # Required system field:
+  id: ID! @isUnique # read-only (managed by Graphcool)
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+  firstName: String
+  lastName: String
+  username: String @isUnique
+  avatar: String @defaultValue(value: "http://www.zygocity.com/zygomax_hosting/products/Anonymous-Mask-Car-Window-Sticker.jpg")
+  email: String @isUnique
+  password: String
+  role: String
+  driver: Driver @relation(name: "DriverOnUser")
+}
+
+type Containment @model {
+  containerType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  oilCollectionService: OilCollectionService @relation(name: "ContainmentOnOilCollection")
+  quantity: Int!
+  updatedAt: DateTime!
+}
+
+type Customer @model {
+  createdAt: DateTime!
+  customerNotes: [CustomerNote!]! @relation(name: "CustomerNotes")
+  email: String!
+  firstName: String!
+  id: ID! @isUnique
+  image: String @defaultValue(value: "http://www.zygocity.com/zygomax_hosting/products/Anonymous-Mask-Car-Window-Sticker.jpg")
+  lastName: String!
+  locations: [Location!]! @relation(name: "CustomerLocations")
+  phone: String!
+  role: String!
+  updatedAt: DateTime!
+}
+
+type CustomerNote @model {
+  createdAt: DateTime!
+  customer: Customer @relation(name: "CustomerNotes")
+  customerNoteContent: String
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type Driver @model {
+  createdAt: DateTime!
+  dlNumber: String!
+  id: ID! @isUnique
+  image: String @defaultValue(value: "https://homewardboundaz.org/wp-content/uploads/2016/09/person-placeholder.jpg")
+  truck: Truck @relation(name: "TruckOnDriver")
+  updatedAt: DateTime!
+  user: User @relation(name: "DriverOnUser")
+}
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type Location @model {
+  city: String!
+  county: String
+  createdAt: DateTime!
+  customer: Customer @relation(name: "CustomerLocations")
+  id: ID! @isUnique
+  lat: Float
+  lng: Float
+  locationName: String!
+  locationNotes: [LocationNote!]! @relation(name: "LocationNotes")
+  neighborhood: String
+  service: Service @relation(name: "ServiceOnLocation")
+  state: String!
+  street: String!
+  streetNumber: String
+  township: String
+  updatedAt: DateTime!
+  zip: String!
+}
+
+type LocationNote @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  location: Location @relation(name: "LocationNotes")
+  locationNoteContent: String
+  updatedAt: DateTime!
+}
+
+type OilCollectionNote @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  oilCollectionNoteContent: String
+  oilCollectionService: OilCollectionService @relation(name: "OilCollectionNoteOnService")
+  updatedAt: DateTime!
+}
+
+type OilCollectionRecord @model {
+  collected: Boolean! @defaultValue(value: false)
+  createdAt: DateTime!
+  id: ID! @isUnique
+  oilAmount: Int
+  oilService: OilCollectionService @relation(name: "OilCollectionRecordOnOilCollectionService")
+  scheduledCollectionDate: DateTime
+  updatedAt: DateTime!
+  truck: Truck @relation(name: "TruckOnOilCollectionRecord")
+  wasteAmount: Int
+}
+
+type OilCollectionService @model {
+  containment: Containment @relation(name: "ContainmentOnOilCollection")
+  createdAt: DateTime!
+  id: ID! @isUnique
+  oilCollectionNotes: [OilCollectionNote!]! @relation(name: "OilCollectionNoteOnService")
+  oilCollectionRecords: [OilCollectionRecord!]! @relation(name: "OilCollectionRecordOnOilCollectionService")
+  oilCollectionState: OilCollectionState @relation(name: "OilCollectionStateOnOilCollection")
+  service: Service @relation(name: "OilCollectionOnService")
+  serviceCycle: Int!
+  serviceType: String!
+  startDate: DateTime!
+  truck: Truck @relation(name: "OilCollectionServiceOnTruck")
+  updatedAt: DateTime!
+}
+
+type OilCollectionState @model {
+  active: Boolean! @defaultValue(value: false)
+  createdAt: DateTime!
+  id: ID! @isUnique
+  oilCollectionService: OilCollectionService @relation(name: "OilCollectionStateOnOilCollection")
+  setup: Boolean! @defaultValue(value: false)
+  updatedAt: DateTime!
+}
+
+type Service @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  location: Location @relation(name: "ServiceOnLocation")
+  oilCollectionService: OilCollectionService @relation(name: "OilCollectionOnService")
+  setUpService: SetUpService @relation(name: "SetUpOnService")
+  updatedAt: DateTime!
+}
+
+type SetUpNote @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  setUpNoteContent: String
+  setUpService: SetUpService @relation(name: "SetUpNotes")
+  updatedAt: DateTime!
+}
+
+type SetUpService @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  service: Service @relation(name: "SetUpOnService")
+  setUpDate: DateTime!
+  setUpNotes: [SetUpNote!]! @relation(name: "SetUpNotes")
+  truck: Truck @relation(name: "SetUpServiceOnTruck")
+  updatedAt: DateTime!
+}
+
+type Truck @model {
+  createdAt: DateTime!
+  description: String!
+  driver: Driver @relation(name: "TruckOnDriver")
+  id: ID! @isUnique
+  image: String!
+  name: String!
+  nickname: String
+  oilCollectionServices: [OilCollectionService!]! @relation(name: "OilCollectionServiceOnTruck")
+  setUpServices: [SetUpService!]! @relation(name: "SetUpServiceOnTruck")
+  updatedAt: DateTime!
+  oilCollectionRecords: [OilCollectionRecord!]! @relation(name: "TruckOnOilCollectionRecord")
+}
+
