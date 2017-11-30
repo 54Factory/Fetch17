@@ -9,7 +9,7 @@ import EditLocationView from '../../components/locations/editView';
 import DeleteButton from '../../components/locations/deleteButton';
 import IntlMessages from '../../components/utility/intlMessages';
 import { LocationsWrapper } from './locations.style';
-
+import LocationsMap from '../../components/maps/locations/locationsMap'
 const {
   fetchLocations,
   changeLocation,
@@ -98,15 +98,11 @@ class Locations extends Component {
               )}
             </Content>
           ) : (
-            <div className="LocationControl">
-              <Button
-                type="primary"
-                onClick={addLocation}
-                className="AddLocationBtn"
-              >
-                <IntlMessages id="locationlist.addNewLocation" />
-              </Button>
-            </div>
+            <Content className="LocationBox">
+            <LocationsMap 
+              markers={locations}
+            />
+          </Content>
           )}
         </Layout>
       </LocationsWrapper>

@@ -27,7 +27,6 @@ class TopbarUser extends Component {
   render() {
     if (this.props.data && this.props.data.loading) { return (<div>Loading...</div>)}
     if (this.props.data && this.props.data.error) { return (<div>Error...</div>)}
-    console.log(this.props)
     const content = (
       <TopbarDropdownWrapper className="isoUserDropdown">
         <a className="isoDropdownLink" onClick={this.props.logoutUser}>
