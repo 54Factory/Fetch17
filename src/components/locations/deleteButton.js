@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Popconfirm from '../feedback/popconfirm';
-import { Button } from 'antd';
+import Button from '../uielements/button';
 import notification from '../notification';
 
-export default class DeleteButton extends React.Component {
+export default class DeleteButton extends Component {
   render() {
     const { location, deleteLocation } = this.props;
     let name = '';
-    if (location.locationName) {
-      name = `${location.locationName} `;
+    if (location.name) {
+      name = `${location.name} `;
     }
     if (!name) {
       name = 'No Name';
@@ -23,7 +23,7 @@ export default class DeleteButton extends React.Component {
           deleteLocation(location.id);
         }}
       >
-        <Button icon="close" type="button" className="isoDeleteBtn" />
+        <Button icon="close" type="button" className="DeleteBtn" />
       </Popconfirm>
     );
   }

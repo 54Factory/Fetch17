@@ -1,50 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { LocationCardWrapper } from './locationCard.style';
 
-
-export default class SingleLocationView extends React.Component {
-
-  render() {  
-    console.log(this.props) 
-    const { location, locationAttributes, customer, customerAttributes } = this.props;
-        const extraInfos = [];
-    locationAttributes.forEach(attribute => {
+export default class SingleLocationView extends Component {
+  render() {
+    const { location, otherAttributes } = this.props;
+    const name = location.locationName ? location.locationName : 'No Name';
+    const extraInfos = [];
+    otherAttributes.forEach(attribute => {
       const value = location[attribute.value];
       if (value) {
         extraInfos.push(
-          <div className="isoLocationCardInfos" key={attribute.value}>
-            <p className="isoInfoLabel">{`${attribute.title}`}</p>
-            <p className="isoInfoDetails">{value}</p>
-          </div>,
+          <div className="LocationCardInfos" key={attribute.value}>
+            <p className="LocationInfoLabel">{`${attribute.title}`}</p>
+            <p className="LocationInfoDetails">
+              {value}
+            </p>
+          </div>
         );
       }
     });
-      const customerInfo = [];
-    customerAttributes.forEach(attribute => {
-      const value = customer[attribute.value];
-      if(value) {
-        customerInfo.push(
-          <div className="isoLocationCardInfos" key={attribute.value}>
-          <p className="isoInfoLabel">{`${attribute.title}`}</p>
-          <p className="isoInfoDetails">{value}</p>
-        </div>,
-        )
-      }
-    })
     return (
-      <LocationCardWrapper className="isoLocationCard">
-        <div className="isoLocationCardHead">
-          <div className="isoLocationImage">
-            {<img alt="#" src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Tom%27s_Restaurant%2C_NYC.jpg/220px-Tom%27s_Restaurant%2C_NYC.jpg"} />}
+      <LocationCardWrapper className="LocationCard">
+        <div className="LocationCardHead">
+          <div className="LocationImage">
+            {location.image ? <img alt="#" src={location.image} /> : ''}
           </div>
-          <h1 className="isoLocationName">{location.locationName}</h1>
+          <h1 className="LocationName">
+            {name}
+          </h1>
         </div>
-        <div className="isoLocationInfoWrapper">
+        <div className="LocationInfoWrapper">
           {extraInfos}
-          {customerInfo}
         </div>
       </LocationCardWrapper>
     );
   }
 }
-

@@ -41,10 +41,10 @@ class AdminRouter extends React.Component {
           path={`${url}/locations`}
           component={asyncComponent(() => import("../../Locations"))}
         />
-        <Route
+        {/* <Route
           path={`${url}/locations/:id`}
           component={asyncComponent(() => import("../../Locations/locationPage"))}
-        />
+        /> */}
         {/* <Route
           exact
           path={`${url}/pendingSetups`}

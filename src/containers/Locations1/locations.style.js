@@ -4,9 +4,12 @@ import { transition, borderRadius } from '../../config/style-util';
 import WithDirection from '../../config/withDirection';
 
 const WDLocationsWrapper = styled.div`
-  padding: 50px 35px 200px;
+  padding: 50px 35px;
   display: flex;
+  flex-direction: column;
+ 
 
+  
   @media only screen and (max-width: 767px) {
     padding: 50px 20px;
     flex-direction: column;
@@ -17,26 +20,24 @@ const WDLocationsWrapper = styled.div`
     padding: 40px 30px;
   }
 
-  .LocationAssignDriver {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .LocationListBar {
+  .isoLocationListBar {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     background: #ffffff;
     border: 1px solid ${palette('border', 0)};
-    width: 320px;
+    width: 350px;
     overflow: hidden;
     overflow-y: auto;
 
     @media only screen and (max-width: 767px) {
-      width: auto !important;
-      margin-bottom: 20px;
-      min-width: 0 !important;
+      &.ant-layout-sider {
+        flex: 0 0 380px !important;
+        width: auto !important;
+        margin-bottom: 20px;
+        max-width: none !important;
+        min-width: 0 !important;
+      }
     }
 
     @media only screen and (min-width: 767px) and (max-width: 990px) {
@@ -45,7 +46,7 @@ const WDLocationsWrapper = styled.div`
     }
   }
 
-  .LocationBoxWrapper {
+  .isoLocationBoxWrapper {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -55,12 +56,12 @@ const WDLocationsWrapper = styled.div`
     border-right: ${props => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
     position: relative;
 
-    .LocationBox {
+    .isoLocationBox {
       width: 100%;
       height: 100%;
     }
 
-    .LocationControl {
+    .isoLocationControl {
       width: 100%;
       display: flex;
       align-items: center;
@@ -73,7 +74,7 @@ const WDLocationsWrapper = styled.div`
         padding: 30px 20px;
       }
 
-      button:not(.AddLocationBtn) {
+      button:not(.isoAddLocationBtn) {
         font-size: 16px;
         color: ${palette('secondary', 0)};
         width: 35px;
@@ -115,7 +116,7 @@ const WDLocationsWrapper = styled.div`
         }
       }
 
-      .AddLocationBtn {
+      .isoAddLocationBtn {
         background-color: ${palette('primary', 0)};
         border: 0;
         height: 30px;

@@ -33,3 +33,24 @@ query allTrucks {
   }
 }
 `;
+
+export const ALL_LOCATIONS_QUERY = gql`
+query allLocations {
+  allLocations(orderBy: createdAt_DESC) {
+    id
+    createdAt
+    locationName
+    street
+    city
+    state
+    zip
+    lat
+    lng
+    customer {
+      id
+      firstName
+      lastName
+    }
+  }
+}
+`;

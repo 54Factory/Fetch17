@@ -62,5 +62,6 @@
   "userlist.searchUsers": "Search User",
   "userlist.addNewUser": "Add New User",
   "trucklist.searchTrucks": "Search Truck",
-  "trucklist.addNewTruck": "Add New Truck"
+  "trucklist.addNewTruck": "Add New Truck",
+  "locationlist.addNewLocation": "Add New Location"
 }

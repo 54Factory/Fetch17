@@ -7,9 +7,9 @@ const WDLocationListWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 100%;
 
-  .isoNoResultMsg {
+  .NoResultMsg {
     padding: 15px 20px;
     text-align: center;
     color: ${palette('secondary', 2)};
@@ -17,7 +17,7 @@ const WDLocationListWrapper = styled.div`
     font-size: 14px;
   }
 
-  .isoSearchBar {
+  .SearchBar {
     .ant-input {
       width: 100%;
       font-size: 14px;
@@ -69,17 +69,15 @@ const WDLocationListWrapper = styled.div`
     color: ${palette('grayscale', 0)};
   }
 
-  .isoLocationList {
+  .LocationList {
     width: 100%;
     display: flex;
     flex-direction: column;
     max-height: 100%;
     overflow: hidden;
     overflow-y: auto;
-    border-bottom: 1px solid ${palette('border', 0)};
-    
 
-    .isoSingleLocation {
+    .SingleLocation {
       width: 100%;
       margin: 0;
       display: flex;
@@ -102,7 +100,7 @@ const WDLocationListWrapper = styled.div`
         border-bottom: 0;
       }
 
-      .isoAvatar {
+      .Avatar {
         width: 35px;
         height: 35px;
         display: flex;
@@ -121,7 +119,7 @@ const WDLocationListWrapper = styled.div`
         }
       }
 
-      .isoNoteText {
+      .NoteText {
         width: calc(100% - 60px);
         margin-right: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '20px')};
         margin-left: ${props => (props['data-rtl'] === 'rtl' ? '20px' : 'inherit')};
@@ -137,13 +135,13 @@ const WDLocationListWrapper = styled.div`
           font-weight: 500;
         }
 
-        .isoNoteCreatedDate {
+        .NoteCreatedDate {
           font-size: 13px;
           color: ${palette('grayscale', 0)};
         }
       }
 
-      .isoDeleteBtn {
+      .DeleteBtn {
         width: 24px;
         height: 24px;
         background-color: transparent;
@@ -164,7 +162,7 @@ const WDLocationListWrapper = styled.div`
       }
     }
 
-    .isoNotlistNotice {
+    .NotlistNotice {
       font-size: 14px;
       font-weight: 400;
       color: ${palette('grayscale', 0)};

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import { Input } from 'antd';
 import DeleteButton from './deleteButton';
 import { PropTypes } from "prop-types";
@@ -25,22 +24,21 @@ export default class LocationList extends React.Component {
     };
   }
   singleLocation(location) {
-    const { selectedId, deleteLocation } = this.props;
+    const { selectedId, deleteLocation, changeLocation } = this.props;
     const activeClass = selectedId === location.id ? 'active' : '';
-    //const onChange = () => changeLocation(location.id);
+    const onChange = () => changeLocation(location.id);
     return (
       <div
         key={location.id}
-        className={`${activeClass} isoSingleLocation`}
-        
+        className={`${activeClass} SingleLocation`}
+        onClick={onChange}
       >
-      <Link to={`/dashboard/locations/${location.id}`} >
-        <div className="isoLocationName">
-          <h3>{`${location.locationName}` ? `${location.locationName}` : 'No Name'}</h3>
-          <h4>{location.city}, {location.state}</h4>
+        <div className="Avatar">
+          {location.image ? <img alt="#" src={location.image} /> : ''}
         </div>
-      </Link>
-        
+        <div className="LocationName">
+          <h3>{location.locationName ? location.locationName : 'No Name'}</h3>
+        </div>
         <DeleteButton deleteLocation={deleteLocation} location={location} />
       </div>
     );
@@ -52,15 +50,15 @@ export default class LocationList extends React.Component {
     const { search } = this.state;
     const locations = filterLocations(this.props.locations, search);    
     return(
-      <LocationListWrapper className="isoLocationListWrapper">
+      <LocationListWrapper className="LocationListWrapper">
         <Search
           placeholder={this.context.intl.formatMessage({id:"locationlist.searchLocations"})}
           value={search}
           onChange={this.onChange}
-          className="isoSearchBar"
+          className="SearchBar"
         />
         {locations && locations.length > 0
-          ? <div className="isoLocationList">
+          ? <div className="LocationList">
               {locations.map(location => this.singleLocation(location))}
             </div>
           : 'No Location with that name found...'}

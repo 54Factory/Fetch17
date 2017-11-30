@@ -23,7 +23,7 @@ const WDLocationCardWrapper = styled.div`
     flex-direction: column;
   }
 
-  .isoLocationCardHead {
+  .LocationCardHead {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@ const WDLocationCardWrapper = styled.div`
       margin-bottom: 20px;
     }
 
-    .isoPersonImage {
+    .LocationImage {
       width: 120px;
       height: 120px;
       display: flex;
@@ -64,7 +64,7 @@ const WDLocationCardWrapper = styled.div`
       }
     }
 
-    .isoPersonName {
+    .LocationName {
       font-size: 15px;
       font-weight: 500;
       color: ${palette('text', 0)};
@@ -73,12 +73,12 @@ const WDLocationCardWrapper = styled.div`
     }
   }
 
-  .isoLocationInfoWrapper {
+  .LocationInfoWrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
 
-    .isoLocationCardInfos {
+    .LocationCardInfos {
       width: 100%;
       display: flex;
       flex-shrink: 0;
@@ -91,7 +91,7 @@ const WDLocationCardWrapper = styled.div`
         margin-bottom: 20px;
       }
 
-      .isoInfoLabel {
+      .LocationInfoLabel {
         font-size: 14px;
         font-weight: 500;
         color: ${palette('text', 0)};
@@ -120,7 +120,7 @@ const WDLocationCardWrapper = styled.div`
         }
       }
 
-      .isoInfoDetails {
+      .LocationInfoDetails {
         font-size: 14px;
         font-weight: 400;
         color: ${palette('text', 2)};
