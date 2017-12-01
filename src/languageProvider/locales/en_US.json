@@ -38,7 +38,7 @@
   "customerlist.searchCustomers": "Search By Last Name",
   "customerlist.addNewCustomer": "Add New Customer",
   "customerlist.editCustomer": "Save Changes",
-  "locationlist.searchLocations": "Search Locations",
+  
   "oilCollection.index": "Oil Collection",
   "oilCollection.index.driver": "Driver Oil Collection",
   "oilCollection.collections.index": "Pending Collections",
@@ -63,5 +63,8 @@
   "userlist.addNewUser": "Add New User",
   "trucklist.searchTrucks": "Search Truck",
   "trucklist.addNewTruck": "Add New Truck",
-  "locationlist.addNewLocation": "Add New Location"
+  "locationlist.searchLocations": "Search Locations",
+  "locationlist.addNewLocation": "Add New Location",
+  "setuplist.searchSetUps": "Search Locations",
+  "setUplist.addNewSetUp": "Add New Set Up"
 }

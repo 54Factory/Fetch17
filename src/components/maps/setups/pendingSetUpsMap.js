@@ -3,7 +3,7 @@ import { compose, withProps } from 'recompose';
 import { Link } from 'react-router-dom';
 import { GoogleMap, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { Col, Thumbnail } from 'react-bootstrap';
-import './locationsMap.css';
+import './setUpMap.css';
 
 
 const FetchV2GoogleMap = compose(
@@ -62,7 +62,7 @@ const FetchV2GoogleMap = compose(
   );
 
 
-export default class LocationsMap extends Component {
+export default class PendingSetUpsMap extends Component {
 
   state = {
     markers: [],

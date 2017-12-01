@@ -174,7 +174,7 @@ class Sidebar extends Component {
               )
             }>
             <Menu.Item style={submenuStyle} key="pendingSetUps">
-              <Link style={submenuColor} to={`${url.path}/pendingSetups`}>
+              <Link style={submenuColor} to={`${url.path}/pendingSetUps`}>
                 <IntlMessages id="sidebar.pendingSetups" />
               </Link>
             </Menu.Item>

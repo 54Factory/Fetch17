@@ -3,6 +3,7 @@ import {login, register, user} from './authorize/reducers/auth'
 import Users from './users/reducer'
 import Trucks from './trucks/reducers'
 import Locations from './locations/reducers'
+import SetUps from './setups/reducers'
 
 export default {
   App,
@@ -11,5 +12,6 @@ export default {
   user,
   Users,
   Trucks,
-  Locations
+  Locations,
+  SetUps
 };

@@ -54,3 +54,41 @@ query allLocations {
   }
 }
 `;
+
+export const PENDING_SETUPS_QUERY = gql`
+query Setups {
+  allOilCollectionStates(filter: {
+    setup: false
+    }) {
+      id
+      oilCollectionService{
+        id
+        containment{
+          id
+          containerType
+          quantity
+        }
+        service{
+          id
+          setUpService{
+            id
+            setUpDate
+            setUpNotes{
+              setUpNoteContent
+            }
+          }
+          location{
+            id
+            locationName
+            street
+            city
+            state
+            zip
+            lat
+            lng
+          }
+        }
+      }
+    }
+  }
+`
