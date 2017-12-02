@@ -11,6 +11,7 @@ export const ADD_SETUP_ERROR = 'ADD_SETUP_ERROR';
 export const EDIT_SETUP = 'EDIT_SETUP';
 export const CHANGE_SETUP = 'CHANGE_SETUP';
 export const EDIT_VIEW = 'EDIT_VIEW';
+export const MAP_VIEW = 'MAP_VIEW';
 
 function ascendingSort(user1, user2) {
   const name1 = user1.locationName ? user1.locationName.toUpperCase() : '~';
@@ -109,6 +110,13 @@ export const addSetUpError = ({ error }) => ({
     export function viewChange(view) {
       return {
         type: EDIT_VIEW,
+        view
+      }
+    }
+
+    export function viewMap(view) {
+      return {
+        type: MAP_VIEW,
         view
       }
     }

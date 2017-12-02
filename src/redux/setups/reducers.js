@@ -7,7 +7,8 @@ import {
 	EDIT_SETUP,
 	DELETE_SETUP,
 	ADD_SETUP_ERROR,
-	EDIT_VIEW
+	EDIT_VIEW,
+	MAP_VIEW
 } from "./actions";
 
 const initialState = {
@@ -16,8 +17,7 @@ const initialState = {
 	fetched: false,
 	selectedId: 'id',
 	editView: false,
-	loading: false,
-	locationName: null
+	loading: false
 };
 
 export default function setupsReducer(state = initialState, action) {
@@ -26,13 +26,19 @@ export default function setupsReducer(state = initialState, action) {
 			return {	
 				...state,			
 				fetched: true,
-        setups: action.payload.data.allOilCollectionStates
+				setups: action.payload.data.allOilCollectionStates
 			};
 		case CHANGE_SETUP:
       return {
 				...state,
 				selectedId: action.id,
 				editView :false
+			};
+		case MAP_VIEW:
+      return {
+				...state,
+				selectedId: action.id,
+				editView: action.view
 			};
     case ADD_SETUP:
       return {

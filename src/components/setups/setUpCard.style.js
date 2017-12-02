@@ -5,7 +5,7 @@ import WithDirection from '../../config/withDirection';
 
 const WDSetUpCardWrapper = styled.div`
   width: 100%;
-  height: calc(100% - 145px);
+  height: 600px;
   padding: 0 35px;
   display: -webkit-flex;
   display: -ms-flex;
@@ -27,7 +27,7 @@ const WDSetUpCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120px;
+    width: 300px;
     flex-shrink: 0;
     margin-right: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '50px')};
     margin-left: ${props => (props['data-rtl'] === 'rtl' ? '50px' : 'inherit')};
@@ -41,27 +41,9 @@ const WDSetUpCardWrapper = styled.div`
       margin-bottom: 20px;
     }
 
-    .SetUpImage {
-      width: 120px;
-      height: 120px;
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      overflow: hidden;
-      ${borderRadius('5px')};
-
-      .avatar-uploader {
-        width: 100%;
-        height: 100%;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .SetUpMap {
+      width: 300px;
+      height: 300px;
     }
 
     .SetUpName {

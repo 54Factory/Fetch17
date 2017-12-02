@@ -8,15 +8,16 @@ import SingleSetUpView from '../../components/setups/singleView';
 import EditSetUpView from '../../components/setups/editView';
 import DeleteButton from '../../components/setups/deleteButton';
 import IntlMessages from '../../components/utility/intlMessages';
+import SetUpsMap from '../../components/maps/setups/pendingSetUpsMap'
 import { SetUpsWrapper } from './setups.style';
 
 const {
   fetchSetUps,
   changeSetUp,
-  addSetUp,
   editSetUp,
   deleteSetUp,
-  viewChange
+  viewChange,
+  viewMap
 } = SetUpsAction;
 
 
@@ -26,6 +27,7 @@ class SetUps extends Component {
   componentWillMount() {
     this.props.fetchSetUps()
   }
+
   render() {
 
     const {    
@@ -33,22 +35,28 @@ class SetUps extends Component {
       selectedId,
       editView,
       changeSetUp,
-      addSetUp,
       editSetUp,
       deleteSetUp,
-      viewChange
+      viewChange,
+      viewMap
     } = this.props;
     const selectedSetUp = selectedId
       ? setups.filter(setup => setup.id === selectedId)[0]
       : null;
     const onViewChange = () => viewChange(!editView);
-    const otherAttributes = [
-      { title: 'First Name', value: 'firstName', type: 'name' },
-      { title: 'Last Name', value: 'lastName', type: 'name' },
-      { title: 'Email', value: 'email', type: 'email' },
-      { title: 'Role', value: 'role', type: 'position' },
-      { title: 'Notes', value: 'note', type: 'paragraph' }
+    const onMapChange = () => viewMap(editView);
+
+    const containerAttributes = [
+      { title: 'Container', value: 'containerType', type: 'name' },
+      { title: 'Quantity', value: 'quantity', type: 'number' }
     ];
+
+    const setUpAttributes = [
+      { title: 'Set Up Date', value: 'setUpDate', type: 'date' },
+    ]
+
+
+
     console.log(this.props);
     return (
       <div>
@@ -77,36 +85,34 @@ class SetUps extends Component {
                 />
                 <Button
                   type="primary"
-                  onClick={addSetUp}
-                  className="AddSetUpBtn"
+                  onClick={onMapChange}
+                  className="BackBtn"
                 >
-                  <IntlMessages id="setUplist.addNewSetUp" />
+                  <IntlMessages id="setUplist.backButton" />
                 </Button>
               </div>
               {editView ? (
                 <EditSetUpView
                   setup={selectedSetUp}
                   editSetUp={editSetUp}
-                  otherAttributes={otherAttributes}
+                  containerAttributes={containerAttributes}
+                  setUpAttributes={setUpAttributes}
                 />
               ) : (
                 <SingleSetUpView
                   setup={selectedSetUp}
-                  otherAttributes={otherAttributes}
+                  containerAttributes={containerAttributes}
+                  setUpAttributes={setUpAttributes}
+                  setups={setups}
                 />
-                
               )}
             </Content>
           ) : (
-            <div className="SetUpControl">
-              <Button
-                type="primary"
-                onClick={addSetUp}
-                className="AddSetUpBtn"
-              >
-                <IntlMessages id="setUplist.addNewSetUp" />
-              </Button>
-            </div>
+            <Content className="SetUpBox">
+            <SetUpsMap 
+              markers={setups}
+            />
+          </Content>
           )}
         </Layout>
       </SetUpsWrapper>
@@ -126,8 +132,8 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   fetchSetUps,
   changeSetUp,
-  addSetUp,
   editSetUp,
   deleteSetUp,
-  viewChange
+  viewChange,
+  viewMap
 })(SetUps);

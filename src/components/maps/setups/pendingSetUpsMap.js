@@ -71,7 +71,7 @@ export default class PendingSetUpsMap extends Component {
   };
   
   handleMapLoad = this.handleMapLoad.bind(this);
-  handleMapClick = this.handleMapClick.bind(this);
+  //handleMapClick = this.handleMapClick.bind(this);
   handleMarkerClick = this.handleMarkerClick.bind(this);
   handleMarkerClose = this.handleMarkerClose.bind(this);
 
@@ -86,20 +86,27 @@ export default class PendingSetUpsMap extends Component {
 
         console.log(newMarkers)
         return {
-          id: location.id,
-          locationName: location.locationName,
-          street: location.street,
-          city: location.city,
-          state: location.state,
+          id: location.oilCollectionService.service.location.id,
+          locationName: location.oilCollectionService.service.location.locationName,
+          street: location.oilCollectionService.service.location.street,
+          city: location.oilCollectionService.service.location.city,
+          state: location.oilCollectionService.service.location.state,
           position: {
-            lat: location.lat,
-            lng: location.lng,
+            lat: location.oilCollectionService.service.location.lat,
+            lng: location.oilCollectionService.service.location.lng,
           },
         }
       });
     this.setState({
       markers: newMarkers
     })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.markers !== this.props.markers) {
+      this.handleMarkers();
+      
+   }
   }
 
   handleMarkerClick(targetMarker) {
@@ -134,9 +141,9 @@ export default class PendingSetUpsMap extends Component {
     this._mapComponent = map
   }
 
-  handleMapClick() {
-    this._removeAllMarkers()
-  }
+  // handleMapClick() {
+  //   this._removeAllMarkers()
+  // }
 
   render() {
     console.log("Render", this.props)
@@ -144,7 +151,7 @@ export default class PendingSetUpsMap extends Component {
       <div style={{height: `100%`}}>
         <FetchV2GoogleMap
           onMapLoad={this.handleMapLoad}
-          onMapClick={this.handleMapClick}
+          // onMapClick={this.handleMapClick}
           markers={this.state.markers}
           onMarkerClick={this.handleMarkerClick}
           onMarkerClose={this.handleMarkerClose}

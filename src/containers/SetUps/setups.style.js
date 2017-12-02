@@ -69,7 +69,7 @@ const WDSetUpsWrapper = styled.div`
         padding: 30px 20px;
       }
 
-      button:not(.AddSetUpBtn) {
+      button:not(.BackBtn) {
         font-size: 16px;
         color: ${palette('secondary', 0)};
         width: 35px;
@@ -111,7 +111,7 @@ const WDSetUpsWrapper = styled.div`
         }
       }
 
-      .AddSetUpBtn {
+      .BackBtn {
         background-color: ${palette('primary', 0)};
         border: 0;
         height: 30px;

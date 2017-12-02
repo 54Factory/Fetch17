@@ -74,6 +74,7 @@ query Setups {
             id
             setUpDate
             setUpNotes{
+              id
               setUpNoteContent
             }
           }

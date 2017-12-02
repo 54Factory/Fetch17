@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input } from 'antd';
 import DeleteButton from './deleteButton';
+import { FormattedDate, IntlProvider } from 'react-intl'
 import { PropTypes } from "prop-types";
 import { SetUpListWrapper } from './setUpList.style';
 
@@ -10,7 +11,7 @@ const Search = Input.Search;
 function filterSetUps(setups, search) {
   search = search.toUpperCase();
   return search
-    ? setups.filter(setup => setup.locationName.toUpperCase().includes(search))
+    ? setups.filter(setup => setup.oilCollectionService.service.location.locationName.toUpperCase().includes(search))
     : setups;
 }
 
@@ -27,6 +28,7 @@ export default class SetUpList extends React.Component {
     const { selectedId, deleteSetUp, changeSetUp } = this.props;
     const activeClass = selectedId === setup.id ? 'active' : '';
     const name = setup.oilCollectionService.service.location.locationName
+    const setUpDate = setup.oilCollectionService.service.setUpService.setUpDate
     const onChange = () => changeSetUp(setup.id);
     return (
       <div
@@ -39,6 +41,14 @@ export default class SetUpList extends React.Component {
         </div>
         <div className="SetUpName">
           <h3>{name ? name : 'No Name'}</h3>
+          <h4>Date: <IntlProvider locale="en">
+                  <FormattedDate
+                    value={setUpDate}
+                    year='numeric'
+                    month='long'
+                    day='numeric'
+                  />
+              </IntlProvider></h4>
         </div>
         <DeleteButton deleteSetUp={deleteSetUp} setup={setup} />
       </div>
