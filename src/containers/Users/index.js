@@ -1,33 +1,3 @@
-// import React from "react";
-// import { connect } from "react-redux";
-// import { fetchUsers } from '../../redux/users/actions'
-// import UsersList from '../../components/users/usersList'
-// class Users extends React.Component {
-
-//   componentWillMount() {
-//     this.props.fetchUsers()
-//   }
-
-//   render() {
-//     const Users = this.props.Users.allUsers
-//     console.log(this.props)
-//     return (
-//       <div>
-//         <UsersList 
-//         users={Users}
-//         />
-//       </div>
-//     );
-//   }
-// }
-
-
-// const mapStateToProps = (state) => {
-//   return { Users: state.Users }
-// }
-
-// export default connect(mapStateToProps, { fetchUsers })(Users);
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as UserAction from '../../redux/users/actions';
@@ -37,7 +7,6 @@ import UserList from '../../components/users/userList';
 import SingleUserView from '../../components/users/singleView';
 import EditUserView from '../../components/users/editView';
 import DeleteButton from '../../components/users/deleteButton';
-//import { otherAttributes } from './fakeData';
 import IntlMessages from '../../components/utility/intlMessages';
 import { UsersWrapper } from './users.style';
 

@@ -13,47 +13,65 @@ export const USER_QUERY = gql`
     }
   }
 `
-export const ALL_TRUCKS_QUERY = gql`
-query allTrucks {
-  allTrucks {
-    id
-    image
-    name
-    description
-    createdAt
-    updatedAt
-    driver{
+
+export const ALL_DRIVERS_QUERY = gql`
+  query allDrivers {
+    allDrivers {
       id
+      dlNumber
       user {
+        id
+        username
+      }
+      truck {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const ALL_TRUCKS_QUERY = gql`
+  query allTrucks {
+    allTrucks {
+      id
+      image
+      name
+      description
+      createdAt
+      updatedAt
+      driver{
+        id
+        user {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+`;
+
+export const ALL_LOCATIONS_QUERY = gql`
+  query allLocations {
+    allLocations(orderBy: createdAt_DESC) {
+      id
+      createdAt
+      locationName
+      streetNumber
+      street
+      city
+      state
+      zip
+      lat
+      lng
+      customer {
         id
         firstName
         lastName
       }
     }
   }
-}
-`;
-
-export const ALL_LOCATIONS_QUERY = gql`
-query allLocations {
-  allLocations(orderBy: createdAt_DESC) {
-    id
-    createdAt
-    locationName
-    streetNumber
-    street
-    city
-    state
-    zip
-    lat
-    lng
-    customer {
-      id
-      firstName
-      lastName
-    }
-  }
-}
 `;
 
 export const PENDING_SETUPS_QUERY = gql`

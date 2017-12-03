@@ -59,6 +59,7 @@
   "forms.truck.createTruck.header": "Create Truck",
   "Component.users.noOption": "No user found",
   "Component.trucks.noOption": "No truck found",
+  "Component.drivers.noOption": "No driver found",
   "userlist.searchUsers": "Search User",
   "userlist.addNewUser": "Add New User",
   "trucklist.searchTrucks": "Search Truck",
@@ -66,5 +67,7 @@
   "locationlist.searchLocations": "Search Locations",
   "locationlist.backButton": "Back To Main Map",
   "setuplist.searchSetUps": "Search Locations",
-  "setUplist.backButton": "Back To Main Map"
+  "setUplist.backButton": "Back To Main Map",
+  "driverlist.backButton": "Back To Main View",
+  "driverlist.searchDrivers": "Search Drivers"
 }

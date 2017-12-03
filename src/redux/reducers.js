@@ -4,6 +4,7 @@ import Users from './users/reducer'
 import Trucks from './trucks/reducers'
 import Locations from './locations/reducers'
 import SetUps from './setups/reducers'
+import Drivers from './drivers/reducer'
 
 export default {
   App,
@@ -13,5 +14,6 @@ export default {
   Users,
   Trucks,
   Locations,
-  SetUps
+  SetUps,
+  Drivers
 };
