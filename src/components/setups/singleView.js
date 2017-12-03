@@ -25,6 +25,8 @@ export default class SingleSetUpView extends Component {
     const containment = setup.oilCollectionService.containment
     const setUpDetails = setup.oilCollectionService.service.setUpService
     const name = location.locationName ? location.locationName : 'No Name';
+    const streetAddress = location.streetNumber + ' ' + location.street;
+    const restAddress = `${location.city}, ${location.state} ${location.zip}`
     const extraInfos = [];
     const setUpInfos = [];
     setUpAttributes.forEach(attribute => {
@@ -70,6 +72,8 @@ export default class SingleSetUpView extends Component {
             />
           </div>
           <h1 className="SetUpName">{name}</h1>
+          <p className="SetUpAddress">{streetAddress}</p>
+          <p className="SetUpAddress">{restAddress}</p>
         </div>
         <div className="SetUpInfoWrapper"> 
           {setUpInfos}

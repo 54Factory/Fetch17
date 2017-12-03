@@ -2,11 +2,11 @@ import {
 	FETCH_SETUPS, 
 	CHANGE_SETUP,
 	ADD_SETUP,
-	ADD_SETUP_REQUEST,
-	ADD_SETUP_SUCCESS,
+	COMPLETE_SETUP_REQUEST,
+	COMPLETE_SETUP_SUCCESS,
 	EDIT_SETUP,
 	DELETE_SETUP,
-	ADD_SETUP_ERROR,
+	COMPLETE_SETUP_ERROR,
 	EDIT_VIEW,
 	MAP_VIEW
 } from "./actions";
@@ -47,20 +47,20 @@ export default function setupsReducer(state = initialState, action) {
         selectedId: action.selectedId,
 				editView: true
 			}
-		case ADD_SETUP_REQUEST:
+		case COMPLETE_SETUP_REQUEST:
       return {
         ...initialState,
         loading: true,
         locationName: action.locationName,
       };
-    case ADD_SETUP_SUCCESS:
+    case COMPLETE_SETUP_SUCCESS:
       return {
         ...state,
         loading: false,
         errorMessage: null,
         successMessage: action.payload.message,
       };
-    case ADD_SETUP_ERROR:
+    case COMPLETE_SETUP_ERROR:
       return {
         ...state,
         loading: false,

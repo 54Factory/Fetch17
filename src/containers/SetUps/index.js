@@ -6,7 +6,6 @@ import Button from '../../components/uielements/button';
 import SetUpList from '../../components/setups/setUpList';
 import SingleSetUpView from '../../components/setups/singleView';
 import EditSetUpView from '../../components/setups/editView';
-import DeleteButton from '../../components/setups/deleteButton';
 import IntlMessages from '../../components/utility/intlMessages';
 import SetUpsMap from '../../components/maps/setups/pendingSetUpsMap'
 import { SetUpsWrapper } from './setups.style';
@@ -20,8 +19,6 @@ const {
   viewMap
 } = SetUpsAction;
 
-
-
 const { Content } = Layout;
 class SetUps extends Component {
   componentWillMount() {
@@ -29,7 +26,6 @@ class SetUps extends Component {
   }
 
   render() {
-
     const {    
       setups,
       selectedId,
@@ -40,9 +36,11 @@ class SetUps extends Component {
       viewChange,
       viewMap
     } = this.props;
+    
     const selectedSetUp = selectedId
       ? setups.filter(setup => setup.id === selectedId)[0]
       : null;
+    
     const onViewChange = () => viewChange(!editView);
     const onMapChange = () => viewMap(editView);
 
@@ -52,7 +50,7 @@ class SetUps extends Component {
     ];
 
     const setUpAttributes = [
-      { title: 'Set Up Date', value: 'setUpDate', type: 'date' },
+      { title: 'For Date', value: 'setUpDate', type: 'date' },
     ]
 
 
@@ -76,19 +74,15 @@ class SetUps extends Component {
           {selectedSetUp ? (
             <Content className="SetUpBox">
               <div className="SetUpControl">
-                <Button type="button" onClick={onViewChange}>
-                  {editView ? <Icon type="check" /> : <Icon type="edit" />}{' '}
-                </Button>
-                <DeleteButton
-                  deleteSetUp={deleteSetUp}
-                  setup={selectedSetUp}
-                />
                 <Button
                   type="primary"
                   onClick={onMapChange}
                   className="BackBtn"
                 >
                   <IntlMessages id="setUplist.backButton" />
+                </Button>
+                <Button type="button" onClick={onViewChange}>
+                  {editView ? <Icon type="cross" /> : <Icon type="check" />}{' '}
                 </Button>
               </div>
               {editView ? (

@@ -54,13 +54,14 @@ const WDSetUpsWrapper = styled.div`
     .SetUpBox {
       width: 100%;
       height: 100%;
+      padding-bottom: 50px;
     }
 
     .SetUpControl {
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: flex-end;
       flex-shrink: 0;
       padding: 30px;
       background-color: #ffffff;
@@ -112,14 +113,12 @@ const WDSetUpsWrapper = styled.div`
       }
 
       .BackBtn {
-        background-color: ${palette('primary', 0)};
+        background-color: ${palette('color', 5)};
         border: 0;
         height: 30px;
         padding: 0 15px;
-        margin-left: ${props =>
-          props['data-rtl'] === 'rtl' ? 'inherit' : 'auto'};
-        margin-right: ${props =>
-          props['data-rtl'] === 'rtl' ? 'auto' : 'inherit'};
+        margin-left: 0;
+        margin-right: auto;
         ${borderRadius('3px')};
         ${transition()};
 
@@ -132,7 +131,7 @@ const WDSetUpsWrapper = styled.div`
         }
 
         &:hover {
-          background-color: ${palette('primary', 1)};
+          background-color: ${palette('color', 6)};
         }
       }
     }

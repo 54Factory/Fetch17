@@ -5,7 +5,6 @@ import WithDirection from '../../config/withDirection';
 
 const WDSetUpCardWrapper = styled.div`
   width: 100%;
-  height: 600px;
   padding: 0 35px;
   display: -webkit-flex;
   display: -ms-flex;
@@ -47,14 +46,23 @@ const WDSetUpCardWrapper = styled.div`
     }
 
     .SetUpName {
-      padding: 15px;
+      padding-top: 10px;
       font-size: 16px;
       font-weight: 600;
       color: ${palette('text', 0)};
       line-height: 1.5;
       margin: 0;
     }
+    .SetUpAddress {
+      font-size: 12px;
+      font-weight: 400;
+      color: ${palette('text', 0)};
+      line-height: 1.5;
+      margin: 0;
+    }
+
   }
+
 
   .SetUpInfoWrapper {
     width: 100%;

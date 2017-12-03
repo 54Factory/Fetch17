@@ -5,19 +5,14 @@ export const FETCH_SETUP = "FETCH_SETUP";
 export const CREATE_SETUP = "CREATE_SETUP";
 export const DELETE_SETUP = "DELETE_SETUP";
 export const ADD_SETUP = 'ADD_SETUP';
-export const ADD_SETUP_REQUEST = 'ADD_SETUP_REQUEST';
-export const ADD_SETUP_SUCCESS = 'ADD_SETUP_SUCCESS';
-export const ADD_SETUP_ERROR = 'ADD_SETUP_ERROR';
+export const COMPLETE_SETUP_REQUEST = 'COMPLETE_SETUP_REQUEST';
+export const COMPLETE_SETUP_SUCCESS = 'COMPLETE_SETUP_SUCCESS';
+export const COMPLETE_SETUP_ERROR = 'COMPLETE_SETUP_ERROR';
 export const EDIT_SETUP = 'EDIT_SETUP';
 export const CHANGE_SETUP = 'CHANGE_SETUP';
 export const EDIT_VIEW = 'EDIT_VIEW';
 export const MAP_VIEW = 'MAP_VIEW';
 
-function ascendingSort(user1, user2) {
-  const name1 = user1.locationName ? user1.locationName.toUpperCase() : '~';
-  const name2 = user2.locationName ? user2.locationName.toUpperCase() : '~';
-  return name1 > name2 ? 1 : name1 === name2 ? 0 : -1;
-}
 
 export function fetchSetUps() {
   return client.query({ query: PENDING_SETUPS_QUERY })
@@ -37,18 +32,18 @@ export function fetchSetUps() {
   }
 
 
-export const addSetUp = ({ locationName }) => ({
-  type: ADD_SETUP_REQUEST,
+export const editSetUp = ({ locationName }) => ({
+  type: COMPLETE_SETUP_REQUEST,
   locationName,
 });
 
-export const addSetUpSuccess = () => ({
-  type: ADD_SETUP_SUCCESS,
+export const editSetUpSuccess = () => ({
+  type: COMPLETE_SETUP_SUCCESS,
   message: 'User created successfully!',
 });
 
-export const addSetUpError = ({ error }) => ({
-  type: ADD_SETUP_ERROR,
+export const editSetUpError = ({ error }) => ({
+  type: COMPLETE_SETUP_ERROR,
   message: error.message,
 });
     // export function addUser() {
@@ -70,23 +65,23 @@ export const addSetUpError = ({ error }) => ({
     //     });
     //   };
     // }
-    export function editSetUp(newSetUp) {
-      return (dispatch, state) => {
-        const setups = state.SetUps;
-        const newSetUps = [];
-        setups.forEach(setup => {
-          if (setup.id === newSetUp.id) {
-            newSetUps.push(newSetUp);
-          } else {
-            newSetUps.push(setup);
-          }
-        });
-        dispatch({
-          type: EDIT_SETUP,
-          setups: newSetUps.sort(ascendingSort),
-        });
-      }
-    }
+    // export function editSetUp(newSetUp) {
+    //   return (dispatch, state) => {
+    //     const setups = state.SetUps;
+    //     const newSetUps = [];
+    //     setups.forEach(setup => {
+    //       if (setup.id === newSetUp.id) {
+    //         newSetUps.push(newSetUp);
+    //       } else {
+    //         newSetUps.push(setup);
+    //       }
+    //     });
+    //     dispatch({
+    //       type: EDIT_SETUP,
+    //       setups: newSetUps.sort(ascendingSort),
+    //     });
+    //   }
+    // }
     
     export function deleteSetUp(id) {
       return (dispatch, state) => {

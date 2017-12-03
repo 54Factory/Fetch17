@@ -1,35 +1,43 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
 import Input from '../uielements/input';
-import Upload from '../uielements/upload';
-import notification from '../notification';
+import SingleSetUpMap from '../maps/setups/singleSetUpMap'
+import { FormattedDate, IntlProvider } from 'react-intl'
 import { SetUpCardWrapper } from './setUpCard.style';
 import './upload.css';
 
-function beforeUpload(file) {
-  const isJPG = file.type === 'image/jpeg';
-  if (!isJPG) {
-    notification('error', 'You can only upload JPG file!', '');
-    return false;
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    notification('error', 'Image must smaller than 2MB!', '');
-    return false;
-  }
-  notification('success', 'Image uploaded successfully!', '');
-  return true;
-}
 export default class editSetUpView extends Component {
+
+  componentWillMount() {
+    console.log('Edit view Mount Lifecycle')
+  }
+
+  renderSetUpNote() {
+    const { setup } = this.props;
+    const setUpNotes = setup.oilCollectionService.service.setUpService.setUpNotes
+    console.log("Notes", setUpNotes)
+    return setUpNotes.map(({ id, setUpNoteContent }) => {
+      return(
+        <p key={id} className="SetUpInfoDetails">
+          {setUpNoteContent}
+        </p>
+      )
+    })
+  }
+
   render() {
-    const { setup, otherAttributes } = this.props;
-    const name = setup.locationName ? setup.locationName : 'No Name';
+    const { setup, containerAttributes, setUpAttributes } = this.props;
+    const location = setup.oilCollectionService.service.location
+    const containment = setup.oilCollectionService.containment
+    const setUpDetails = setup.oilCollectionService.service.setUpService
+    const name = location.locationName ? location.locationName : 'No Name';
     const extraInfos = [];
+    const setUpInfos = [];
     const names = [
-      { value: 'name', title: 'First Name' }
+      { title: 'Quantity', value: 'quantity', type: 'number' },
+      { title: 'Container', value: 'containerType', type: 'name' }
     ];
-    [...names, ...otherAttributes].forEach(attribute => {
-      const value = setup[attribute.value];
+    [...names, ...containerAttributes].forEach(attribute => {
+      const value = containment[attribute.value];
       const editSetUp = event => {
         setup[attribute.value] = event.target.value;
         let name = '';
@@ -65,28 +73,44 @@ export default class editSetUpView extends Component {
         );
       }
     });
+    setUpAttributes.forEach(attribute => {
+      const value = setUpDetails[attribute.value]
+      if (value) {
+        setUpInfos.push(
+          <div className="SetUpCardInfos" key={attribute.value}>
+            <p className="SetUpInfoLabel">{`${attribute.title}`}</p>
+            <p className="SetUpInfoDetails">
+              <IntlProvider locale="en">
+                  <FormattedDate
+                    value={value}
+                    year='numeric'
+                    month='long'
+                    day='numeric'
+                  />
+              </IntlProvider>
+            </p>
+          </div>
+        );
+      }
+    });
     return (
       <SetUpCardWrapper className="SetUpCard">
         <div className="SetUpCardHead">
-          <div className="PersonImage">
-            <Upload
-              className="avatar-uploader"
-              name="avatar"
-              showUploadList={false}
-              beforeUpload={beforeUpload}
-              action=""
-            >
-              {setup.image
-                ? <img src={setup.image} alt="" className="avatar" />
-                : ''}
-              <Icon type="plus" className="avatar-uploader-trigger" />
-            </Upload>
-          </div>
-          <h1 className="PersonName">
+        <div className="SetUpMap">
+        <SingleSetUpMap 
+          markers={location}
+        />
+      </div>
+          <h1 className="SetUpName">
             {name}
           </h1>
         </div>
         <div className="SetUpInfoWrapper">
+          {setUpInfos}
+          <div className="SetUpCardInfos">
+            <p className="SetUpInfoLabel">Notes</p>
+              {this.renderSetUpNote()}
+          </div>
           {extraInfos}
         </div>
       </SetUpCardWrapper>

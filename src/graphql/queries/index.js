@@ -100,6 +100,7 @@ query Setups {
           location{
             id
             locationName
+            streetNumber
             street
             city
             state
