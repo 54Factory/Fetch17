@@ -47,8 +47,8 @@ class SetUps extends Component {
     const onMapChange = () => viewMap(editView);
 
     const containerAttributes = [
-      { title: 'Container', value: 'containerType', type: 'name' },
-      { title: 'Quantity', value: 'quantity', type: 'number' }
+      { title: 'Quantity', value: 'quantity', type: 'number' },
+      { title: 'Container', value: 'containerType', type: 'name' }    
     ];
 
     const setUpAttributes = [

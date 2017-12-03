@@ -73,7 +73,7 @@ const WDLocationsWrapper = styled.div`
         padding: 30px 20px;
       }
 
-      button:not(.AddLocationBtn) {
+      button:not(.BackBtn) {
         font-size: 16px;
         color: ${palette('secondary', 0)};
         width: 35px;
@@ -115,7 +115,7 @@ const WDLocationsWrapper = styled.div`
         }
       }
 
-      .AddLocationBtn {
+      .BackBtn {
         background-color: ${palette('primary', 0)};
         border: 0;
         height: 30px;

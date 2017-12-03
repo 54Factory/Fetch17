@@ -13,10 +13,10 @@ import LocationsMap from '../../components/maps/locations/locationsMap'
 const {
   fetchLocations,
   changeLocation,
-  addLocation,
   editLocation,
   deleteLocation,
-  viewChange
+  viewChange,
+  viewMap
 } = LocationAction;
 
 
@@ -33,22 +33,28 @@ class Locations extends Component {
       selectedId,
       editView,
       changeLocation,
-      addLocation,
       editLocation,
       deleteLocation,
-      viewChange
+      viewChange,
+      viewMap
     } = this.props;
+    
     const selectedLocation = selectedId
       ? locations.filter(location => location.id === selectedId)[0]
       : null;
-    const onViewChange = () => viewChange(!editView);
+    
+      const onViewChange = () => viewChange(!editView);
+    const onMapChange = () => viewMap(editView);
+
     const otherAttributes = [
-      { title: 'First Name', value: 'firstName', type: 'name' },
-      { title: 'Last Name', value: 'lastName', type: 'name' },
-      { title: 'Email', value: 'email', type: 'email' },
-      { title: 'Role', value: 'role', type: 'position' },
-      { title: 'Notes', value: 'note', type: 'paragraph' }
+      { title: 'Number', value: 'streetNumber', type: 'number' },
+      { title: 'Street', value: 'street', type: 'address' },
+      { title: 'City', value: 'city', type: 'city' },
+      { title: 'State', value: 'state', type: 'state' },
+      { title: 'Zip', value: 'zip', type: 'zip' }
     ];
+
+
     console.log(this.props);
     return (
       <div>
@@ -77,10 +83,10 @@ class Locations extends Component {
                 />
                 <Button
                   type="primary"
-                  onClick={addLocation}
-                  className="AddLocationBtn"
+                  onClick={onMapChange}
+                  className="BackBtn"
                 >
-                  <IntlMessages id="locationlist.addNewLocation" />
+                  <IntlMessages id="locationlist.backButton" />
                 </Button>
               </div>
               {editView ? (
@@ -122,8 +128,8 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   fetchLocations,
   changeLocation,
-  addLocation,
   editLocation,
   deleteLocation,
-  viewChange
+  viewChange,
+  viewMap
 })(Locations);

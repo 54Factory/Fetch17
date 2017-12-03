@@ -5,6 +5,10 @@ import { GoogleMap, withGoogleMap,  Marker } from 'react-google-maps';
 // import { Col, Thumbnail } from 'react-bootstrap';
 import './setUpMap.css';
 
+// const getPixelPositionOffset = (width, height) => ({
+//   x: -(width / 2),
+//   y: -(height / 2),
+// })
 
 const FetchV2GoogleMap = compose(
       withProps({
@@ -29,6 +33,17 @@ const FetchV2GoogleMap = compose(
           
         }}
       >
+    {/* <StreetViewPanorama defaultPosition={props.center} visible>
+      <OverlayView
+        position={props.center}
+          mapPaneName={OverlayView.OVERLAY_LAYER}
+          getPixelPositionOffset={getPixelPositionOffset}
+      >
+        <div style={{ background: `red`, color: `white`, padding: 5, borderRadius: `70%` }}>
+          OverlayView
+        </div>
+      </OverlayView>
+    </StreetViewPanorama> */}
         {props.markers.map(marker => (
           <Marker
             {...marker}

@@ -69,9 +69,7 @@ export default class SingleSetUpView extends Component {
               markers={location}
             />
           </div>
-          <h1 className="SetUpName">
-            {name}
-          </h1>
+          <h1 className="SetUpName">{name}</h1>
         </div>
         <div className="SetUpInfoWrapper"> 
           {setUpInfos}

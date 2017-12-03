@@ -40,6 +40,7 @@ query allLocations {
     id
     createdAt
     locationName
+    streetNumber
     street
     city
     state

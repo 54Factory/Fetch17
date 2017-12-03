@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { LocationCardWrapper } from './locationCard.style';
+import SingleSetUpMap from '../maps/setups/singleSetUpMap'
 
 export default class SingleLocationView extends Component {
   render() {
@@ -22,8 +23,10 @@ export default class SingleLocationView extends Component {
     return (
       <LocationCardWrapper className="LocationCard">
         <div className="LocationCardHead">
-          <div className="LocationImage">
-            {location.image ? <img alt="#" src={location.image} /> : ''}
+          <div className="LocationMap">
+            <SingleSetUpMap 
+              markers={location}
+            />
           </div>
           <h1 className="LocationName">
             {name}

@@ -64,7 +64,7 @@
   "trucklist.searchTrucks": "Search Truck",
   "trucklist.addNewTruck": "Add New Truck",
   "locationlist.searchLocations": "Search Locations",
-  "locationlist.addNewLocation": "Add New Location",
+  "locationlist.backButton": "Back To Main Map",
   "setuplist.searchSetUps": "Search Locations",
-  "setUplist.backButton": "Back To Map"
+  "setUplist.backButton": "Back To Main Map"
 }

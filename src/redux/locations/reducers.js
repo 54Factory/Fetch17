@@ -7,7 +7,8 @@ import {
 	EDIT_LOCATION,
 	DELETE_LOCATION,
 	ADD_LOCATION_ERROR,
-	EDIT_VIEW
+	EDIT_VIEW,
+	MAP_VIEW
 } from "./actions";
 
 const initialState = {
@@ -33,6 +34,12 @@ export default function locationsReducer(state = initialState, action) {
 				...state,
 				selectedId: action.id,
 				editView :false
+			};
+		case MAP_VIEW:
+      return {
+				...state,
+				selectedId: action.id,
+				editView: action.view
 			};
     case ADD_LOCATION:
       return {

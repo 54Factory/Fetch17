@@ -47,8 +47,9 @@ const WDSetUpCardWrapper = styled.div`
     }
 
     .SetUpName {
-      font-size: 15px;
-      font-weight: 500;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 600;
       color: ${palette('text', 0)};
       line-height: 1.5;
       margin: 0;

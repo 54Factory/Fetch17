@@ -102,6 +102,13 @@ export default class LocationsMap extends Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.markers !== this.props.markers) {
+      this.handleMarkers();
+      
+   }
+  }
+
   handleMarkerClick(targetMarker) {
     this.setState({
       markers: this.state.markers.map(marker => {
