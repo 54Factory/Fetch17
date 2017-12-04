@@ -54,6 +54,12 @@ class SetUps extends Component {
       { title: 'Actual Setup Date', value: 'actualSetUpDate', type: 'date' }
     ]
 
+    const truckAttributes = [
+      { title: 'Truck', value: 'description', type: 'name' }
+    ]
+
+
+
 
 
     console.log(this.props);
@@ -98,6 +104,7 @@ class SetUps extends Component {
                   setup={selectedSetUp}
                   containerAttributes={containerAttributes}
                   setUpAttributes={setUpAttributes}
+                  truckAttributes={truckAttributes}
                   setups={setups}
                 />
               )}

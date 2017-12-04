@@ -20,10 +20,12 @@ export default class SingleSetUpView extends Component {
   
   render() {
     console.log("Single View", this.props)
-    const { setup, containerAttributes, setUpAttributes } = this.props;
+    const { setup, containerAttributes, setUpAttributes, truckAttributes } = this.props;
     const location = setup.oilCollectionService.service.location
     const containment = setup.oilCollectionService.containment
     const setUpDetails = setup.oilCollectionService.service.setUpService
+    const truck = setup.oilCollectionService.service.setUpService.truck
+    const driver = setup.oilCollectionService.service.setUpService.truck.driver.user
     const name = location.locationName ? location.locationName : 'No Name';
     const streetAddress = location.streetNumber + ' ' + location.street;
     const restAddress = `${location.city}, ${location.state} ${location.zip}`
@@ -62,7 +64,19 @@ export default class SingleSetUpView extends Component {
         );
       }
     });
-
+    truckAttributes.forEach(attribute => {
+      const value = truck[attribute.value];
+      if (value) {
+        extraInfos.push(
+          <div className="SetUpCardInfos" key={attribute.value}>
+            <p className="SetUpInfoLabel">{`${attribute.title}`}</p>
+            <p className="SetUpInfoDetails">
+              {value}
+            </p>
+          </div>
+        );
+      }
+    });
     return (
       <SetUpCardWrapper className="SetUpCard">
         <div className="SetUpCardHead">
@@ -78,6 +92,12 @@ export default class SingleSetUpView extends Component {
         <div className="SetUpInfoWrapper"> 
           {setUpInfos}
           {extraInfos}
+          <div className="SetUpCardInfos">
+            <p className="SetUpInfoLabel">Driver</p>
+            <p className="SetUpInfoDetails">
+             { `${driver.firstName} ${driver.lastName}`}
+            </p>
+          </div>
           <div className="SetUpCardInfos">
             <p className="SetUpInfoLabel">Notes</p>
               {this.renderSetUpNote()}

@@ -83,6 +83,7 @@ query Setups {
       id
       active
       setup
+    	updatedAt
       oilCollectionService{
         id
         startDate
@@ -97,6 +98,18 @@ query Setups {
           setUpService{
             id
             setUpDate
+            actualSetUpDate
+            truck {
+              id
+              description
+              driver {
+                id
+                user {
+                  firstName
+                  lastName
+                }
+              }
+            }
             setUpNotes{
               id
               setUpNoteContent
@@ -142,6 +155,17 @@ query Setups {
             id
             setUpDate
             actualSetUpDate
+            truck {
+              id
+              description
+              driver {
+                id
+                user {
+                  firstName
+                  lastName
+                }
+              }
+            }
             setUpNotes{
               id
               setUpNoteContent
