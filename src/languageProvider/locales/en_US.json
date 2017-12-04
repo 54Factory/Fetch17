@@ -71,5 +71,7 @@
   "servicelist.backButton": "Back To Main Map",
   "driverlist.backButton": "Back To Main View",
   "driverlist.searchDrivers": "Search Drivers",
-  "servicelist.searchServices": "Search Location"
+  "servicelist.searchServices": "Search Location",
+  "service.collectionInfo": "Oil Collection Details",
+  "service.setupInfo": "Setup Details"
 }

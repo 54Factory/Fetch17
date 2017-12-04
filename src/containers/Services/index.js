@@ -45,16 +45,16 @@ class Services extends Component {
     const onMapChange = () => viewMap(editView);
 
     const containerAttributes = [
-      { title: 'Quantity', value: 'quantity', type: 'number' },
-      { title: 'Container', value: 'containerType', type: 'name' }    
+      { title: 'Container Type', value: 'containerType', type: 'name' },
+      { title: 'No. of Containers', value: 'quantity', type: 'number' }
     ];
 
     const setUpAttributes = [
-      { title: 'Requested Setup Date', value: 'setUpDate', type: 'date' },
+      { title: 'Setup Date', value: 'actualSetUpDate', type: 'date' },
     ]
 
-    const truckAttributes = [
-      { title: 'Truck', value: 'description', type: 'name' }
+    const collectionAttributes = [
+      { title: 'Cycle', value: 'serviceCycle', type: 'name' }
     ]
 
     console.log(this.props);
@@ -99,7 +99,7 @@ class Services extends Component {
                   service={selectedService}
                   containerAttributes={containerAttributes}
                   setUpAttributes={setUpAttributes}
-                  truckAttributes={truckAttributes}
+                  collectionAttributes={collectionAttributes}
                   services={services}
                 />
               )}

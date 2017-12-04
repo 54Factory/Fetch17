@@ -120,6 +120,15 @@ const WDServiceCardWrapper = styled.div`
         text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
       }
 
+      .ServiceInfoUnassignedTruck {
+        font-size: 14px;
+        font-weight: 400;
+        color: ${palette('color', 13)};
+        line-height: 1.5;
+        margin: 0;
+        text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
+      }
+
       input {
         font-size: 14px;
         font-weight: 400;

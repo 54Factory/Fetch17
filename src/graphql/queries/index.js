@@ -265,6 +265,10 @@ query AllServices {
     oilCollectionService {
       id
       serviceCycle
+      truck {
+        id
+        description
+      }
       containment {
         quantity
         containerType
