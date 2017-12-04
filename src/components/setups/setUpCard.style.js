@@ -91,7 +91,7 @@ const WDSetUpCardWrapper = styled.div`
         margin-right: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '15px')};
         margin-left: ${props => (props['data-rtl'] === 'rtl' ? '15px' : 'inherit')};
         text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
-        min-width: 80px;
+        min-width: 150px;
         position: relative;
 
         @media only screen and (max-width: 430px) {

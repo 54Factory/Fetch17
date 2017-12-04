@@ -50,12 +50,12 @@ class AdminRouter extends React.Component {
           path={`${url}/pendingSetUps`}
           component={asyncComponent(() => import("../../SetUps"))}
         />
-        {/* <Route
-          exact
-          path={`${url}/completedSetups`}
-          component={asyncComponent(() => import("../../SetUps/completedSetUps"))}
-        />
         <Route
+          exact
+          path={`${url}/completedSetUps`}
+          component={asyncComponent(() => import("../../SetUps/completed"))}
+        />
+        {/* <Route
           path={`${url}/setups/:id`}
           component={asyncComponent(() => import("../../SetUps/setUpPage"))}
         /> */}

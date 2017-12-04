@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as SetUpsAction from '../../redux/setups/actions';
+import * as SetUpsAction from '../../../redux/setups/actions';
 import { Layout, Icon } from 'antd';
-import Button from '../../components/uielements/button';
-import SetUpList from '../../components/setups/setUpList';
-import SingleSetUpView from '../../components/setups/singleView';
-import EditSetUpView from '../../components/setups/editView';
-import IntlMessages from '../../components/utility/intlMessages';
-import SetUpsMap from '../../components/maps/setups/pendingSetUpsMap'
-import { SetUpsWrapper } from './setups.style';
+import Button from '../../../components/uielements/button';
+import CompletedSetUpList from '../../../components/setups/completedSetUpList';
+import SingleSetUpView from '../../../components/setups/singleView';
+import EditSetUpView from '../../../components/setups/editView';
+import IntlMessages from '../../../components/utility/intlMessages';
+import CompletedSetUpsMap from '../../../components/maps/setups/completedSetUpsMap'
+import { SetUpsWrapper } from '../setups.style';
 
 const {
-  fetchSetUps,
+  fetchCompletedSetUps,
   changeSetUp,
   editSetUp,
   deleteSetUp,
@@ -22,7 +22,7 @@ const {
 const { Content } = Layout;
 class SetUps extends Component {
   componentWillMount() {
-    this.props.fetchSetUps()
+    this.props.fetchCompletedSetUps()
   }
 
   render() {
@@ -51,6 +51,7 @@ class SetUps extends Component {
 
     const setUpAttributes = [
       { title: 'Requested Setup Date', value: 'setUpDate', type: 'date' },
+      { title: 'Actual Setup Date', value: 'actualSetUpDate', type: 'date' }
     ]
 
 
@@ -63,7 +64,7 @@ class SetUps extends Component {
         style={{ background: 'none' }}
       >        
         <div className="SetUpListBar">
-          <SetUpList
+          <CompletedSetUpList
             setups={setups}
             selectedId={selectedId}
             changeSetUp={changeSetUp}
@@ -81,9 +82,9 @@ class SetUps extends Component {
                 >
                   <IntlMessages id="setUplist.backButton" />
                 </Button>
-                <Button type="button" onClick={onViewChange}>
+                {/* <Button type="button" onClick={onViewChange}>
                   {editView ? <Icon type="cross" /> : <Icon type="check" />}{' '}
-                </Button>
+                </Button> */}
               </div>
               {editView ? (
                 <EditSetUpView
@@ -103,7 +104,7 @@ class SetUps extends Component {
             </Content>
           ) : (
             <Content className="SetUpBox">
-            <SetUpsMap 
+            <CompletedSetUpsMap 
               markers={setups}
             />
           </Content>
@@ -124,7 +125,7 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, {
-  fetchSetUps,
+  fetchCompletedSetUps,
   changeSetUp,
   editSetUp,
   deleteSetUp,

@@ -1,5 +1,6 @@
 import { 
-	FETCH_SETUPS, 
+	FETCH_SETUPS,
+	FETCH_COMPLETED_SETUPS, 
 	CHANGE_SETUP,
 	ADD_SETUP,
 	COMPLETE_SETUP_REQUEST,
@@ -28,6 +29,12 @@ export default function setupsReducer(state = initialState, action) {
 				fetched: true,
 				setups: action.payload.data.allOilCollectionStates
 			};
+		case FETCH_COMPLETED_SETUPS: 
+			return {	
+				...state,			
+				fetched: true,
+				setups: action.payload.data.allOilCollectionStates
+			};	
 		case CHANGE_SETUP:
       return {
 				...state,

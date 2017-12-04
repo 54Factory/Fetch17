@@ -19,6 +19,7 @@ export const ALL_DRIVERS_QUERY = gql`
     allDrivers {
       id
       dlNumber
+      image
       user {
         id
         username
@@ -96,6 +97,51 @@ query Setups {
           setUpService{
             id
             setUpDate
+            setUpNotes{
+              id
+              setUpNoteContent
+            }
+          }
+          location{
+            id
+            locationName
+            streetNumber
+            street
+            city
+            state
+            zip
+            lat
+            lng
+          }
+        }
+      }
+    }
+  }
+`
+export const COMPLETED_SETUPS_QUERY = gql`
+query Setups {
+  allOilCollectionStates(filter: {
+    setup: true
+    }) {
+      id
+      active
+      setup
+    	updatedAt
+      oilCollectionService{
+        id
+        startDate
+        serviceCycle
+        containment{
+          id
+          containerType
+          quantity
+        }
+        service{
+          id
+          setUpService{
+            id
+            setUpDate
+            actualSetUpDate
             setUpNotes{
               id
               setUpNoteContent

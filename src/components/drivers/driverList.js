@@ -32,7 +32,7 @@ export default class DriverList extends Component {
         onClick={onChange}
       >
         <div className="Avatar">
-          {driver.avatar ? <img alt="#" src={driver.avatar} /> : ''}
+          {driver.image ? <img alt="#" src={driver.image} /> : ''}
         </div>
         <div className="DriverName">
           <h3>{driver.user.username ? driver.user.username : 'No Name'}</h3>

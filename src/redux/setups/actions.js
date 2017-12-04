@@ -1,6 +1,7 @@
 import { client } from "../../client";
-import { PENDING_SETUPS_QUERY } from "../../graphql/queries";
+import { PENDING_SETUPS_QUERY, COMPLETED_SETUPS_QUERY } from "../../graphql/queries";
 export const FETCH_SETUPS = "FETCH_SETUPS";
+export const FETCH_COMPLETED_SETUPS = "FETCH_COMPLETED_SETUPS";
 export const FETCH_SETUP = "FETCH_SETUP";
 export const CREATE_SETUP = "CREATE_SETUP";
 export const DELETE_SETUP = "DELETE_SETUP";
@@ -19,6 +20,16 @@ export function fetchSetUps() {
     .then((response) => {
       return {
         type: FETCH_SETUPS,
+        payload: response  
+      };
+    })
+  }
+
+export function fetchCompletedSetUps() {
+  return client.query({ query: COMPLETED_SETUPS_QUERY })
+    .then((response) => {
+      return {
+        type: FETCH_COMPLETED_SETUPS,
         payload: response  
       };
     })

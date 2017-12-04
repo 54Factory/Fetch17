@@ -1,58 +1,26 @@
 import React, { Component } from 'react';
+import { compose, withProps } from 'recompose';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
-import { withScriptjs, GoogleMap, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import { withApollo, graphql } from 'react-apollo';
-import gql from 'graphql-tag'
+import { GoogleMap, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { Col, Thumbnail } from 'react-bootstrap';
 import './setUpMap.css';
 
 
-const allSetUpServices = gql`
-query Setups {
-  allOilCollectionStates(filter: {
-    setup: true
-    }) {
-      id
-      oilCollectionService{
-        id
-        containment{
-          id
-          containerType
-          quantity
-        }
-        service{
-          id
-          setUpService{
-            id
-            setUpDate
-            setUpNotes{
-              setUpNoteContent
-            }
-          }
-          location{
-            id
-            locationName
-            street
-            city
-            state
-            zip
-            lat
-            lng
-          }
-        }
-      }
-    }
-  }
-`;
-
-const FetchV2GoogleMap =  _.flowRight(
-      withScriptjs,
+const FetchV2GoogleMap = compose(
+      withProps({
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCCH6ORS-0oa4Jj3uy7DrB2cXPqMEu7Tgg",
+        loadingElement:
+          <div style={{height: `600px`}}>Loading</div>,
+        containerElement:
+          <div style={{ height: `600px` }} />,
+        mapElement:
+          <div style={{ height: `600px` }} />
+      }),
       withGoogleMap,
       ) (props => (
       <GoogleMap
         ref={props.onMapLoad}
-        defaultZoom={9}
+        defaultZoom={8}
         defaultCenter={{ lat: 39.8407815, lng: -75.3695485 }}
         onClick={props.onMapClick}
         defaultOptions={{
@@ -65,7 +33,7 @@ const FetchV2GoogleMap =  _.flowRight(
           <Marker
             {...marker}
             showInfo={false}
-            icon={marker.isOwnMarker ? require('../../../assets/marker_blue.svg') : require('../../../assets/marker.svg')}
+            icon={require('../../../assets/marker.svg')}
             onClick={() => props.onMarkerClick(marker)}
             defaultAnimation={2}
             key={index}
@@ -94,130 +62,52 @@ const FetchV2GoogleMap =  _.flowRight(
   );
 
 
-class SetUpsMap extends Component {
+export default class CompletedSetUpsMap extends Component {
 
   state = {
     markers: [],
-    // customerId: undefined,
+    customerId: undefined,
     location: undefined,
   };
+  
+  handleMapLoad = this.handleMapLoad.bind(this);
+  //handleMapClick = this.handleMapClick.bind(this);
+  handleMarkerClick = this.handleMarkerClick.bind(this);
+  handleMarkerClose = this.handleMarkerClose.bind(this);
 
-  // async componentDidMount() {
-  //   console.log(this.previousState)
-  //   this.locationSubscription = this.props.SetUps.subscribeToMore({
-  //     document: gql`
-  //         subscription {
-  //           SetUpService(filter: {
-  //               mutation_in: [CREATED, UPDATED]
-  //             }) {
-  //                 mutation
-  //                 node {
-  //                   id
-  //                  service {
-  //                     id
-  //                   location {
-  //                     id
-  //                     locationName
-  //                     street
-  //                     city
-  //                     state
-  //                     zip
-  //                     lat
-  //                     lng
-  //                     }
-  //                   }
-  //                 }
-  //             }
-  //         }
-  //     `,
-  //     variables: null,
-  //     updateQuery: (previousState, {subscriptionData}) => {
-  //       if (subscriptionData.data.SetUpService.mutation === 'CREATED') {
-  //         const newLocation = subscriptionData.data.SetUpService.node;
-  //         const locations = previousState.allSetUpServices.concat([newLocation]);
-  //         return {
-  //           allSetUpServices: locations,
-  //         }
-  //       }
-  //       else if (subscriptionData.data.SetUpService.mutation === 'UPDATED') {
-  //         const locations = previousState.allSetUpServices.slice();
-  //         const updatedLocation = subscriptionData.data.SetUpService.node.service.location;
-  //         const oldLocationIndex = locations.findIndex(location => {
-  //           return updatedLocation.id === location.id
-  //         });
-  //         locations[oldLocationIndex] = updatedLocation;
-  //         return {
-  //           allSetUpServices: locations,
-  //         }
-  //       }
+ 
+  componentDidMount() {
+    return this.handleMarkers()
+  }
 
-  //       return previousState
-        
-  //     }
-  //   });
+  handleMarkers(props) {
     
-  // }
+    const newMarkers = this.props.markers.map(location => {
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    if (nextProps.SetUps.allOilAccountStates) {
-      const newMarkers = nextProps.SetUps.allOilAccountStates.map(location => {
-        const isOwnMarker = location.id === this.state.location
+        console.log(newMarkers)
         return {
-          id: location.id,
-          locationName: isOwnMarker ? location.oilService.service.location.locationName + ' (You)' : location.oilService.service.location.locationName,
-          street: location.oilService.service.location.street,
-          city: location.oilService.service.location.city,
-          state: location.oilService.service.location.state,
+          id: location.oilCollectionService.service.location.id,
+          locationName: location.oilCollectionService.service.location.locationName,
+          street: location.oilCollectionService.service.location.street,
+          city: location.oilCollectionService.service.location.city,
+          state: location.oilCollectionService.service.location.state,
           position: {
-            lat: location.oilService.service.location.lat,
-            lng: location.oilService.service.location.lng,
+            lat: location.oilCollectionService.service.location.lat,
+            lng: location.oilCollectionService.service.location.lng,
           },
         }
       });
-      this.setState({
-        markers: newMarkers,
-      })
-    }
-
+    this.setState({
+      markers: newMarkers
+    })
   }
 
-  // _removeAllMarkers() {
-  //   const newMarkers = this.state.markers.slice();
-  //   newMarkers.forEach(marker => {
-  //     marker.showInfo = false
-  //   })
-  //   this.setState({
-  //     markers: newMarkers,
-  //   })
-  // }
-  //
-  // _updateExistingCustomer = async (customerId) => {
-  //
-  //   this.setState({
-  //     customerId: customerId
-  //   });
-  //
-  //   // Check for customer with this Id
-  //   const customerForIdResponse = await this.props.client.query(
-  //     {
-  //       query: customerForId,
-  //       variables: {
-  //         id: customerId,
-  //       },
-  //     }
-  //   );
-  //
-  //   console.log('Update existing customer: ', customerForIdResponse);
-  //   const existingCustomer = customerForIdResponse.data.Customer;
-  //   console.log('existingCustomer: ', existingCustomer)
-  //
-  // };
-
-  handleMapLoad = this.handleMapLoad.bind(this);
-  handleMapClick = this.handleMapClick.bind(this);
-  handleMarkerClick = this.handleMarkerClick.bind(this);
-  handleMarkerClose = this.handleMarkerClose.bind(this);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.markers !== this.props.markers) {
+      this.handleMarkers();
+      
+   }
+  }
 
   handleMarkerClick(targetMarker) {
     this.setState({
@@ -251,29 +141,17 @@ class SetUpsMap extends Component {
     this._mapComponent = map
   }
 
-  handleMapClick() {
-    this._removeAllMarkers()
-  }
+  // handleMapClick() {
+  //   this._removeAllMarkers()
+  // }
 
   render() {
-    console.log(this.props)
+    console.log("Render", this.props)
     return (
       <div style={{height: `100%`}}>
         <FetchV2GoogleMap
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCCH6ORS-0oa4Jj3uy7DrB2cXPqMEu7Tgg"
-          loadingElement={
-            <div style={{height: `600px`}}>
-              Loading
-            </div>
-          }
-          containerElement={
-            <div style={{ height: `600px` }} />
-          }
-          mapElement={
-            <div style={{ height: `600px` }} />
-          }
           onMapLoad={this.handleMapLoad}
-          onMapClick={this.handleMapClick}
+          // onMapClick={this.handleMapClick}
           markers={this.state.markers}
           onMarkerClick={this.handleMarkerClick}
           onMarkerClose={this.handleMarkerClose}
@@ -283,7 +161,3 @@ class SetUpsMap extends Component {
   }
 }
 
-export default withApollo(
-  graphql(allSetUpServices, {name: 'SetUps'})(SetUpsMap)
-
-)

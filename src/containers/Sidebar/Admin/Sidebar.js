@@ -179,7 +179,7 @@ class Sidebar extends Component {
               </Link>
             </Menu.Item>
             <Menu.Item style={submenuStyle} key="completedSetUps">
-              <Link style={submenuColor} to={`${url.path}/completedSetups`}>
+              <Link style={submenuColor} to={`${url.path}/completedSetUps`}>
                 <IntlMessages id="sidebar.completedSetups" />
               </Link>
             </Menu.Item>
