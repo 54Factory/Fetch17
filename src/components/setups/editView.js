@@ -1,14 +1,42 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
+import Button from '../../components/uielements/button';
 import Input from '../uielements/input';
+import { graphql } from 'react-apollo'
+import { SINGLE_SET_UP_QUERY } from '../../graphql/queries'
+import { UPDATE_OIL_ACCOUNT_STATE } from '../../graphql/mutations'
 import SingleSetUpMap from '../maps/setups/singleSetUpMap'
 import { FormattedDate, IntlProvider } from 'react-intl'
 import { SetUpCardWrapper } from './setUpCard.style';
 import './upload.css';
 
-export default class editSetUpView extends Component {
+//export default class editSetUpView extends Component {
+class editSetUpView extends Component {
 
   componentWillMount() {
     console.log('Edit view Mount Lifecycle')
+  }
+
+  backButton() {
+    console.log('button was clicked');
+    this.props.history.push('/dashboard/setups')
+  }
+
+  buttonTest () {
+    console.log('clicked...')
+  }
+
+  onSubmit = async () => {
+    // const {active, setup } = this.state;
+    await this.props.updateOilAccountState({variables: { 
+      id: this.props.data.OilCollectionState.id,
+      active: false, 
+      setup: true,
+      oilServiceId: this.props.data.OilCollectionState.oilCollectionService.id,
+      scheduledCollectionDate: this.props.data.OilCollectionState.oilCollectionService.startDate
+    }});
+    //this.props.history.push('/dashboard/pendingSetUps')
+      window.location.reload()
   }
 
   renderSetUpNote() {
@@ -25,10 +53,13 @@ export default class editSetUpView extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { setup, containerAttributes, setUpAttributes } = this.props;
     const location = setup.oilCollectionService.service.location
     const containment = setup.oilCollectionService.containment
     const setUpDetails = setup.oilCollectionService.service.setUpService
+    const streetAddress = location.streetNumber + ' ' + location.street;
+    const restAddress = `${location.city}, ${location.state} ${location.zip}`    
     const name = location.locationName ? location.locationName : 'No Name';
     const extraInfos = [];
     const setUpInfos = [];
@@ -97,14 +128,14 @@ export default class editSetUpView extends Component {
       <SetUpCardWrapper className="SetUpCard">
         <div className="SetUpCardHead">
         <div className="SetUpMap">
-        <SingleSetUpMap 
-          markers={location}
-        />
-      </div>
-          <h1 className="SetUpName">
-            {name}
-          </h1>
+          <SingleSetUpMap 
+            markers={location}
+          />
         </div>
+        <h1 className="SetUpName">{name}</h1>
+        <p className="SetUpAddress">{streetAddress}</p>
+        <p className="SetUpAddress">{restAddress}</p>
+      </div>
         <div className="SetUpInfoWrapper">
           {setUpInfos}
           <div className="SetUpCardInfos">
@@ -112,8 +143,67 @@ export default class editSetUpView extends Component {
               {this.renderSetUpNote()}
           </div>
           {extraInfos}
+          <div>
+          <Button onClick={this.onSubmit} className="SetUpBtn" type="primary">Complete Set Up</Button>
+          </div>
         </div>
       </SetUpCardWrapper>
     );
   }
 }
+
+// const SetUpQuery = gql`
+// query SetUp($id: ID!){
+//   OilCollectionState(id: $id) {
+//       id
+//       active
+//       setup
+//       oilCollectionService{
+//         id
+//         serviceCycle
+//         serviceType
+//         startDate
+//         containment{
+//           id
+//           containerType
+//           quantity
+//         }
+//         service{
+//           id
+//           setUpService{
+//             id
+//             setUpDate
+//             setUpNotes{
+//               id
+//               setUpNoteContent
+//             }
+//           }
+//           location{
+//             id
+//             locationName
+//             streetNumber
+//             street
+//             city
+//             state
+//             zip
+//             lat
+//             lng
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
+
+const SetUpPageWithData = graphql(SINGLE_SET_UP_QUERY, {
+  options: ({ setup }) => ({
+    variables: {
+      id: setup.id,
+    },
+  }),
+  })(editSetUpView)
+
+  
+  const SetUpPageWithUpdate = graphql(UPDATE_OIL_ACCOUNT_STATE, {name: 'updateOilAccountState'})(SetUpPageWithData);
+  
+  export default withRouter(SetUpPageWithUpdate)

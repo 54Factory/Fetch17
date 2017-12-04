@@ -134,6 +134,28 @@ const WDSetUpsWrapper = styled.div`
           background-color: ${palette('color', 6)};
         }
       }
+      .SetUpBtn {
+        background-color: ${palette('color', 5)};
+        border: 0;
+        height: 30px;
+        padding: 0 15px;
+        margin-left: 0;
+        margin-right: auto;
+        ${borderRadius('3px')};
+        ${transition()};
+
+        span {
+          font-size: 12px;
+          font-weight: 400;
+          padding: 0;
+          text-transform: uppercase;
+          color: #ffffff;
+        }
+
+        &:hover {
+          background-color: ${palette('color', 6)};
+        }
+      }
     }
   }
 `;

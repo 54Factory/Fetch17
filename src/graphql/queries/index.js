@@ -80,8 +80,12 @@ query Setups {
     setup: false
     }) {
       id
+      active
+      setup
       oilCollectionService{
         id
+        startDate
+        serviceCycle
         containment{
           id
           containerType
@@ -113,3 +117,46 @@ query Setups {
     }
   }
 `
+
+export const SINGLE_SET_UP_QUERY = gql`
+query SetUp($id: ID!){
+  OilCollectionState(id: $id) {
+      id
+      active
+      setup
+      oilCollectionService{
+        id
+        serviceCycle
+        serviceType
+        startDate
+        containment{
+          id
+          containerType
+          quantity
+        }
+        service{
+          id
+          setUpService{
+            id
+            setUpDate
+            setUpNotes{
+              id
+              setUpNoteContent
+            }
+          }
+          location{
+            id
+            locationName
+            streetNumber
+            street
+            city
+            state
+            zip
+            lat
+            lng
+          }
+        }
+      }
+    }
+  }
+`;
