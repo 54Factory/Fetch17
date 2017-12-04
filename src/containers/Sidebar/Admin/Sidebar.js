@@ -184,6 +184,16 @@ class Sidebar extends Component {
               </Link>
             </Menu.Item>
           </SubMenu>
+          <Menu.Item key="services">
+            <Link to={`${url.path}/services`}>
+                <span className="MenuHolder" style={submenuColor}>
+                  <i className="ion-wrench" />
+                  <span className="nav-text">
+                    <IntlMessages id="sidebar.services" />
+                  </span>
+                </span>
+              </Link>
+            </Menu.Item>
           <Menu.Item key="trucks">
             <Link to={`${url.path}/trucks`}>
                 <span className="MenuHolder" style={submenuColor}>

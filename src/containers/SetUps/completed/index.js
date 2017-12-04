@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as SetUpsAction from '../../../redux/setups/actions';
-import { Layout, Icon } from 'antd';
+import { Layout } from 'antd';
 import Button from '../../../components/uielements/button';
 import CompletedSetUpList from '../../../components/setups/completedSetUpList';
 import SingleSetUpView from '../../../components/setups/singleView';
-import EditSetUpView from '../../../components/setups/editView';
 import IntlMessages from '../../../components/utility/intlMessages';
 import CompletedSetUpsMap from '../../../components/maps/setups/completedSetUpsMap'
 import { SetUpsWrapper } from '../setups.style';
@@ -13,9 +12,7 @@ import { SetUpsWrapper } from '../setups.style';
 const {
   fetchCompletedSetUps,
   changeSetUp,
-  editSetUp,
   deleteSetUp,
-  viewChange,
   viewMap
 } = SetUpsAction;
 
@@ -31,9 +28,7 @@ class SetUps extends Component {
       selectedId,
       editView,
       changeSetUp,
-      editSetUp,
       deleteSetUp,
-      viewChange,
       viewMap
     } = this.props;
     
@@ -41,7 +36,6 @@ class SetUps extends Component {
       ? setups.filter(setup => setup.id === selectedId)[0]
       : null;
     
-    const onViewChange = () => viewChange(!editView);
     const onMapChange = () => viewMap(editView);
 
     const containerAttributes = [
@@ -92,14 +86,6 @@ class SetUps extends Component {
                   {editView ? <Icon type="cross" /> : <Icon type="check" />}{' '}
                 </Button> */}
               </div>
-              {editView ? (
-                <EditSetUpView
-                  setup={selectedSetUp}
-                  editSetUp={editSetUp}
-                  containerAttributes={containerAttributes}
-                  setUpAttributes={setUpAttributes}
-                />
-              ) : (
                 <SingleSetUpView
                   setup={selectedSetUp}
                   containerAttributes={containerAttributes}
@@ -107,7 +93,6 @@ class SetUps extends Component {
                   truckAttributes={truckAttributes}
                   setups={setups}
                 />
-              )}
             </Content>
           ) : (
             <Content className="SetUpBox">
@@ -134,8 +119,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   fetchCompletedSetUps,
   changeSetUp,
-  editSetUp,
   deleteSetUp,
-  viewChange,
   viewMap
 })(SetUps);

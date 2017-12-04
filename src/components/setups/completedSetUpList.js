@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from 'antd';
 import DeleteButton from './deleteButton';
-import { FormattedDate, IntlProvider } from 'react-intl'
+//import { FormattedDate, IntlProvider } from 'react-intl'
 import { PropTypes } from "prop-types";
 import { SetUpListWrapper } from './setUpList.style';
 
@@ -28,7 +28,7 @@ export default class SetUpList extends React.Component {
     const { selectedId, deleteSetUp, changeSetUp } = this.props;
     const activeClass = selectedId === setup.id ? 'active' : '';
     const name = setup.oilCollectionService.service.location.locationName
-    const actualSetUpDate = setup.oilCollectionService.service.setUpService.actualSetUpDate
+    //const actualSetUpDate = setup.oilCollectionService.service.setUpService.actualSetUpDate
     const onChange = () => changeSetUp(setup.id);
     return (
       <div
@@ -41,14 +41,14 @@ export default class SetUpList extends React.Component {
         </div>
         <div className="SetUpName">
           <h3>{name ? name : 'No Name'}</h3>
-          <h4>Date: <IntlProvider locale="en">
+          {/* <h4>Date: <IntlProvider locale="en">
                   <FormattedDate
                     value={actualSetUpDate}
                     year='numeric'
                     month='long'
                     day='numeric'
                   />
-              </IntlProvider></h4>
+              </IntlProvider></h4> */}
         </div>
         <DeleteButton deleteSetUp={deleteSetUp} setup={setup} />
       </div>

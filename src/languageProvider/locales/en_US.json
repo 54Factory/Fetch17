@@ -13,6 +13,7 @@
   "sidebar.createOilCustomer": "Oil Customer",
   "sidebar.createGreaseTrapCustomer": "Grease Trap Customer",
   "sidebar.trucks":"Trucks",
+  "sidebar.services":"Services",
   "sidebar.completedSetUps": "Completed Set Ups",
   "sidebar.drivers": "Drivers",
   "sidebar.oilCollection": "Oil Collection", 
@@ -38,7 +39,6 @@
   "customerlist.searchCustomers": "Search By Last Name",
   "customerlist.addNewCustomer": "Add New Customer",
   "customerlist.editCustomer": "Save Changes",
-  
   "oilCollection.index": "Oil Collection",
   "oilCollection.index.driver": "Driver Oil Collection",
   "oilCollection.collections.index": "Pending Collections",
@@ -68,6 +68,8 @@
   "locationlist.backButton": "Back To Main Map",
   "setuplist.searchSetUps": "Search Locations",
   "setUplist.backButton": "Back To Main Map",
+  "servicelist.backButton": "Back To Main Map",
   "driverlist.backButton": "Back To Main View",
-  "driverlist.searchDrivers": "Search Drivers"
+  "driverlist.searchDrivers": "Search Drivers",
+  "servicelist.searchServices": "Search Location"
 }

@@ -230,3 +230,55 @@ query SetUp($id: ID!){
     }
   }
 `;
+
+
+
+export const ALL_SERVICES_QUERY = gql`
+query AllServices {
+  allServices {
+    id
+    location {
+      id
+      locationName
+      streetNumber
+      street
+      city
+      state
+      zip
+      lat
+      lng
+    }
+    setUpService {
+      id
+      actualSetUpDate
+      truck {
+        id
+        description
+        driver {
+          user {
+            firstName
+            lastName
+          }
+        }
+      }
+    }
+    oilCollectionService {
+      id
+      serviceCycle
+      containment {
+        quantity
+        containerType
+      }
+      oilCollectionRecords {
+        id
+        scheduledCollectionDate
+        collected
+      }
+      oilCollectionState {
+        id
+        active
+        setup
+      }
+    }
+  }
+}`
