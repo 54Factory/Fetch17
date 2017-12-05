@@ -6,6 +6,7 @@ import Locations from './locations/reducers'
 import SetUps from './setups/reducers'
 import Drivers from './drivers/reducer'
 import Services from './services/reducers'
+import Collections from './oilCollections/reducers'
 
 export default {
   App,
@@ -17,5 +18,6 @@ export default {
   Locations,
   SetUps,
   Drivers,
-  Services
+  Services,
+  Collections
 };

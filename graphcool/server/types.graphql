@@ -131,6 +131,7 @@ type OilCollectionService @model {
 
 type OilCollectionState @model {
   active: Boolean! @defaultValue(value: false)
+  suspended: Boolean! @defaultValue(value: false)
   createdAt: DateTime!
   id: ID! @isUnique
   oilCollectionService: OilCollectionService @relation(name: "OilCollectionStateOnOilCollection")

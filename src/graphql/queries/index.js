@@ -285,4 +285,66 @@ query AllServices {
       }
     }
   }
-}`
+}
+`
+
+export const UNASSIGNED_COLLECTIONS_QUERY = gql`
+  query UnassignedCollections {
+    allOilCollectionStates(filter: {
+        setup: true,
+        active: false,
+      })
+      {
+      id
+      active
+      oilCollectionService{
+        id
+        truck{
+          id
+          name
+        }
+        service{
+          id
+          location{
+            id
+            locationName
+            city
+            state
+            lat
+            lng
+          }
+        }
+      }
+    }
+  }
+`
+export const PENDING_COLLECTIONS_QUERY = gql`
+  query AllOilCollections {
+    allOilCollectionServices
+  (filter: {
+    oilCollectionState: {
+    active: true
+    }  
+  }) {
+    id
+    startDate
+    truck {
+      id
+      name
+    }
+    service {
+      id
+      location{
+        locationName
+        street
+        city
+        state
+        zip
+        lat
+        lng
+      }
+    }   
+  }
+}
+`
+
