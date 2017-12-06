@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import _ from 'lodash';
 import { withScriptjs, GoogleMap, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { Col, Thumbnail } from 'react-bootstrap';
-import '../oilCollectionMap.css';
+import '../map.css';
 
 const allOilCollectionServices = gql`
 query PendingPickups {

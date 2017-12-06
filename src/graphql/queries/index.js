@@ -105,6 +105,7 @@ query Setups {
               driver {
                 id
                 user {
+                  id
                   firstName
                   lastName
                 }
@@ -255,7 +256,9 @@ query AllServices {
         id
         description
         driver {
+          id
           user {
+            id
             firstName
             lastName
           }
@@ -270,6 +273,7 @@ query AllServices {
         description
       }
       containment {
+        id
         quantity
         containerType
       }
@@ -308,8 +312,11 @@ export const UNASSIGNED_COLLECTIONS_QUERY = gql`
           location{
             id
             locationName
+            streetNumber
+            street
             city
             state
+            zip
             lat
             lng
           }
@@ -318,33 +325,52 @@ export const UNASSIGNED_COLLECTIONS_QUERY = gql`
     }
   }
 `
+
 export const PENDING_COLLECTIONS_QUERY = gql`
   query AllOilCollections {
-    allOilCollectionServices
-  (filter: {
-    oilCollectionState: {
-    active: true
-    }  
-  }) {
-    id
-    startDate
-    truck {
-      id
-      name
-    }
-    service {
-      id
-      location{
-        locationName
-        street
-        city
-        state
-        zip
-        lat
-        lng
+    allOilCollectionServices(filter: {
+      oilCollectionState: {
+        active: true
       }
-    }   
+    }) {
+      id
+      containment {
+        id
+        containerType
+        quantity
+      }
+      truck {
+        id
+        description
+        driver {
+          id
+          user {
+            id
+            firstName
+            lastName
+          }
+        }
+      }
+      service {
+        id
+        setUpService {
+          id
+          actualSetUpDate
+        }
+        location {
+          id
+          locationName
+          streetNumber
+          street
+          city
+          county
+          state
+          zip
+          lat
+          lng
+        }
+      }
+    }
   }
-}
 `
 

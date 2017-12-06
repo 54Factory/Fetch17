@@ -1,43 +1,43 @@
 import React from 'react';
 import { Input } from 'antd';
-import DeleteButton from './deleteButton';
-//import { FormattedDate, IntlProvider } from 'react-intl'
+import DeleteButton from '../deleteButton';
+// import { FormattedDate, IntlProvider } from 'react-intl'
 import { PropTypes } from "prop-types";
-import { CollectionListWrapper } from './collectionList.style';
+import { CollectionListWrapper } from '../collectionList.style';
 
 
 const Search = Input.Search;
 
-function filterCollections(collections, search) {
+function filterUnassignedAccounts(unassignedAccounts, search) {
   search = search.toUpperCase();
   return search
-    ? collections.filter(collection => collection.service.location.locationName.toUpperCase().includes(search))
-    : collections;
+    ? unassignedAccounts.filter(unassignedAccount => unassignedAccount.service.location.locationName.toUpperCase().includes(search))
+    : unassignedAccounts;
 }
 
-export default class CollectionList extends React.Component {
+export default class UnassignedCollectionList extends React.Component {
   constructor(props) {
     super(props);
-    this.singleCollection = this.singleCollection.bind(this);
+    this.singleUnassignedAccount = this.singleUnassignedAccount.bind(this);
     this.onChange = this.onChange.bind(this);
     this.state = {
       search: '',
     };
   }
-  singleCollection(collection) {
+  singleUnassignedAccount(unassignedAccount) {
     const { selectedId, deleteCollection, changeCollection } = this.props;
-    const activeClass = selectedId === collection.id ? 'active' : '';
-    const name = collection.service.location.locationName
+    const activeClass = selectedId === unassignedAccount.id ? 'active' : '';
+    const name = unassignedAccount.oilCollectionService.service.location.locationName
     //const setUpDate = collection.oilCollectionService.service.setUpService.setUpDate
-    const onChange = () => changeCollection(collection.id);
+    const onChange = () => changeCollection(unassignedAccount.id);
     return (
       <div
-        key={collection.id}
+        key={unassignedAccount.id}
         className={`${activeClass} SingleCollection`}
         onClick={onChange}
       >
         <div className="Avatar">
-          {collection.image ? <img alt="#" src={collection.image} /> : ''}
+          {unassignedAccount.image ? <img alt="#" src={unassignedAccount.image} /> : ''}
         </div>
         <div className="CollectionName">
           <h3>{name ? name : 'No Name'}</h3>
@@ -50,7 +50,7 @@ export default class CollectionList extends React.Component {
                   />
               </IntlProvider></h4> */}
         </div>
-        <DeleteButton deleteCollection={deleteCollection} collection={collection} />
+        <DeleteButton deleteCollection={deleteCollection} collection={unassignedAccount} />
       </div>
     );
   }
@@ -59,8 +59,8 @@ export default class CollectionList extends React.Component {
   }
   render() {
     const { search } = this.state;
-    const collections = filterCollections(this.props.collections, search); 
-    console.log("Collections: ", collections)   
+    const unassignedAccounts = filterUnassignedAccounts(this.props.unassignedAccounts, search); 
+    console.log("Unassigned Collections: ", unassignedAccounts)   
     return(
       <CollectionListWrapper className="CollectionListWrapper">
         <Search
@@ -69,9 +69,9 @@ export default class CollectionList extends React.Component {
           onChange={this.onChange}
           className="SearchBar"
         />
-        {collections && collections.length > 0
+        {unassignedAccounts && unassignedAccounts.length > 0
           ? <div className="CollectionList">
-              {collections.map(collection => this.singleCollection(collection))}
+              {unassignedAccounts.map(unassignedAccount => this.singleUnassignedAccount(unassignedAccount))}
             </div>
           : 'No Location with that name found...'}
       </CollectionListWrapper>
@@ -79,6 +79,6 @@ export default class CollectionList extends React.Component {
   }
 }
 
-CollectionList.contextTypes ={
+UnassignedCollectionList.contextTypes ={
   intl: PropTypes.object.isRequired
  }

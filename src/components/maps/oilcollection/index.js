@@ -3,7 +3,7 @@ import { compose, withProps } from 'recompose';
 import { Link } from 'react-router-dom';
 import { GoogleMap, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { Col, Thumbnail } from 'react-bootstrap';
-import '../map.css';
+import './map.css';
 
 
 const FetchV2GoogleMap = compose(
@@ -33,7 +33,7 @@ const FetchV2GoogleMap = compose(
           <Marker
             {...marker}
             showInfo={false}
-            icon={require('../../../../assets/marker.svg')}
+            icon={require('../../../assets/marker.svg')}
             onClick={() => props.onMarkerClick(marker)}
             defaultAnimation={2}
             key={index}
@@ -62,7 +62,7 @@ const FetchV2GoogleMap = compose(
   );
 
 
-export default class TruckAssignmentMap extends Component {
+export default class OilCollectionMap extends Component {
 
   state = {
     markers: [],
@@ -71,7 +71,6 @@ export default class TruckAssignmentMap extends Component {
   };
   
   handleMapLoad = this.handleMapLoad.bind(this);
-  //handleMapClick = this.handleMapClick.bind(this);
   handleMarkerClick = this.handleMarkerClick.bind(this);
   handleMarkerClose = this.handleMarkerClose.bind(this);
 
@@ -86,14 +85,14 @@ export default class TruckAssignmentMap extends Component {
 
         console.log(newMarkers)
         return {
-          id: location.oilCollectionService.service.location.id,
-          locationName: location.oilCollectionService.service.location.locationName,
-          street: location.oilCollectionService.service.location.street,
-          city: location.oilCollectionService.service.location.city,
-          state: location.oilCollectionService.service.location.state,
+          id: location.service.location.id,
+          locationName: location.service.location.locationName,
+          street: location.service.location.street,
+          city: location.service.location.city,
+          state: location.service.location.state,
           position: {
-            lat: location.oilCollectionService.service.location.lat,
-            lng: location.oilCollectionService.service.location.lng,
+            lat: location.service.location.lat,
+            lng: location.service.location.lng,
           },
         }
       });
@@ -141,17 +140,12 @@ export default class TruckAssignmentMap extends Component {
     this._mapComponent = map
   }
 
-  // handleMapClick() {
-  //   this._removeAllMarkers()
-  // }
-
   render() {
     console.log("Render", this.props)
     return (
       <div style={{height: `100%`}}>
         <FetchV2GoogleMap
           onMapLoad={this.handleMapLoad}
-          // onMapClick={this.handleMapClick}
           markers={this.state.markers}
           onMarkerClick={this.handleMarkerClick}
           onMarkerClose={this.handleMarkerClose}

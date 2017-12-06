@@ -3,7 +3,7 @@ import { compose, withProps } from 'recompose';
 import { Link } from 'react-router-dom';
 import { GoogleMap, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { Col, Thumbnail } from 'react-bootstrap';
-import '../map.css';
+import './map.css';
 
 
 const FetchV2GoogleMap = compose(
@@ -33,7 +33,7 @@ const FetchV2GoogleMap = compose(
           <Marker
             {...marker}
             showInfo={false}
-            icon={require('../../../../assets/marker.svg')}
+            icon={require('../../../assets/marker.svg')}
             onClick={() => props.onMarkerClick(marker)}
             defaultAnimation={2}
             key={index}
@@ -62,7 +62,7 @@ const FetchV2GoogleMap = compose(
   );
 
 
-export default class TruckAssignmentMap extends Component {
+export default class OilCollectionMap extends Component {
 
   state = {
     markers: [],

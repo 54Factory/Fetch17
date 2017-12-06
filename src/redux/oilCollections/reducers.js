@@ -14,8 +14,10 @@ import {
 
 const initialState = {
 	collections: [],
+	unassignedCollections: [],
 	fetching: false,
 	fetched: false,
+	unassignedFetched: false,
 	selectedId: 'id',
 	editView: false,
 	loading: false
@@ -32,8 +34,8 @@ export default function collectionsReducer(state = initialState, action) {
 		case FETCH_UNASSIGNED_COLLECTIONS: 
 			return {	
 				...state,			
-				fetched: true,
-				collections: action.payload.data.allOilCollectionStates
+				unassignedFetched: true,
+				unassignedCollections: action.payload.data.allOilCollectionStates
 			};	
 		case CHANGE_COLLECTION:
       return {
@@ -77,7 +79,8 @@ export default function collectionsReducer(state = initialState, action) {
     case EDIT_COLLECTION:
       return {
 				...state,
-				collections: action.collections
+				collections: action.collections,
+				unassignedCollections: action.collections
 			};
     case DELETE_COLLECTION:
       return {

@@ -1,56 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as CollectionsAction from '../../redux/oilCollections/actions';
-import { Layout, Icon } from 'antd';
-import Button from '../../components/uielements/button';
-import CollectionList from '../../components/oilCollections/collectionList';
-import SingleCollectionView from '../../components/oilCollections/singleView';
-import EditCollectionView from '../../components/oilCollections/editView';
-import IntlMessages from '../../components/utility/intlMessages';
-import OilCollectionMap from '../../components/maps/oilcollection'
-import { CollectionsWrapper } from './oilCollection.style';
-import OilCollectionWidgets from '../Widgets/oilCollection';
+import * as CollectionsAction from '../../../redux/oilCollections/actions';
+import * as TruckAction from '../../../redux/trucks/actions';
+import { Layout } from 'antd';
+import Button from '../../../components/uielements/button';
+import UnassignedCollectionList from '../../../components/oilCollections/assignTruck/unassignedList';
+import AssignTruckView from '../../../components/oilCollections/assignTruck/assignView';
+import IntlMessages from '../../../components/utility/intlMessages';
+import TruckAssignmentMap from '../../../components/maps/oilcollection/assignment/oilCollectionAssignmentMap'
+import PageHeader from '../../../components/utility/pageHeader'
+import { AssignCollectionWrapper } from './oilCollectionAssign.style';
+
 
 const {
-  fetchCollections,
   fetchUnassignedCollections,
   changeCollection,
   editCollection,
   deleteCollection,
-  viewChange,
+  // viewChange,
   viewMap
 } = CollectionsAction;
 
+const {
+  fetchTrucks
+} = TruckAction
+
 const { Content } = Layout;
-class Collections extends Component {
+class AssignTruck extends Component {
   componentWillMount() {
-    this.props.fetchCollections()
     this.props.fetchUnassignedCollections()
+    this.props.fetchTrucks()
   }
-  // componentDidMount() {
-  //   this.props.fetchCollections()
-  //   this.props.fetchUnassignedCollections()
-  // }
 
   render() {
     const {    
-      collections,
       unassignedCollections,
+      trucks,
       selectedId,
       editView,
       changeCollection,
-      editCollection,
       deleteCollection,
-      viewChange,
+      // viewChange,
       viewMap
     } = this.props;
-    
+    console.log("AssignTruck Page");
     const selectedCollection = selectedId
-      ? collections.filter(collection => collection.id === selectedId)[0]
+      ? unassignedCollections.filter(collection => collection.id === selectedId)[0]
       : null;
     
-
-    const onViewChange = () => viewChange(!editView);
+    //const onViewChange = () => viewChange(!editView);
     const onMapChange = () => viewMap(editView);
 
     const containerAttributes = [
@@ -66,24 +64,19 @@ class Collections extends Component {
       { title: 'Cycle', value: 'serviceCycle', type: 'name' }
     ]
 
-    const truckAttributes = [
-      { title: 'Truck', value: 'description', type: 'name' }
-    ]
-
-
     console.log(this.props);
     return (
       <div>
-      <OilCollectionWidgets 
-        unassignedAccounts={unassignedCollections}
-      />
-      <CollectionsWrapper
-        className="Services"
+        <div style={{ paddingTop: '20px'}}>
+        <PageHeader><IntlMessages id="oilCollection.unassignedIndex" /></PageHeader>
+        </div> 
+      <AssignCollectionWrapper
+        className="Collections"
         style={{ background: 'none' }}
-      >        
+      >     
         <div className="CollectionListBar">
-          <CollectionList
-            collections={collections}
+          <UnassignedCollectionList
+            unassignedAccounts={unassignedCollections}
             selectedId={selectedId}
             changeCollection={changeCollection}
             deleteCollection={deleteCollection}
@@ -100,37 +93,28 @@ class Collections extends Component {
                 >
                   <IntlMessages id="collectionlist.backButton" />
                 </Button>
-                <Button type="button" onClick={onViewChange}>
+                {/* <Button type="button" onClick={onViewChange}>
                   {editView ? <Icon type="cross" /> : <Icon type="check" />}{' '}
-                </Button>
+                </Button> */}
               </div>
-              {editView ? (
-                <EditCollectionView
-                  collection={selectedCollection}
-                  editCollection={editCollection}
-                  containerAttributes={containerAttributes}
-                  setUpAttributes={setUpAttributes}
-                />
-              ) : (
-                <SingleCollectionView
+                <AssignTruckView
+                  trucks={trucks}
                   collection={selectedCollection}
                   containerAttributes={containerAttributes}
                   setUpAttributes={setUpAttributes}
-                  truckAttributes={truckAttributes}
                   collectionAttributes={collectionAttributes}
-                  collections={collections}
+                  collections={unassignedCollections}
                 />
-              )}
             </Content>
           ) : (
-            <Content className="CollectionBox">
-            <OilCollectionMap 
-              markers={collections}
+            <Content className="CollectionBox">          
+            <TruckAssignmentMap 
+              markers={unassignedCollections}
             />
           </Content>
           )}
         </Layout>
-      </CollectionsWrapper>
+      </AssignCollectionWrapper>
       </div>
     );
   }
@@ -138,7 +122,9 @@ class Collections extends Component {
 
 function mapStateToProps(state) {
   const { collections, unassignedCollections, selectedId, editView } = state.Collections;
+  const { trucks } = state.Trucks;
   return {
+    trucks,
     collections,
     unassignedCollections,
     selectedId,
@@ -146,11 +132,11 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, {
-  fetchCollections,
   fetchUnassignedCollections,
+  fetchTrucks,
   changeCollection,
   editCollection,
   deleteCollection,
-  viewChange,
+  // viewChange,
   viewMap
-})(Collections);
+})(AssignTruck);

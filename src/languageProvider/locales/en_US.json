@@ -40,6 +40,7 @@
   "customerlist.addNewCustomer": "Add New Customer",
   "customerlist.editCustomer": "Save Changes",
   "oilCollection.index": "Oil Collection",
+  "oilCollection.unassignedIndex": "Unassigned Accounts",
   "oilCollection.index.driver": "Driver Oil Collection",
   "oilCollection.collections.index": "Pending Collections",
   "oilCollection.collections.search": "Search Collections",
@@ -74,5 +75,8 @@
   "servicelist.searchServices": "Search Location",
   "service.collectionInfo": "Oil Collection Details",
   "service.setupInfo": "Setup Details",
-  "stickers.unassignedAccountsSticker": "Unassigned Accounts"
+  "stickers.unassignedAccountsSticker": "Unassigned Accounts",
+  "collectionlist.searchCollections": "Search Locations",
+  "collectionlist.backButton": "Back To Main Map",
+  "collectionAssign.assignButton": "Assign Truck"
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import Button from '../../components/uielements/button';
+//import Button from '../../components/uielements/button';
 import Input from '../uielements/input';
 import { graphql } from 'react-apollo'
 import { SINGLE_SET_UP_QUERY } from '../../graphql/queries'

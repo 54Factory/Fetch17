@@ -46,6 +46,9 @@ theme.palette = {
     '#ca3f13', // 12: Auth0
     '#e0364c', // 13: themeColor--AlizarinCrimson
     '#c4273b', // 14: darkerthemeColor--AlizarinCrimson
+    '#7ED321', // 15: Green
+    '#65A91A', // 16: Green Darken 5%
+    
   ],
   warning: [
     '#ffbf00', // 0: Warning

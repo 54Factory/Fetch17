@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CollectionCardWrapper } from './collectionCard.style';
 import { FormattedDate, IntlProvider } from 'react-intl'
-//import SingleCollectionMap from '../maps/oilCollection/singleCollectionMap'
+import SingleCollectionMap from '../maps/oilcollection/singleCollection'
 
 
 
@@ -23,11 +23,11 @@ export default class SingleCollectionView extends Component {
   render() {
     console.log("Single View", this.props)
     const { collection, containerAttributes, setUpAttributes, truckAttributes } = this.props;
-    const location = collection.oilCollectionService.service.location
-    const containment = collection.oilCollectionService.containment
-    const setUpDetails = collection.oilCollectionService.service.setUpService
-    const truck = collection.oilCollectionService.service.setUpService.truck
-    const driver = collection.oilCollectionService.service.setUpService.truck.driver.user
+    const location = collection.service.location
+    const containment = collection.containment
+    const setUpDetails = collection.service.setUpService
+    const truck = collection.truck
+    const driver = collection.truck.driver.user
     const name = location.locationName ? location.locationName : 'No Name';
     const streetAddress = location.streetNumber + ' ' + location.street;
     const restAddress = `${location.city}, ${location.state} ${location.zip}`
@@ -83,9 +83,9 @@ export default class SingleCollectionView extends Component {
       <CollectionCardWrapper className="CollectionCard">
         <div className="CollectionCardHead">
           <div className="CollectionMap">
-            {/* <SingleCollectionMap 
+            <SingleCollectionMap 
               markers={location}
-            /> */}
+            />
           </div>
           <h1 className="CollectionName">{name}</h1>
           <p className="CollectionAddress">{streetAddress}</p>

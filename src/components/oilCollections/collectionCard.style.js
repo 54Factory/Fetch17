@@ -60,6 +60,7 @@ const WDOilCollectionCardWrapper = styled.div`
       line-height: 1.5;
       margin: 0;
     }
+    
 
   }
 
@@ -119,6 +120,7 @@ const WDOilCollectionCardWrapper = styled.div`
         margin: 0;
         text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
       }
+
 
       input {
         font-size: 14px;

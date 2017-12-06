@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd';
 import basicStyle from '../../../config/basicStyle';
 import WidgetsWrapper from '../widgetsWrapper';
@@ -30,6 +31,7 @@ export default class OilCollectionWidgets extends Component {
           <Col md={12} sm={12} xs={24} style={stickerColStyle}>
             <WidgetsWrapper>
               {/* Sticker Widget */}
+              <Link to={"/dashboard/oilcollection/unassigned"}>
               <StickerWidget
                 number={unassignedAccounts.length}
                 text={<IntlMessages id="stickers.unassignedAccountsSticker" />}
@@ -37,6 +39,7 @@ export default class OilCollectionWidgets extends Component {
                 fontColor="#ffffff"
                 bgColor="#FFCA28"
               />
+              </Link>
             </WidgetsWrapper>
           </Col>
 

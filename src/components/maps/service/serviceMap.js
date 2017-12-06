@@ -62,7 +62,7 @@ const FetchV2GoogleMap = compose(
   );
 
 
-export default class PendingSetUpsMap extends Component {
+export default class ServiceMap extends Component {
 
   state = {
     markers: [],

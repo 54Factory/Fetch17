@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { palette } from 'styled-theme';
-import { transition, borderRadius } from '../../config/style-util';
-import WithDirection from '../../config/withDirection';
+import { transition, borderRadius } from '../../../config/style-util';
+import WithDirection from '../../../config/withDirection';
 
-const WDCollectionWrapper = styled.div`
-  padding: 10px 35px 200px;
+const WDAssignCollectionWrapper = styled.div`
+  padding: 10px 35px 200px; 
   display: flex;
 
   @media only screen and (max-width: 767px) {
@@ -70,7 +70,7 @@ const WDCollectionWrapper = styled.div`
         padding: 30px 20px;
       }
 
-      button:not(.BackBtn) {
+      button:not(.BackBtn, .AssignBtn) {
         font-size: 16px;
         color: ${palette('secondary', 0)};
         width: 35px;
@@ -111,6 +111,7 @@ const WDCollectionWrapper = styled.div`
           background-color: ${palette('grayscale', 7)};
         }
       }
+
 
       .AssignBtn {
         background-color: ${palette('color', 15)};
@@ -183,6 +184,6 @@ const WDCollectionWrapper = styled.div`
   }
 `;
 
-const CollectionsWrapper = WithDirection(WDCollectionWrapper);
+const AssignCollectionWrapper = WithDirection(WDAssignCollectionWrapper);
 
-export { CollectionsWrapper };
+export { AssignCollectionWrapper };
