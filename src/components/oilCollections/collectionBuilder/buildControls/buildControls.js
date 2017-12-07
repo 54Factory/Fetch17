@@ -4,8 +4,9 @@ import BuildControlsWrapper from './buildControls.style'
 
 const controls = [
   { label: 'Oil', type: 'oil' },
-  { label: 'Waste', type: 'waste' },
-  { label: 'Water', type: 'water' }
+  { label: 'Water', type: 'water' },
+  { label: 'Waste', type: 'waste' }
+  
 ]
 
 const buildControls = (props) => (

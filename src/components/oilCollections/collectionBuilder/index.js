@@ -14,8 +14,8 @@ class CollectionBuilder extends Component {
   state = {
     payloads: {
         oil: 0,
-        waste: 0,
-        water: 0
+        water: 0,
+        waste: 0
     },
     totalCollected: 0
 }
