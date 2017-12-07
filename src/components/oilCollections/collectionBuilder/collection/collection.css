@@ -1,0 +1,16 @@
+.Collection {
+  width: 150px;
+  height: 500px;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  border-bottom: 10px solid black;
+}
+.ContainerBottom {
+  height: 500px;
+  width: 100%;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  border-bottom: 10px solid black;
+  
+}
+

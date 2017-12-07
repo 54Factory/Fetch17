@@ -5,7 +5,7 @@ import { Layout, Icon } from 'antd';
 import Button from '../../components/uielements/button';
 import CollectionList from '../../components/oilCollections/collectionList';
 import SingleCollectionView from '../../components/oilCollections/singleView';
-import EditCollectionView from '../../components/oilCollections/editView';
+import CollectionBuilderView from '../../components/oilCollections/collectionBuilderView';
 import IntlMessages from '../../components/utility/intlMessages';
 import OilCollectionMap from '../../components/maps/oilcollection'
 import { CollectionsWrapper } from './oilCollection.style';
@@ -15,7 +15,6 @@ const {
   fetchCollections,
   fetchUnassignedCollections,
   changeCollection,
-  editCollection,
   deleteCollection,
   viewChange,
   viewMap
@@ -39,7 +38,6 @@ class Collections extends Component {
       selectedId,
       editView,
       changeCollection,
-      editCollection,
       deleteCollection,
       viewChange,
       viewMap
@@ -105,12 +103,7 @@ class Collections extends Component {
                 </Button>
               </div>
               {editView ? (
-                <EditCollectionView
-                  collection={selectedCollection}
-                  editCollection={editCollection}
-                  containerAttributes={containerAttributes}
-                  setUpAttributes={setUpAttributes}
-                />
+                <CollectionBuilderView />
               ) : (
                 <SingleCollectionView
                   collection={selectedCollection}
@@ -149,7 +142,6 @@ export default connect(mapStateToProps, {
   fetchCollections,
   fetchUnassignedCollections,
   changeCollection,
-  editCollection,
   deleteCollection,
   viewChange,
   viewMap
