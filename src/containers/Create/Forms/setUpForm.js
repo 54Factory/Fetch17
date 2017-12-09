@@ -1,7 +1,9 @@
 import React from 'react'
-import { DatePicker } from 'antd';
-import { Select } from 'antd';
+import { Select, Input, DatePicker } from 'antd';
+import { FormCardWrapper } from './formCard.style';
+
 const Option = Select.Option;
+
 class SetUpForm extends React.Component {
 
   onFieldChange(event) {
@@ -33,61 +35,46 @@ containerTypeSelectorChange(value) {
   render() {
 
     return(
-      <div>
-        <DatePicker 
-          onChange={this.onDateChange.bind(this)} 
-          showToday={true}
-          format='MMMM Do YYYY'
-          allowClear={false}
-        />
-        <Select style={{ width: 120 }} onChange={this.quantitySelectorChange.bind(this)}>
-          <Option value="1">1</Option>
-          <Option value="2">2</Option>
-          <Option value="3">3</Option>
-        </Select>
-        <Select name='type' style={{ width: 120 }} onChange={this.containerTypeSelectorChange.bind(this)}>
-          <Option value="55 Gallon Drum">55 Gallon Drum</Option>
-          <Option value="150 Gallon Container">150 Gallon Container</Option>
-        </Select>
-        {/* <Input 
-        placeholder='First Name'
-        style={{ marginBottom: '15px' }} 
-        name="firstName"
-        onChange={this.onFieldChange.bind(this)}
-        />
-        <Input 
-          placeholder='Last Name' 
-          style={{ marginBottom: '15px' }}
-          name="lastName"
-          onChange={this.onFieldChange.bind(this)}
-        />
-        <Input 
-          placeholder='Phone'
-          style={{ marginBottom: '15px' }} 
-          name="phone"
-          onChange={this.onFieldChange.bind(this)}
-        />
-        <Input 
-          placeholder='Email' 
-          style={{ marginBottom: '15px' }}
-          name="email"
-          onChange={this.onFieldChange.bind(this)}
-          />
-          <Input 
-          placeholder='Role' 
-          style={{ marginBottom: '15px' }}
-          name="role"
-          onChange={this.onFieldChange.bind(this)}
-          />
-          <Input 
-          placeholder='Notes' 
-          style={{ marginBottom: '15px' }}
-          name="customerNotes"
-          onChange={this.onFieldChange.bind(this)}
-          /> */}
-      </div>
-  
-
+        <FormCardWrapper className="FormCard">
+        <div className="FormInfoWrapper">
+          <div className="FormCardInfos">
+            <p className="FormInfoLabel">Set Up Date</p>
+            <DatePicker 
+              onChange={this.onDateChange.bind(this)} 
+              showToday={true}
+              format='MMMM Do YYYY'
+              allowClear={false}
+            />
+          </div>
+          <div className="FormCardInfos">
+            <p className="FormInfoLabel">No. of Containers</p>
+            <Select style={{ width: "100%" }} onChange={this.quantitySelectorChange.bind(this)}>
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+              <Option value="3">3</Option>
+            </Select>
+          </div>
+          <div className="FormCardInfos">
+            <p className="FormInfoLabel">Container Type</p>
+            <Select name='type' style={{ width: "100%" }} onChange={this.containerTypeSelectorChange.bind(this)}>
+              <Option value="55 Gallon Drum">55 Gallon Drum</Option>
+              <Option value="150 Gallon Container">150 Gallon Container</Option>
+            </Select>
+          </div>
+          <div className="FormCardInfos">
+            <p className="FormInfoLabel">Set Up Notes</p>
+            <Input 
+              placeholder='Notes' 
+              type="textarea" 
+              rows={10} 
+              autosize={{ minRows: 3, maxRows: 5 }}
+              style={{ marginBottom: '15px' }}
+              name="setUpNoteContent"
+              onChange={this.onFieldChange.bind(this)}
+            />
+          </div>
+        </div>
+        </FormCardWrapper>
     )
   }
 }

@@ -62,14 +62,14 @@ class CustomerForm extends React.Component {
             />
           </div>
           <div className="FormCardInfos">
-            <p className="FormInfoLabel">Role</p>
+            <p className="FormInfoLabel">Customer Notes</p>
             <Input 
               placeholder='Notes' 
               type="textarea" 
               rows={10} 
               autosize={{ minRows: 3, maxRows: 5 }}
               style={{ marginBottom: '15px' }}
-              name="customerNotes"
+              name="customerNoteContent"
               onChange={this.onFieldChange.bind(this)}
             />
           </div>
