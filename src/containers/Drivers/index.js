@@ -6,7 +6,7 @@ import Button from '../../components/uielements/button';
 import DriverList from '../../components/drivers/driverList';
 import SingleDriverView from '../../components/drivers/singleView';
 import EditDriverView from '../../components/drivers/editView';
-import DeleteButton from '../../components/drivers/deleteButton';
+//import DeleteButton from '../../components/drivers/deleteButton';
 import IntlMessages from '../../components/utility/intlMessages';
 import { DriversWrapper } from './drivers.style';
 

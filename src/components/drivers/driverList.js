@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import IntlMessages from '../utility/intlMessages';
 import { InputSearch } from '../uielements/input';
-import DeleteButton from './deleteButton';
+//import DeleteButton from './deleteButton';
 import { PropTypes } from 'prop-types';
 import { DriverListWrapper } from './driverList.style';
 
