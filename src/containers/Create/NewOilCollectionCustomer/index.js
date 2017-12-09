@@ -2,12 +2,18 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import PlacesAutocomplete, { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete'
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
+import { Layout } from 'antd';
+import { Alert } from 'antd';
+import SingleMarkerMap from '../../../components/maps/singleMarker'
 import LocationForm from '../Forms/locationForm'
 import CustomerForm from '../Forms/customerForm'
 import SetUpForm from '../Forms/setUpForm'
 import OilServiceForm from '../Forms/oilServiceForm'
+import { FormsWrapper } from './forms.style';
 import './index.css';
+
+const { Content } = Layout;
 
 class NewOilCollectionCustomer extends React.Component {
   constructor(props) {
@@ -260,7 +266,7 @@ class NewOilCollectionCustomer extends React.Component {
                     result[key] = currentObject[key];
                 }
             }
-            console.log(result)
+            console.log("Address Values", result)
             
             return result;
         }, {})
@@ -273,6 +279,9 @@ class NewOilCollectionCustomer extends React.Component {
       })
       .then((addressValues) => {
         console.log(addressValues)
+        if (typeof addressValues === "undefined") {
+          alert("something is undefined");
+      }
         this.setState({
           streetNumber: addressValues.street_number,
           street: addressValues.street,
@@ -311,9 +320,6 @@ class NewOilCollectionCustomer extends React.Component {
           loading: false
         })
       })
-      geocodeByPlaceId('ChIJX9LkAFjGxokRSfaz4-oPwa0')
-      .then(results => console.log("geocodeByPlaceId",results))
-      .catch(error => console.error(error))
     }
 
 
@@ -359,45 +365,54 @@ class NewOilCollectionCustomer extends React.Component {
   }
 
   renderGeocodeSuccess(lat, lng) {
+    const locations = {
+      lat,
+      lng
+    }
+    console.log(locations)
     return (
-      <div className="alert alert-success" role="alert">
-        <strong>Success!</strong> Geocoder found latitude and longitude: <strong>{lat}, {lng}</strong>
+      <div>
+        <Alert
+          message="Success!"
+          description="Fetch Location Finder found what it needed. Please continue to fill in form." 
+          type="success" 
+          showIcon 
+        />
+        <SingleMarkerMap 
+          markers={locations}
+        />
       </div>
     )
   }
 
+  
+
   renderAddressSuccess(addressValues) {
-    console.log(this.state)
-    console.log(this.props)
 
     return (
-      <div className="alert alert-success" role="alert">  
-        <div>
-          <h1>Location</h1>
+      <div>  
+        <h4>Location Details</h4>
           <LocationForm 
-          onChange={this.setLocationNameState.bind(this)}
+            onChange={this.setLocationNameState.bind(this)}
+            addressValues={addressValues}
           />
-          <ul><strong>Street:</strong> {addressValues.street_number} {addressValues.street}</ul>
-          <ul><strong>City:</strong> {addressValues.city}</ul>
-          <ul><strong>State:</strong> {addressValues.state}</ul>
-          <h1>Customer</h1>
+        <h4>Customer Details</h4>
           <CustomerForm
             onChange={this.setCustomerState.bind(this)}
-           />
-           <h1>Set Up Details</h1>
-           <SetUpForm 
-           onDateChange={this.setDateState.bind(this)}
-           onQuantitySelectorChange={this.setSetUpSelectorState.bind(this)}
-           onContainerTypeSelectorChange={this.setSetUpSelectorState.bind(this)}
-           />
-           <h1>Oil Service Details</h1>
-           <OilServiceForm 
+          />
+          <h4>Set Up Details</h4>
+          <SetUpForm 
+            onDateChange={this.setDateState.bind(this)}
+            onQuantitySelectorChange={this.setSetUpSelectorState.bind(this)}
+            onContainerTypeSelectorChange={this.setSetUpSelectorState.bind(this)}
+          />
+          <h4>Oil Service Details</h4>
+          <OilServiceForm 
             onDateChange={this.setDateState.bind(this)}
             onServiceTypeSelectorChange={this.setSetUpSelectorState.bind(this)}
             onCycleSelectorChange={this.setSetUpSelectorState.bind(this)}
-           />
-        </div>
-        <button onClick={this.onSubmit} color="success">Create</button>
+          />
+      <button onClick={this.onSubmit} color="success">Create</button>
     </div>
     )
   }
@@ -430,29 +445,64 @@ class NewOilCollectionCustomer extends React.Component {
     }
 
     return (
-      <div className='page-wrapper'>
-        <div className='container'>
-          <h1 className='display-3'>Fetch  Location Finder <i className='fa fa-map-marker header'/></h1>
-          <p className='lead'>Search A Place or Address</p>
-        </div>
-        <div className='container'>
-          <PlacesAutocomplete
-            onSelect={this.handleAddress}
-            autocompleteItem={AutocompleteItem}
-            onEnterKeyDown={this.handleAddress}
-            classNames={cssClasses}
-            inputProps={inputProps}
-          />
-          {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
-          {!this.state.loading && this.state.geocodeResults ?
-            <div className='geocoding-results'>{this.state.geocodeResults}</div> :
+      <FormsWrapper 
+        className="Forms"
+        style={{ backround: 'none' }}
+      >
+      <Layout className="FormBoxWrapper">
+        <PlacesAutocomplete
+          onSelect={this.handleAddress}
+          autocompleteItem={AutocompleteItem}
+          onEnterKeyDown={this.handleAddress}
+          classNames={cssClasses}
+          inputProps={inputProps}
+        />     
+        {this.state.loading 
+            ? 
+            <div>
+              <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
+            </div> 
+            : 
           null}
-          {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
-          {!this.state.loading && this.state.addressValueResults ?
-            <div className='geocoding-results'>{this.state.addressValueResults}</div> :
+          {!this.state.loading && this.state.addressValueResults &&
+            !this.state.loading && this.state.geocodeResults 
+            ?
+            <Content>
+              {this.state.geocodeResults}
+              {this.state.addressValueResults}
+            </Content> 
+            :
           null}
-        </div>
-      </div>
+        </Layout>
+
+
+      </FormsWrapper>
+
+
+
+      // <div className='page-wrapper'>
+      //   <div className='container'>
+      //     <h1 className='display-3'>Fetch  Location Finder <i className='fa fa-map-marker header'/></h1>
+      //     <p className='lead'>Search A Place or Address</p>
+      //   </div>
+      //   <div className='container'>
+      //     <PlacesAutocomplete
+      //       onSelect={this.handleAddress}
+      //       autocompleteItem={AutocompleteItem}
+      //       onEnterKeyDown={this.handleAddress}
+      //       classNames={cssClasses}
+      //       inputProps={inputProps}
+      //     />
+      //     {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
+      //     {!this.state.loading && this.state.geocodeResults ?
+      //       <div className='geocoding-results'>{this.state.geocodeResults}</div> :
+      //     null}
+      //     {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
+      //     {!this.state.loading && this.state.addressValueResults ?
+      //       <div className='geocoding-results'>{this.state.addressValueResults}</div> :
+      //     null}
+      //   </div>
+      // </div>
     )
   }
 }

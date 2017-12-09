@@ -163,6 +163,7 @@ query Setups {
               driver {
                 id
                 user {
+                  id
                   firstName
                   lastName
                 }
