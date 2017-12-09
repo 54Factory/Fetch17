@@ -13,8 +13,6 @@ export default class LocationForm extends React.Component {
 
   render() {
     const { addressValues } = this.props
-    console.log(this.props)
-
     const otherAttributes = [
       { title: 'City', value: 'city', type: 'city' },
       { title: 'State', value: 'state', type: 'state' },

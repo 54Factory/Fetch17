@@ -63,7 +63,6 @@ export default class SingleCollectionMap extends Component {
   }
 
   render() {
-    console.log("Render SSMap", this.props)
     const { markers } = this.props
     return (
       <div style={{height: `100%`}}>

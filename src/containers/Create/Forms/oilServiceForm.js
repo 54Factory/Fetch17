@@ -67,7 +67,7 @@ serviceTypeSelectorChange(value) {
               </Select>
           </div>
           <div className="FormCardInfos">
-            <p className="FormInfoLabel">Set Up Notes</p>
+            <p className="FormInfoLabel">Oil Collection Notes</p>
             <Input 
               placeholder='Notes' 
               type="textarea" 

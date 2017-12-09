@@ -33,7 +33,6 @@ containerTypeSelectorChange(value) {
 }
 
   render() {
-
     return(
         <FormCardWrapper className="FormCard">
         <div className="FormInfoWrapper">
@@ -58,7 +57,10 @@ containerTypeSelectorChange(value) {
             <p className="FormInfoLabel">Container Type</p>
             <Select name='type' style={{ width: "100%" }} onChange={this.containerTypeSelectorChange.bind(this)}>
               <Option value="55 Gallon Drum">55 Gallon Drum</Option>
+              <Option value="100 Gallon Container">100 Gallon Container</Option>
               <Option value="150 Gallon Container">150 Gallon Container</Option>
+              <Option value="200 Gallon Container">200 Gallon Container</Option>
+              <Option value="300 Gallon Container">300 Gallon Container</Option>
             </Select>
           </div>
           <div className="FormCardInfos">

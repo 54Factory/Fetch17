@@ -3,15 +3,17 @@ import { withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
-import { Layout } from 'antd';
-import { Alert } from 'antd';
+import { Layout, Button, Alert, Spin } from 'antd';
 import SingleMarkerMap from '../../../components/maps/singleMarker'
 import LocationForm from '../Forms/locationForm'
 import CustomerForm from '../Forms/customerForm'
 import SetUpForm from '../Forms/setUpForm'
 import OilServiceForm from '../Forms/oilServiceForm'
+import PageHeader from '../../../components/utility/pageHeader';
+
 import { FormsWrapper } from './forms.style';
-import './index.css';
+// import { Button } from 'antd/lib/radio';
+
 
 const { Content } = Layout;
 
@@ -19,15 +21,19 @@ class NewOilCollectionCustomer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      //customer
       firstName: '',
       lastName: '',
       phone: '',
       email: '',
       role: '',
-      customerNotes: '',
+      customerNoteContent: '',
+      //setups
       setUpDate: '',
       quantity: '',
       containerType: '',
+      setUpNoteContent: '',
+      //oilSevice
       serviceType: '',
       serviceCycle: '',
       streetNumber: '',
@@ -69,6 +75,9 @@ class NewOilCollectionCustomer extends React.Component {
     this.setState({[field]: value.toISOString()});
   }
   setSetUpSelectorState(field, value) {
+    this.setState({[field]: value});
+  }
+  setOilCollectionState(field, value) {
     this.setState({[field]: value});
   }
 
@@ -145,48 +154,17 @@ class NewOilCollectionCustomer extends React.Component {
         },
         setUpService: {
           setUpDate,
-          setUpNotes: {
+          setUpNotes: [{
             setUpNoteContent
-          }
+          }]
         }
       }
       }});
       this.props.history.push('/dashboard/pendingSetups')
     //window.location.pathname = `/dashboard/pendingSetups`
   }
-  // handleCustomerFormChange(e) {
-  //   this.setState({
-  //     firstName: e.target.value,
-  //     lastName: e.target.value
-  //   })
-  // }
-
-  // handleInputChange(event) {
-  //   const target = event.target;
-  //   const value = target.value;
-  //   const name = target.name;
-
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
-
-
-  // handleCustomerFirstName(firstName, lastName) {
-  //   this.setState({
-  //     firstName,
-  //     lastName
-  //   })
-  // }
-  // handleCustomerLastName(lastName) {
-  //   this.setState({
-  //     lastName
-  //   })
-  // }
-
 
   getLatLng(result) {
-    console.log(result)
     return new Promise((resolve, reject) =>{
       try {
         const latLng = {
@@ -266,19 +244,15 @@ class NewOilCollectionCustomer extends React.Component {
                     result[key] = currentObject[key];
                 }
             }
-            console.log("Address Values", result)
+
             
             return result;
         }, {})
-        console.log('Return Values: ', results);
-        console.log('Address Results', addressResults);
-        console.log('Address Values: ', addressValues); 
         return addressValues
 
       }    
       })
       .then((addressValues) => {
-        console.log(addressValues)
         if (typeof addressValues === "undefined") {
           alert("something is undefined");
       }
@@ -369,7 +343,7 @@ class NewOilCollectionCustomer extends React.Component {
       lat,
       lng
     }
-    console.log(locations)
+
     return (
       <div>
         <Alert
@@ -385,34 +359,41 @@ class NewOilCollectionCustomer extends React.Component {
     )
   }
 
-  
-
   renderAddressSuccess(addressValues) {
-
     return (
-      <div>  
-        <h4>Location Details</h4>
+      <div>
+        <div className="Header">
+          <PageHeader>Location Details</PageHeader>
+        </div>
           <LocationForm 
             onChange={this.setLocationNameState.bind(this)}
             addressValues={addressValues}
           />
-        <h4>Customer Details</h4>
+        <div className="Header">
+          <PageHeader>Customer Details</PageHeader>
+        </div>
           <CustomerForm
             onChange={this.setCustomerState.bind(this)}
           />
-          <h4>Set Up Details</h4>
+        <div className="Header">
+          <PageHeader>Set Up Details</PageHeader>
+        </div>
           <SetUpForm 
             onDateChange={this.setDateState.bind(this)}
             onQuantitySelectorChange={this.setSetUpSelectorState.bind(this)}
             onContainerTypeSelectorChange={this.setSetUpSelectorState.bind(this)}
+            onChange={this.setSetUpSelectorState.bind(this)}
           />
-          <h4>Oil Service Details</h4>
+        <div className="Header">
+          <PageHeader>Oil Service Details</PageHeader>
+        </div>
           <OilServiceForm 
             onDateChange={this.setDateState.bind(this)}
             onServiceTypeSelectorChange={this.setSetUpSelectorState.bind(this)}
             onCycleSelectorChange={this.setSetUpSelectorState.bind(this)}
+            onChange={this.setOilCollectionState.bind(this)}
           />
-      <button onClick={this.onSubmit} color="success">Create</button>
+      <Button className="CreateBtn" onClick={this.onSubmit}>Create</Button>
     </div>
     )
   }
@@ -421,13 +402,13 @@ class NewOilCollectionCustomer extends React.Component {
     console.log(this.state)
     const cssClasses = {
       root: 'form-group',
-      input: 'Demo__search-input',
-      autocompleteContainer: 'Demo__autocomplete-container',
+      input: 'SearchInput',
+      autocompleteContainer: 'AutoCompleteContainer',
     }
 
     const AutocompleteItem = ({ formattedSuggestion }) => (
-      <div className="Demo__suggestion-item">
-        <i className='fa fa-map-marker Demo__suggestion-icon'/>
+      <div className="SuggestionItem">
+        <i className='fa fa-map-marker SuggestionIcon'/>
         <strong>{formattedSuggestion.mainText}</strong>{' '}
         <small className="text-muted">{formattedSuggestion.secondaryText}</small>
       </div>)
@@ -459,9 +440,7 @@ class NewOilCollectionCustomer extends React.Component {
         />     
         {this.state.loading 
             ? 
-            <div>
-              <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
-            </div> 
+            <Spin /> 
             : 
           null}
           {!this.state.loading && this.state.addressValueResults &&
@@ -474,107 +453,82 @@ class NewOilCollectionCustomer extends React.Component {
             :
           null}
         </Layout>
-
-
       </FormsWrapper>
-
-
-
-      // <div className='page-wrapper'>
-      //   <div className='container'>
-      //     <h1 className='display-3'>Fetch  Location Finder <i className='fa fa-map-marker header'/></h1>
-      //     <p className='lead'>Search A Place or Address</p>
-      //   </div>
-      //   <div className='container'>
-      //     <PlacesAutocomplete
-      //       onSelect={this.handleAddress}
-      //       autocompleteItem={AutocompleteItem}
-      //       onEnterKeyDown={this.handleAddress}
-      //       classNames={cssClasses}
-      //       inputProps={inputProps}
-      //     />
-      //     {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
-      //     {!this.state.loading && this.state.geocodeResults ?
-      //       <div className='geocoding-results'>{this.state.geocodeResults}</div> :
-      //     null}
-      //     {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
-      //     {!this.state.loading && this.state.addressValueResults ?
-      //       <div className='geocoding-results'>{this.state.addressValueResults}</div> :
-      //     null}
-      //   </div>
-      // </div>
     )
   }
 }
 
 const NewCustomerOilServiceMutation = gql`
-mutation NewCustomerOilService(
-$zip: String!, 
-$state: String!,
-$neighborhood: String,
-$township: String,
-$county: String,
-$streetNumber: String, 
-$city: String!, 
-$lat: Float,
-$lng: Float,
-$street: String!, 
-$locationName: String!,
-$locationNotes: [LocationlocationNotesLocationNote!],
-$customer: LocationcustomerCustomer,
-$service: LocationserviceService
-){
-createLocation(
-  zip: $zip, 
-  state: $state, 
-  city: $city,
-  county: $county,
-  township: $township,
-  neighborhood: $neighborhood,
-  lat: $lat,
-  lng: $lng,
-  streetNumber: $streetNumber, 
-  street: $street, 
-  locationName: $locationName,
-  locationNotes: $locationNotes
-  customer: $customer,
-  service: $service   
-){
-  id
-  locationName
-  lat
-  lng
-  customer{
-    id
-    firstName
-    lastName
-    role
-    customerNotes{
+  mutation NewCustomerOilService(
+    $zip: String!, 
+    $state: String!,
+    $neighborhood: String,
+    $township: String,
+    $county: String,
+    $streetNumber: String, 
+    $city: String!, 
+    $lat: Float,
+    $lng: Float,
+    $street: String!, 
+    $locationName: String!,
+    $locationNotes: [LocationlocationNotesLocationNote!],
+    $customer: LocationcustomerCustomer,
+    $service: LocationserviceService
+    ){
+    createLocation(
+      zip: $zip, 
+      state: $state, 
+      city: $city,
+      county: $county,
+      township: $township,
+      neighborhood: $neighborhood,
+      lat: $lat,
+      lng: $lng,
+      streetNumber: $streetNumber, 
+      street: $street, 
+      locationName: $locationName,
+      locationNotes: $locationNotes
+      customer: $customer,
+      service: $service   
+    ){
       id
-      customerNoteContent
-    }
-  }
-  service{
-    id
-    oilCollectionService{
-      startDate
-      serviceType
-      serviceCycle
-      containment{
-        containerType
-        quantity
+      locationName
+      lat
+      lng
+      customer{
+        id
+        firstName
+        lastName
+        role
+        customerNotes{
+          id
+          customerNoteContent
+        }
+      }
+      service{
+        id
+        oilCollectionService{
+          id
+          startDate
+          serviceType
+          serviceCycle
+          containment{
+            id
+            containerType
+            quantity
+          }
+        }
+        setUpService{
+          id
+          setUpDate
+          setUpNotes{
+            id
+            setUpNoteContent
+          }
+        }
       }
     }
-    setUpService{
-      id
-      setUpDate
-      setUpNotes{
-        setUpNoteContent
-      }
-    }
   }
-}
-}
 `
 
 

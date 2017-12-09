@@ -12,7 +12,6 @@ class CustomerForm extends React.Component {
   }
 
   render() {
-
     return (
       <FormCardWrapper className="FormCard">
         <div className="FormInfoWrapper">

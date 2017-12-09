@@ -17,7 +17,7 @@ const WDFormsWrapper = styled.div`
     padding: 40px 30px;
   }
 
-  .Demo__search-input {
+  .SearchInput {
     width: 100%;
     font-size: 14px;
     font-weight: 400;
@@ -57,20 +57,25 @@ const WDFormsWrapper = styled.div`
     }
   }
 
-  .Demo__suggestion-icon {
+  .SuggestionIcon {
     margin-right: 8px;
   }
   
-  .Demo__suggestion-item {
+  .SuggestionItem {
     padding: 4px;
     text-align: left;
   }
     
-  .Demo__autocomplete-container {
+  .AutoCompleteContainer {
     border: 0;
     border-bottom: 1px solid ${palette('border', 0)};
     ${boxShadow('none')};
     ${borderRadius()};
+  }
+
+  .Header {
+    margin-top: 50px;
+    margin-right: 50px;
   }
   
 
@@ -93,6 +98,29 @@ const WDFormsWrapper = styled.div`
     @media only screen and (min-width: 767px) and (max-width: 990px) {
       width: 270px !important;
       flex: 0 0 270px !important;
+    }
+  }
+  .CreateBtn {
+    background-color: ${palette('primary', 0)};
+    border: 0;
+    height: 30px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    float: right;
+    ${borderRadius('3px')};
+    ${transition()};
+
+    span {
+      font-size: 12px;
+      font-weight: 400;
+      padding: 0;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    &:hover {
+      background-color: ${palette('primary', 1)};
     }
   }
 

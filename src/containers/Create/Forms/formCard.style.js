@@ -4,9 +4,10 @@ import { transition, borderRadius, boxShadow } from '../../../config/style-util'
 import WithDirection from '../../../config/withDirection';
 
 const WDFormCardWrapper = styled.div`
-  width: 100%;
+  width: 80%;
   height: 100%;
-  padding: 35px 35px;
+  margin-left: 5%;
+  padding: 15px 15px;
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
