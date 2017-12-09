@@ -121,7 +121,6 @@ const WDOilCollectionCardWrapper = styled.div`
         text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
       }
 
-
       input {
         font-size: 14px;
         font-weight: 400;

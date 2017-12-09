@@ -78,5 +78,6 @@
   "stickers.unassignedAccountsSticker": "Unassigned Accounts",
   "collectionlist.searchCollections": "Search Locations",
   "collectionlist.backButton": "Back To Main Map",
+  "collectionlist.collectButton": "Add Collection",
   "collectionAssign.assignButton": "Assign Truck"
 }

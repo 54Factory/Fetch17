@@ -158,12 +158,12 @@ const WDCollectionWrapper = styled.div`
         }
       }
       .CollectionBtn {
-        background-color: ${palette('color', 5)};
+        background-color: ${palette('color', 15)};
         border: 0;
         height: 30px;
         padding: 0 15px;
-        margin-left: 0;
-        margin-right: auto;
+        margin-right: 0;
+        margin-left: auto;
         ${borderRadius('3px')};
         ${transition()};
 
@@ -176,7 +176,7 @@ const WDCollectionWrapper = styled.div`
         }
 
         &:hover {
-          background-color: ${palette('color', 6)};
+          background-color: ${palette('color', 16)};
         }
       }
     }

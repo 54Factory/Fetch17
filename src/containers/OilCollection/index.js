@@ -98,8 +98,8 @@ class Collections extends Component {
                 >
                   <IntlMessages id="collectionlist.backButton" />
                 </Button>
-                <Button type="button" onClick={onViewChange}>
-                  {editView ? <Icon type="cross" /> : <Icon type="check" />}{' '}
+                <Button type="primary" onClick={onViewChange}>
+                  {editView ? <Icon type="close-circle" /> : <Icon type="plus-circle-o" />}{' '}
                 </Button>
               </div>
               {editView ? (
