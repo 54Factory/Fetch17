@@ -83,7 +83,6 @@ export default class OilCollectionMap extends Component {
     
     const newMarkers = this.props.markers.map(location => {
 
-        console.log(newMarkers)
         return {
           id: location.service.location.id,
           locationName: location.service.location.locationName,
@@ -141,7 +140,6 @@ export default class OilCollectionMap extends Component {
   }
 
   render() {
-    console.log("Render", this.props)
     return (
       <div style={{height: `100%`}}>
         <FetchV2GoogleMap

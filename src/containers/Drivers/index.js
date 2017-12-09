@@ -13,10 +13,11 @@ import { DriversWrapper } from './drivers.style';
 const {
   fetchDrivers,
   changeDriver,
-  addDriver,
+  
   editDriver,
   deleteDriver,
-  viewChange
+  viewChange,
+  viewMainPanel
 } = DriverAction;
 
 
@@ -32,24 +33,26 @@ class Drivers extends Component {
       drivers,
       selectedId,
       editView,
-      changeDriver,
-      addDriver,
+      changeDriver,   
       editDriver,
       deleteDriver,
-      viewChange
+      viewChange,
+      viewMainPanel
     } = this.props;
     
     const selectedDriver = selectedId
       ? drivers.filter(driver => driver.id === selectedId)[0]
       : null;
     
-      const onViewChange = () => viewChange(!editView);
-    const otherAttributes = [
-      { title: 'First Name', value: 'firstName', type: 'name' },
-      { title: 'Last Name', value: 'lastName', type: 'name' },
-      { title: 'Email', value: 'email', type: 'email' },
-      { title: 'Role', value: 'role', type: 'position' },
-      { title: 'Notes', value: 'note', type: 'paragraph' }
+    const onViewChange = () => viewChange(!editView);
+    const onPanelChange = () => viewMainPanel(editView);
+    
+    
+      const otherAttributes = [
+      { title: 'License #', value: 'dlNumber', type: 'license' }
+    ];
+    const driverAttributes = [
+      { title: 'Assigned Truck', value: 'name', type: 'name' }
     ];
     
     console.log(this.props);
@@ -73,13 +76,9 @@ class Drivers extends Component {
                 <Button type="button" onClick={onViewChange}>
                   {editView ? <Icon type="check" /> : <Icon type="edit" />}{' '}
                 </Button>
-                <DeleteButton
-                  deleteDriver={deleteDriver}
-                  driver={selectedDriver}
-                />
                 <Button
                   type="primary"
-                  onClick={addDriver}
+                  onClick={onPanelChange}
                   className="BackBtn"
                 >
                   <IntlMessages id="driverlist.backButton" />
@@ -90,23 +89,22 @@ class Drivers extends Component {
                   driver={selectedDriver}
                   editDriver={editDriver}
                   otherAttributes={otherAttributes}
+                  driverAttributes={driverAttributes}
                 />
               ) : (
                 <SingleDriverView
                   driver={selectedDriver}
                   otherAttributes={otherAttributes}
+                  driverAttributes={driverAttributes}
                 />
               )}
             </Content>
           ) : (
             <div className="DriverControl">
-              <Button
-                type="primary"
-                onClick={addDriver}
-                className="BackBtn"
-              >
-                <IntlMessages id="driverlist.backButton" />
-              </Button>
+              <ul>
+                <li>Driver Data Page</li>
+                <li>Snapshot Sections</li>
+              </ul>
             </div>
           )}
         </Layout>
@@ -126,8 +124,9 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   fetchDrivers,
   changeDriver,
-  addDriver,
+  
   editDriver,
   deleteDriver,
-  viewChange
+  viewChange,
+  viewMainPanel
 })(Drivers);

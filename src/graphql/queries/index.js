@@ -23,6 +23,7 @@ export const ALL_DRIVERS_QUERY = gql`
       user {
         id
         username
+        avatar
       }
       truck {
         id

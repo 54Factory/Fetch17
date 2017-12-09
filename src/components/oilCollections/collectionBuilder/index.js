@@ -58,8 +58,6 @@ removeMaterialHandler = (type) => {
 }
 
   render() {
-    console.log(this.state)
-    console.log(this.props)
   const disabledInfo = {
       ...this.state.payloads
   };

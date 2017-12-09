@@ -44,7 +44,7 @@ class Locations extends Component {
       : null;
     
       const onViewChange = () => viewChange(!editView);
-    const onMapChange = () => viewMap(editView);
+      const onMapChange = () => viewMap(editView);
 
     const otherAttributes = [
       { title: 'Number', value: 'streetNumber', type: 'number' },

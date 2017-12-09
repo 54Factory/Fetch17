@@ -22,7 +22,7 @@ export default class DriverList extends Component {
     };
   }
   singleDriver(driver) {
-    const { selectedId, deleteDriver, changeDriver } = this.props;
+    const { selectedId, changeDriver } = this.props;
     const activeClass = selectedId === driver.id ? 'active' : '';
     const onChange = () => changeDriver(driver.id);
     return (
@@ -37,7 +37,7 @@ export default class DriverList extends Component {
         <div className="DriverName">
           <h3>{driver.user.username ? driver.user.username : 'No Name'}</h3>
         </div>
-        <DeleteButton deleteDriver={deleteDriver} driver={driver} />
+        {/* <DeleteButton deleteDriver={deleteDriver} driver={driver} /> */}
       </div>
     );
   }

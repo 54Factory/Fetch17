@@ -27,5 +27,5 @@ const buildControls = (props) => (
       onClick={props.ordered}>ORDER NOW</button> */}
   </BuildControlsWrapper>
 )
-console.log(buildControls)
+
 export default buildControls;

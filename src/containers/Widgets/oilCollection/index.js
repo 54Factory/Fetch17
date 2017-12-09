@@ -15,7 +15,6 @@ export default class OilCollectionWidgets extends Component {
     const {
       unassignedAccounts
     } = this.props
-    console.log(unassignedAccounts)
     const { rowStyle, stickerColStyle } = basicStyle;
     const oilCollectionWidgetsStyle = {
       display: 'flex',
