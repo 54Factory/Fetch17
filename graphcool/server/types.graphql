@@ -107,6 +107,7 @@ type OilCollectionRecord @model {
   createdAt: DateTime!
   id: ID! @isUnique
   oilAmount: Int
+  waterAmount: Int
   oilService: OilCollectionService @relation(name: "OilCollectionRecordOnOilCollectionService")
   scheduledCollectionDate: DateTime
   updatedAt: DateTime!

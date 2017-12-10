@@ -45,6 +45,12 @@ const WDOilCollectionCardWrapper = styled.div`
       height: 300px;
     }
 
+    .CollectionContainerBox {
+      width: 200px;
+      height: 200px;
+      align-items: center;
+    }
+
     .CollectionName {
       padding-top: 10px;
       font-size: 16px;

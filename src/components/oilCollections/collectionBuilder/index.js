@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Collection from './collection/collection'
 import ContainerOutline from'./container.style'
 import BuildControls from './buildControls/buildControls'
+import { CollectionCardWrapper } from '../collectionCard.style';
+
 
 const MATERIAL_VALUES = {
   oil: 5,
@@ -64,19 +66,48 @@ removeMaterialHandler = (type) => {
     for ( let key in disabledInfo ) {
       disabledInfo[key] = disabledInfo[key] <= 0
   }
-    return (
-      <div>
-        <ContainerOutline>
-          <Collection payloads={this.state.payloads} />
-        </ContainerOutline>
-        <BuildControls 
-          materialAdded={this.addMaterialHandler}
-          materialRemoved={this.removeMaterialHandler}
-          disabled={disabledInfo}
-          totalCollected={this.state.totalCollected}
-        />
-      </div>         
-    );
+  return (
+    <CollectionCardWrapper className="CollectionCard">
+    <div className="CollectionCardHead">
+      <div className="CollectionContainerBox">
+      <ContainerOutline>
+        <Collection payloads={this.state.payloads} />
+      </ContainerOutline>
+      </div>
+      {/* <h1 className="CollectionName">{name}</h1>
+      <p className="CollectionAddress">{streetAddress}</p>
+      <p className="CollectionAddress">{restAddress}</p> */}
+    </div>
+    <div className="CollectionInfoWrapper"> 
+      <div className="CollectionCardInfos">
+      <BuildControls 
+      materialAdded={this.addMaterialHandler}
+      materialRemoved={this.removeMaterialHandler}
+      disabled={disabledInfo}
+      totalCollected={this.state.totalCollected}
+    />
+      </div>
+    </div>
+  </CollectionCardWrapper>
+        
+  );
+    // return (
+    //   <div>
+    //     <div>
+    //     <ContainerOutline>
+    //       <Collection payloads={this.state.payloads} />
+    //     </ContainerOutline>
+    //     </div>
+    //     <div>
+    //     <BuildControls 
+    //       materialAdded={this.addMaterialHandler}
+    //       materialRemoved={this.removeMaterialHandler}
+    //       disabled={disabledInfo}
+    //       totalCollected={this.state.totalCollected}
+    //     />
+    //     </div>
+    //   </div>         
+    // );
   }
 }
 

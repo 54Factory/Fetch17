@@ -8,12 +8,13 @@ const BuildControlWrapper = styled.div`
   margin: 5px 0;
 
 
+
  button {
   display: block;
   font: inherit;
   padding: 5px;
   margin: 0 5px;
-  width: 80px;
+  width: 60px;
   border: 1px solid #AA6817;
   cursor: pointer;
   outline: none;
@@ -39,12 +40,32 @@ const BuildControlWrapper = styled.div`
   width: 80px;
 }
 
- .Less {  
+ .LessOil {  
+  background-color: #f4d004;
+  color: white;
+}
+
+ .MoreOil {
+  background-color: #f4d004;
+  color: white;
+}
+
+.LessWater {  
+  background-color: blue;
+  color: white;
+}
+
+ .MoreWater {
+  background-color: blue;
+  color: white;
+}
+
+.LessWaste {  
   background-color: #D39952;
   color: white;
 }
 
- .More {
+ .MoreWaste {
   background-color: #8F5E1E;
   color: white;
 }
