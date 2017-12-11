@@ -154,14 +154,15 @@ class NewOilCollectionCustomer extends React.Component {
         },
         setUpService: {
           setUpDate,
+          truckId: "cjas5z0gvfren013087ob1z65",
           setUpNotes: [{
             setUpNoteContent
           }]
         }
       }
       }});
-      this.props.history.push('/dashboard/pendingSetups')
-    //window.location.pathname = `/dashboard/pendingSetups`
+      //this.props.history.push('/dashboard/pendingSetups')
+    window.location.pathname = `/dashboard/pendingSetups`
   }
 
   getLatLng(result) {

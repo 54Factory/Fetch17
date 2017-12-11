@@ -54,56 +54,17 @@ class editSetUpView extends Component {
 
   render() {
     console.log(this.props)
-    const { setup, containerAttributes, setUpAttributes } = this.props;
+    const { setup, containerAttributes, setUpAttributes, truckAttributes } = this.props;
     const location = setup.oilCollectionService.service.location
     const containment = setup.oilCollectionService.containment
     const setUpDetails = setup.oilCollectionService.service.setUpService
-    const streetAddress = location.streetNumber + ' ' + location.street;
-    const restAddress = `${location.city}, ${location.state} ${location.zip}`    
+    const truck = setup.oilCollectionService.service.setUpService.truck
+    const driver = setup.oilCollectionService.service.setUpService.truck.driver.user
     const name = location.locationName ? location.locationName : 'No Name';
+    const streetAddress = location.streetNumber + ' ' + location.street;
+    const restAddress = `${location.city}, ${location.state} ${location.zip}`
     const extraInfos = [];
     const setUpInfos = [];
-    const names = [
-      { title: 'Quantity', value: 'quantity', type: 'number' },
-      { title: 'Container', value: 'containerType', type: 'name' }
-    ];
-    [...names, ...containerAttributes].forEach(attribute => {
-      const value = containment[attribute.value];
-      const editSetUp = event => {
-        setup[attribute.value] = event.target.value;
-        let name = '';
-        if (setup.name) {
-          name = `${setup.name} `;
-        }
-        setup.name = name;
-        this.props.editSetUp(setup);
-      };
-      if (attribute.value === 'note') {
-        extraInfos.push(
-          <div className="SetUpCardInfos" key={attribute.value}>
-            <p className="SetUpInfoLabel">{`${attribute.title}`}</p>
-            <Input
-              placeholder={`${attribute.title}`}
-              value={value}
-              type="textarea"
-              rows={5}
-              onChange={event => editSetUp(event)}
-            />
-          </div>
-        );
-      } else {
-        extraInfos.push(
-          <div className="SetUpCardInfos" key={attribute.value}>
-            <p className="SetUpInfoLabel">{`${attribute.title}`}</p>
-            <Input
-              placeholder={`${attribute.title}`}
-              value={value}
-              onChange={event => editSetUp(event)}
-            />
-          </div>
-        );
-      }
-    });
     setUpAttributes.forEach(attribute => {
       const value = setUpDetails[attribute.value]
       if (value) {
@@ -124,29 +85,60 @@ class editSetUpView extends Component {
         );
       }
     });
+    containerAttributes.forEach(attribute => {
+      const value = containment[attribute.value];
+      if (value) {
+        extraInfos.push(
+          <div className="SetUpCardInfos" key={attribute.value}>
+            <p className="SetUpInfoLabel">{`${attribute.title}`}</p>
+            <p className="SetUpInfoDetails">
+              {value}
+            </p>
+          </div>
+        );
+      }
+    });
+    truckAttributes.forEach(attribute => {
+      const value = truck[attribute.value];
+      if (value) {
+        extraInfos.push(
+          <div className="SetUpCardInfos" key={attribute.value}>
+            <p className="SetUpInfoLabel">{`${attribute.title}`}</p>
+            <p className="SetUpInfoDetails">
+              {value}
+            </p>
+          </div>
+        );
+      }
+    });
     return (
       <SetUpCardWrapper className="SetUpCard">
-        <div className="SetUpCardHead">
-        <div className="SetUpMap">
-          <SingleSetUpMap 
-            markers={location}
-          />
+          <div className="SetUpCardHead">
+          <div className="SetUpMap">
+            <SingleSetUpMap 
+              markers={location}
+            />
+          </div>
+          <h1 className="SetUpName">{name}</h1>
+          <p className="SetUpAddress">{streetAddress}</p>
+          <p className="SetUpAddress">{restAddress}</p>
         </div>
-        <h1 className="SetUpName">{name}</h1>
-        <p className="SetUpAddress">{streetAddress}</p>
-        <p className="SetUpAddress">{restAddress}</p>
-      </div>
-        <div className="SetUpInfoWrapper">
+        <div className="SetUpInfoWrapper"> 
           {setUpInfos}
+          {extraInfos}
+          <div className="SetUpCardInfos">
+            <p className="SetUpInfoLabel">Driver</p>
+            <p className="SetUpInfoDetails">
+             { `${driver.firstName} ${driver.lastName}`}
+            </p>
+          </div>
           <div className="SetUpCardInfos">
             <p className="SetUpInfoLabel">Notes</p>
               {this.renderSetUpNote()}
           </div>
-          {extraInfos}
-          <div>
           <Button onClick={this.onSubmit} className="SetUpBtn" type="primary">Complete Set Up</Button>
-          </div>
         </div>
+        
       </SetUpCardWrapper>
     );
   }

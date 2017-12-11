@@ -96,6 +96,7 @@ class SetUps extends Component {
                   setup={selectedSetUp}
                   editSetUp={editSetUp}
                   containerAttributes={containerAttributes}
+                  truckAttributes={truckAttributes}                  
                   setUpAttributes={setUpAttributes}
                 />
               ) : (
