@@ -270,6 +270,10 @@ query AllServices {
     setUpService {
       id
       actualSetUpDate
+      setUpNotes{
+          id
+          setUpNoteContent
+        }
       truck {
         id
         description
@@ -374,6 +378,10 @@ export const PENDING_COLLECTIONS_QUERY = gql`
         setUpService {
           id
           actualSetUpDate
+          setUpNotes {
+            id
+            setUpNoteContent
+          }
         }
         location {
           id

@@ -4,7 +4,13 @@ import gql from 'graphql-tag';
 export { default as loginUser } from './loginUser';
 
 export const UPDATE_OIL_ACCOUNT_STATE = gql`
-mutation UpdateAccountStateAndCreateFirstCollectionRecord($id: ID!,  $active: Boolean, $setup: Boolean, $oilServiceId: ID, $scheduledCollectionDate: DateTime){
+mutation UpdateAccountStateAndCreateFirstCollectionRecord(  $id: ID!,  $active: Boolean, $setup: Boolean, 
+  $oilServiceId: ID, $scheduledCollectionDate: DateTime,
+  $actualSetUpDate: DateTime, $setUpServiceId: ID!
+	){
+  updateSetUpService: updateSetUpService(id: $setUpServiceId, actualSetUpDate: $actualSetUpDate){
+    id
+  }
   updateState: updateOilCollectionState(id: $id, active: $active, setup: $setup){
     id
     oilCollectionService{

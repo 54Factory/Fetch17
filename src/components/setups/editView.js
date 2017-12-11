@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import Button from '../../components/uielements/button';
-import Input from '../uielements/input';
 import { graphql } from 'react-apollo'
 import { SINGLE_SET_UP_QUERY } from '../../graphql/queries'
 import { UPDATE_OIL_ACCOUNT_STATE } from '../../graphql/mutations'
 import SingleSetUpMap from '../maps/setups/singleSetUpMap'
+import SetUpNoteForm from '../../containers/Create/Forms/setUpNoteForm'
+import Button from '../../components/uielements/button';
 import { FormattedDate, IntlProvider } from 'react-intl'
 import { SetUpCardWrapper } from './setUpCard.style';
 import './upload.css';
 
+
+
 //export default class editSetUpView extends Component {
 class editSetUpView extends Component {
+
+
+  
 
   componentWillMount() {
     console.log('Edit view Mount Lifecycle')
@@ -27,12 +32,16 @@ class editSetUpView extends Component {
   }
 
   onSubmit = async () => {
-    // const {active, setup } = this.state;
+    const { setup } = this.props;
+    const date = new Date()
+    const today = date.toISOString()  
     await this.props.updateOilAccountState({variables: { 
       id: this.props.data.OilCollectionState.id,
       active: false, 
       setup: true,
       oilServiceId: this.props.data.OilCollectionState.oilCollectionService.id,
+      actualSetUpDate: today,
+      setUpServiceId: setup.oilCollectionService.service.setUpService.id,
       scheduledCollectionDate: this.props.data.OilCollectionState.oilCollectionService.startDate
     }});
     //this.props.history.push('/dashboard/pendingSetUps')
@@ -45,7 +54,7 @@ class editSetUpView extends Component {
     console.log("Notes", setUpNotes)
     return setUpNotes.map(({ id, setUpNoteContent }) => {
       return(
-        <p key={id} className="SetUpInfoDetails">
+        <p key={id} className="SetUpNoteDetails">
           {setUpNoteContent}
         </p>
       )
@@ -133,8 +142,12 @@ class editSetUpView extends Component {
             </p>
           </div>
           <div className="SetUpCardInfos">
-            <p className="SetUpInfoLabel">Notes</p>
+            <p className="SetUpInfoLabel">Set Up Note</p>
               {this.renderSetUpNote()}
+          </div>
+          <div className="SetUpCardInfos">
+            <p className="SetUpInfoLabel">Add Note</p>
+          <SetUpNoteForm />
           </div>
           <Button onClick={this.onSubmit} className="SetUpBtn" type="primary">Complete Set Up</Button>
         </div>

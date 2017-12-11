@@ -120,6 +120,15 @@ const WDSetUpCardWrapper = styled.div`
         text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
       }
 
+      .SetUpNoteDetails {
+        font-size: 14px;
+        font-weight: 500;
+        color: ${palette('color', 15)};
+        line-height: 1.5;
+        margin: 0;
+        text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
+      }
+
       input {
         font-size: 14px;
         font-weight: 400;

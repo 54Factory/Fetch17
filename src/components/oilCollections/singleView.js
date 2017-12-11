@@ -7,18 +7,18 @@ import SingleCollectionMap from '../maps/oilcollection/singleCollection'
 
 export default class SingleCollectionView extends Component {
 
-  // renderSetUpNote() {
-  //   const { setup } = this.props;
-  //   const setUpNotes = setup.oilCollectionService.service.setUpService.setUpNotes
-  //   console.log("Notes", setUpNotes)
-  //   return setUpNotes.map(({ id, setUpNoteContent }) => {
-  //     return(
-  //       <p key={id} className="SetUpInfoDetails">
-  //         {setUpNoteContent}
-  //       </p>
-  //     )
-  //   })
-  // }
+  renderSetUpNote() {
+    const { collection } = this.props;
+    const setUpNotes = collection.service.setUpService.setUpNotes
+    console.log("Notes", setUpNotes)
+    return setUpNotes.map(({ id, setUpNoteContent }) => {
+      return(
+        <p key={id} className="CollectionInfoDetails">
+          {setUpNoteContent}
+        </p>
+      )
+    })
+  }
   
   render() {
     console.log("Single View", this.props)
@@ -102,7 +102,7 @@ export default class SingleCollectionView extends Component {
           </div>
           <div className="CollectionCardInfos">
             <p className="CollectionInfoLabel">Notes</p>
-              {/* {this.renderSetUpNote()} */}
+              {this.renderSetUpNote()}
           </div>
         </div>
       </CollectionCardWrapper>
