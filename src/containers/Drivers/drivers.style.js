@@ -67,7 +67,7 @@ const WDDriversWrapper = styled.div`
         padding: 30px 20px;
       }
 
-      button:not(.BackBtn) {
+      button:not(.BackBtn, .AddDriverButton) {
         font-size: 16px;
         color: ${palette('secondary', 0)};
         width: 35px;
@@ -111,6 +111,31 @@ const WDDriversWrapper = styled.div`
 
       .BackBtn {
         background-color: ${palette('primary', 0)};
+        border: 0;
+        height: 30px;
+        padding: 0 15px;
+        margin-left: ${props =>
+          props['data-rtl'] === 'rtl' ? 'inherit' : 'auto'};
+        margin-right: ${props =>
+          props['data-rtl'] === 'rtl' ? 'auto' : 'inherit'};
+        ${borderRadius('3px')};
+        ${transition()};
+
+        span {
+          font-size: 12px;
+          font-weight: 400;
+          padding: 0;
+          text-transform: uppercase;
+          color: #ffffff;
+        }
+
+        &:hover {
+          background-color: ${palette('primary', 1)};
+        }
+      }
+
+      .AddDriverBtn {
+        background-color: ${palette('color', 15)};
         border: 0;
         height: 30px;
         padding: 0 15px;

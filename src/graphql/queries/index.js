@@ -14,6 +14,22 @@ export const USER_QUERY = gql`
   }
 `
 
+export const ALL_USERS_DRIVERS_QUERY = gql`
+  query UserDriver {
+    allUsers (filter: {
+      role: "DRIVER"
+    }) {
+      id
+      firstName
+      lastName
+      username
+      driver {
+        id
+      }
+    }
+  }
+`
+
 export const ALL_DRIVERS_QUERY = gql`
   query allDrivers {
     allDrivers {

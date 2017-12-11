@@ -101,16 +101,22 @@ export default class SingleServiceView extends Component {
           {containerInfos}
           {collectionInfos}
           {truck ? 
+          <div>
             <div className="ServiceCardInfos"> 
               <p className="ServiceInfoLabel">Assigned Truck</p>
               <p className="ServiceInfoDetails">
                 {truck.description}
               </p>
+            </div>
+            <div className="ServiceCardInfos"> 
               <p className="ServiceInfoLabel">Driver</p>
               <p className="ServiceInfoDetails">
                 {`${driver.firstName} ${driver.lastName}`}
               </p>
             </div>
+          </div>
+
+            
            : 
             <div className="ServiceCardInfos"> 
               <p className="ServiceInfoLabel">Assigned Truck</p>

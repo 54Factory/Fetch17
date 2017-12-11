@@ -4,7 +4,6 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import reducers from '../redux/reducers';
-//import rootSaga from '../redux/sagas';
 import promise from "redux-promise";
 import { reducer as formReducer } from 'redux-form';
 const history = createHistory();
@@ -24,6 +23,6 @@ const store = createStore(
 ),
 
 );
-// sagaMiddleware.run(rootSaga);
+
 export { store, history };
 

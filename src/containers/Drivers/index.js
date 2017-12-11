@@ -5,32 +5,39 @@ import { Layout, Icon } from 'antd';
 import Button from '../../components/uielements/button';
 import DriverList from '../../components/drivers/driverList';
 import SingleDriverView from '../../components/drivers/singleView';
+import CreateDriver from './addDriver'
 import EditDriverView from '../../components/drivers/editView';
+
 //import DeleteButton from '../../components/drivers/deleteButton';
 import IntlMessages from '../../components/utility/intlMessages';
 import { DriversWrapper } from './drivers.style';
+const { Content } = Layout;
 
 const {
   fetchDrivers,
+  fetchDriverUser,
   changeDriver,
-  
-  editDriver,
-  deleteDriver,
   viewChange,
-  viewMainPanel
+  viewMainPanel,
+  viewAddDriver,
 } = DriverAction;
 
 
 
-const { Content } = Layout;
+
 class Drivers extends Component {
   componentWillMount() {
     this.props.fetchDrivers()
+    this.props.fetchDriverUser()
   }
+
+
+
   render() {
 
     const {    
       drivers,
+      users,
       selectedId,
       editView,
       changeDriver,   
@@ -70,6 +77,7 @@ class Drivers extends Component {
           />
         </div>
         <Layout className="DriverBoxWrapper">
+        
           {selectedDriver ? (
             <Content className="DriverBox">
               <div className="DriverControl">
@@ -100,12 +108,9 @@ class Drivers extends Component {
               )}
             </Content>
           ) : (
-            <div className="DriverControl">
-              <ul>
-                <li>Driver Data Page</li>
-                <li>Snapshot Sections</li>
-              </ul>
-            </div>
+            <CreateDriver 
+              users={users}
+            />
           )}
         </Layout>
       </DriversWrapper>
@@ -114,19 +119,20 @@ class Drivers extends Component {
 }
 
 function mapStateToProps(state) {
-  const { drivers, selectedId, editView } = state.Drivers;
+  const { drivers, users, selectedId, editView, newDriverView } = state.Drivers;
   return {
     drivers,
+    users,
     selectedId,
-    editView
+    editView,
+    newDriverView
   };
 }
 export default connect(mapStateToProps, {
   fetchDrivers,
+  fetchDriverUser,
   changeDriver,
-  
-  editDriver,
-  deleteDriver,
   viewChange,
-  viewMainPanel
+  viewMainPanel,
+  viewAddDriver
 })(Drivers);
