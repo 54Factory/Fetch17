@@ -15,6 +15,7 @@ const MATERIAL_VALUES = {
   water: 5
 };
 
+
 class CollectionBuilder extends React.Component {
 
   state = {

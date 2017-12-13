@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 
 const ContainerOutline = styled.div`
-    height: 200px;
-    width: 150px;
+    height: 235px;
+    width: 160px;
     border-left: 5px solid black;
     border-right: 5px solid black;
     border-bottom: 5px solid black;

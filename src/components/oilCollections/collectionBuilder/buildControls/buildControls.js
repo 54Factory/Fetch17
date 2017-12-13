@@ -22,7 +22,7 @@ const buildControls = (props) => (
        />
   ))}
   <button 
-      className="OrderButton"
+      className="CollectButton"
       disabled={!props.canCollect}
       onClick={props.collected}
       >Collect</button>

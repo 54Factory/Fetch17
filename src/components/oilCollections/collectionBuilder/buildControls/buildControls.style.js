@@ -18,7 +18,7 @@ const BuildControlsWrapper = styled.div`
     height: auto;
   }
 
-  .OrderButton {
+  .CollectButton {
     background-color: #DAD735;
     outline: none;
     cursor: pointer;
@@ -50,7 +50,7 @@ const BuildControlsWrapper = styled.div`
   
  
   
-  .OrderButton:not(:disabled) {
+  .CollectButton:not(:disabled) {
       animation: enable 0.3s linear;
   }
   
