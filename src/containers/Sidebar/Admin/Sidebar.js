@@ -172,16 +172,26 @@ class Sidebar extends Component {
                   </span>
                 </span>
               )
-            }>
+            }> 
             <Menu.Item style={submenuStyle} key="pendingSetUps">
-              <Link style={submenuColor} to={`${url.path}/pendingSetUps`}>
-                <IntlMessages id="sidebar.pendingSetups" />
-              </Link>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-android-alarm-clock" />
+                <span className="nav-text">            
+                  <Link style={submenuColor} to={`${url.path}/pendingSetUps`}>            
+                    <IntlMessages id="sidebar.pendingSetups" />
+                  </Link>
+                </span>
+              </span>
             </Menu.Item>
             <Menu.Item style={submenuStyle} key="completedSetUps">
-              <Link style={submenuColor} to={`${url.path}/completedSetUps`}>
-                <IntlMessages id="sidebar.completedSetups" />
-              </Link>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-android-checkbox-outline" />
+                <span className="nav-text">            
+                  <Link style={submenuColor} to={`${url.path}/completedSetUps`}>
+                    <IntlMessages id="sidebar.completedSetUps" />
+                  </Link>
+                </span>
+              </span>
             </Menu.Item>
           </SubMenu>
           <Menu.Item key="services">
@@ -214,26 +224,39 @@ class Sidebar extends Component {
                 </span>
               </Link>
             </Menu.Item>
-            <Menu.Item key="oilcollection">
-              <Link to={`${url.path}/oilcollection`}>
+            <SubMenu
+              key="oilcollection"
+              title={
+              (
                 <span className="MenuHolder" style={submenuColor}>
                   <i className="ion-waterdrop" />
                   <span className="nav-text">
                     <IntlMessages id="sidebar.oilCollection" />
                   </span>
                 </span>
+              )
+            }>
+            <Menu.Item style={submenuStyle} key="oilCollectionAccounts">
+              <Link to={`${url.path}/oilcollection`}>
+                <span className="MenuHolder" style={submenuColor}>
+                  <i className="ion-android-home" />
+                  <span className="nav-text">
+                    <IntlMessages id="sidebar.oilCollection.accounts" />
+                  </span>
+                </span>
               </Link>
             </Menu.Item>
-            <Menu.Item key="oilcollectionrecords">
+            <Menu.Item style={submenuStyle} key="oilCollectionRecords">
               <Link to={`${url.path}/oilcollection/records`}>
                 <span className="MenuHolder" style={submenuColor}>
-                  <i className="ion-waterdrop" />
+                  <i className="ion-clipboard" />
                   <span className="nav-text">
                     <IntlMessages id="sidebar.oilCollection.records" />
                   </span>
                 </span>
               </Link>
             </Menu.Item>
+          </SubMenu>
             <Menu.Item key="users">
                 <Link to={`${url.path}/users`}>
                   <span className="MenuHolder" style={submenuColor}>

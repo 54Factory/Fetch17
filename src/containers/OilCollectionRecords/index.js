@@ -31,6 +31,7 @@ class OilCollectionRecords extends Component {
      {
       Header: 'Next Collection',
       accessor: 'scheduledCollectionDate',
+      id: 'nextCollection',
       Cell: props => (
       <IntlProvider locale="en">
         <FormattedDate
@@ -43,10 +44,13 @@ class OilCollectionRecords extends Component {
       ) // Custom cell components!
     },
      {
-      id: d => d.id, // Required because our accessor is not a string
+      id: 'collected', // Required because our accessor is not a string
       Header: 'Status',
-      //accessor: d => String(d.collected) // Custom value accessors!
-      accessor: d => d.collected ? 'Completed' : 'Pending' // Custom value accessors!
+      accessor: 'collected', // Custom value accessors!
+      //accessor: d => d.collected ? 'Completed' : 'Pending' // Custom value accessors!
+      Cell: props => (
+          <div>{props.value ? <p style={{ color: 'green' }}>Completed</p> : <p style={{ color: '#efd402' }}>Pending</p>}</div>
+        )
     }
     //, {
     //   Header: props => <span>Friend Age</span>, // Custom header components!
@@ -59,6 +63,14 @@ class OilCollectionRecords extends Component {
         <ReactTable
           data={data}
           columns={columns}
+          defaultPageSize={10}
+          className="-striped -highlight"
+          defaultSorted={[
+            {
+              id: 'nextCollection',
+              asc: true
+            }
+          ]}
         />
       </LayoutContentWrapper>
     );
