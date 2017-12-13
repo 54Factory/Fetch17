@@ -6,11 +6,13 @@ import { CollectionCardWrapper } from './collectionCard.style';
 class CollectionBuilderView extends Component {
 
   render() {
-    console.log(this.props)
-
+    console.log("Builder View----->", this.props)
+    const collection = this.props.collection
     return (
       <CollectionCardWrapper className="CollectionCard">
-        <CollectionBuilder />
+        <CollectionBuilder 
+          collection={collection}
+        />
       </CollectionCardWrapper>
     );
   }

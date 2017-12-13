@@ -104,7 +104,9 @@ class Collections extends Component {
                 </Button>
               </div>
               {editView ? (
-                <CollectionBuilderView />
+                <CollectionBuilderView 
+                  collection={selectedCollection}
+                />
               ) : (
                 <SingleCollectionView
                   collection={selectedCollection}

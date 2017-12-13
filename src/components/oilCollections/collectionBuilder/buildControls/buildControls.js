@@ -23,8 +23,8 @@ const buildControls = (props) => (
   ))}
   <button 
       className="OrderButton"
-      //disabled={!props.purchasable}
-      //onClick={props.ordered}
+      disabled={!props.canCollect}
+      onClick={props.collected}
       >Collect</button>
   </BuildControlsWrapper>
 )

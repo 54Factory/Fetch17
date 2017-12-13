@@ -1,14 +1,12 @@
 import React from 'react';
-//import classes from './collection.css'
 import Collection from'./collection.style'
-//import ContainerBottom from'./collection.style'
 import CollectionPayload from './payload/collectionPayload'
 
 const collection = (props) => {
   let transformedPayloads = Object.keys( props.payloads )
-  .map( igKey => {
-      return [...Array( props.payloads[igKey] )].map( ( _, i ) => {
-          return <CollectionPayload key={igKey + i} type={igKey} />;
+  .map( payloadKey => {
+      return [...Array( props.payloads[payloadKey] )].map( ( _, i ) => {
+          return <CollectionPayload key={payloadKey + i} type={payloadKey} />;
       } );
   } )
   .reduce((arr, el) => {

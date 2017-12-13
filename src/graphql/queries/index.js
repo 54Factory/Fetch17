@@ -356,6 +356,10 @@ export const PENDING_COLLECTIONS_QUERY = gql`
       }
     }) {
       id
+      oilCollectionRecords {
+        id
+        scheduledCollectionDate
+    }
       containment {
         id
         containerType
