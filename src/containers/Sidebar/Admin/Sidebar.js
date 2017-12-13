@@ -224,6 +224,16 @@ class Sidebar extends Component {
                 </span>
               </Link>
             </Menu.Item>
+            <Menu.Item key="oilcollectionrecords">
+              <Link to={`${url.path}/oilcollection/records`}>
+                <span className="MenuHolder" style={submenuColor}>
+                  <i className="ion-waterdrop" />
+                  <span className="nav-text">
+                    <IntlMessages id="sidebar.oilCollection.records" />
+                  </span>
+                </span>
+              </Link>
+            </Menu.Item>
             <Menu.Item key="users">
                 <Link to={`${url.path}/users`}>
                   <span className="MenuHolder" style={submenuColor}>

@@ -17,6 +17,7 @@
   "sidebar.completedSetUps": "Completed Set Ups",
   "sidebar.drivers": "Drivers",
   "sidebar.oilCollection": "Oil Collection", 
+  "sidebar.oilCollection.records": "Oil Collection Records", 
   "sidebar.users": "Users",
   "page.signInTitle": "FETCH",
   "page.signInRememberMe": "Remember me",

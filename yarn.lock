@@ -6592,6 +6592,12 @@ react-slick@~0.15.4:
     object-assign "^4.1.0"
     slick-carousel "^1.6.0"
 
+react-table@^6.7.4:
+  version "6.7.4"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-6.7.4.tgz#cd23e15d437034bf2374e9c8d343e1b4e1960e4f"
+  dependencies:
+    classnames "^2.2.5"
+
 react-throttle@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-throttle/-/react-throttle-0.3.0.tgz#8b71ed95f06602d1e0bf5177bef0b69c09e6d4b9"

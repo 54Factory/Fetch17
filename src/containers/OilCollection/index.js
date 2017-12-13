@@ -74,6 +74,7 @@ class Collections extends Component {
       <div>
       <OilCollectionWidgets 
         unassignedAccounts={unassignedCollections}
+        activeAccounts={collections}
       />
       <CollectionsWrapper
         className="Services"

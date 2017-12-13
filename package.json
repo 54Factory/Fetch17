@@ -46,6 +46,7 @@
     "react-scrollbar": "^0.5.1",
     "react-scrollbar-js": "^1.0.1",
     "react-sidebar": "^2.3.2",
+    "react-table": "^6.7.4",
     "react-throttle": "^0.3.0",
     "react-window-resize-listener": "^1.1.0",
     "recompose": "^0.26.0",

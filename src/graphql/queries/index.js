@@ -400,3 +400,31 @@ export const PENDING_COLLECTIONS_QUERY = gql`
   }
 `
 
+export const ALL_COLLECTIONS_QUERY = gql`
+  query allOilCollectionRecords {
+    allOilCollectionRecords {
+      id
+      scheduledCollectionDate
+      wasteAmount
+      oilAmount
+      waterAmount
+      collected
+      truck {
+        id
+        description
+      }
+      oilService {
+        id
+        serviceType
+        serviceCycle
+        service {
+          id
+          location {
+            id
+            locationName
+          }
+        }
+      }
+    }
+  }
+`

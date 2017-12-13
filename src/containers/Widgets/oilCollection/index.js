@@ -13,8 +13,10 @@ export default class OilCollectionWidgets extends Component {
 
   render() {
     const {
-      unassignedAccounts
+      unassignedAccounts,
+      activeAccounts
     } = this.props
+    
     const { rowStyle, stickerColStyle } = basicStyle;
     const oilCollectionWidgetsStyle = {
       display: 'flex',
@@ -46,7 +48,7 @@ export default class OilCollectionWidgets extends Component {
             <WidgetsWrapper>
               {/* Sticker Widget */}
               <StickerWidget
-                number={953}
+                number={activeAccounts.length}
                 text="Total Active Accounts"
                 icon="ion-soup-can"
                 fontColor="#ffffff"

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
-import { SINGLE_SET_UP_QUERY } from '../../graphql/queries'
 import { UPDATE_OIL_ACCOUNT_STATE } from '../../graphql/mutations'
 import SingleSetUpMap from '../maps/setups/singleSetUpMap'
 import SetUpNoteForm from '../../containers/Create/Forms/setUpNoteForm'
@@ -36,13 +35,13 @@ class editSetUpView extends Component {
     const date = new Date()
     const today = date.toISOString()  
     await this.props.updateOilAccountState({variables: { 
-      id: this.props.data.OilCollectionState.id,
+      id: setup.id,
       active: false, 
       setup: true,
-      oilServiceId: this.props.data.OilCollectionState.oilCollectionService.id,
+      oilServiceId: setup.oilCollectionService.id,
       actualSetUpDate: today,
       setUpServiceId: setup.oilCollectionService.service.setUpService.id,
-      scheduledCollectionDate: this.props.data.OilCollectionState.oilCollectionService.startDate
+      scheduledCollectionDate: setup.oilCollectionService.startDate
     }});
     //this.props.history.push('/dashboard/pendingSetUps')
       window.location.reload()
@@ -62,7 +61,7 @@ class editSetUpView extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log("Edit View Page", this.props)
     const { setup, containerAttributes, setUpAttributes, truckAttributes } = this.props;
     const location = setup.oilCollectionService.service.location
     const containment = setup.oilCollectionService.containment
@@ -157,58 +156,7 @@ class editSetUpView extends Component {
   }
 }
 
-// const SetUpQuery = gql`
-// query SetUp($id: ID!){
-//   OilCollectionState(id: $id) {
-//       id
-//       active
-//       setup
-//       oilCollectionService{
-//         id
-//         serviceCycle
-//         serviceType
-//         startDate
-//         containment{
-//           id
-//           containerType
-//           quantity
-//         }
-//         service{
-//           id
-//           setUpService{
-//             id
-//             setUpDate
-//             setUpNotes{
-//               id
-//               setUpNoteContent
-//             }
-//           }
-//           location{
-//             id
-//             locationName
-//             streetNumber
-//             street
-//             city
-//             state
-//             zip
-//             lat
-//             lng
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
-
-const SetUpPageWithData = graphql(SINGLE_SET_UP_QUERY, {
-  options: ({ setup }) => ({
-    variables: {
-      id: setup.id,
-    },
-  }),
-  })(editSetUpView)
-
   
-  const SetUpPageWithUpdate = graphql(UPDATE_OIL_ACCOUNT_STATE, {name: 'updateOilAccountState'})(SetUpPageWithData);
+  const SetUpPageWithUpdate = graphql(UPDATE_OIL_ACCOUNT_STATE, {name: 'updateOilAccountState'})(editSetUpView);
   
   export default withRouter(SetUpPageWithUpdate)
