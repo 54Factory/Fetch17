@@ -1,8 +1,11 @@
 import React from 'react';
-import { Modal } from 'antd'
-import Collection from './collection/collection'
-import ContainerOutline from'./container.style'
-import BuildControls from './buildControls/buildControls'
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { Modal } from 'antd';
+import Collection from './collection/collection';
+import ContainerOutline from'./container.style';
+import BuildControls from './buildControls/buildControls';
+import moment from 'moment';
 import { CollectionCardWrapper } from '../collectionCard.style';
 
 
@@ -20,13 +23,36 @@ class CollectionBuilder extends React.Component {
         water: 0,
         waste: 0
     },
-    oilGallons: 0,
-    waterGallons: 0,
-    wasteGallons: 0,
     totalCollected: 0,
     canCollect: false,
     visible: false
 }
+
+onSubmit = async () => {
+  const cycle = this.props.collection.serviceCycle
+  const oilAmount = this.state.payloads.oil * 5;
+  const wasteAmount = this.state.payloads.water * 5;
+  const waterAmount = this.state.payloads.waste * 5;
+  const futureDate = moment().add(cycle, 'days');
+  const scheduleDate = futureDate.toISOString()
+  await this.props.UpdateAndCreateCollectionRecord({
+    variables: 
+      { 
+        id: this.props.collection.oilCollectionRecords["0"].id, 
+        oilServiceId: this.props.collection.id, 
+        oilAmount, 
+        wasteAmount, 
+        waterAmount ,
+        collected: true, 
+        scheduledCollectionDate: scheduleDate 
+      }});
+      this.setState({
+        visible: false,
+      });
+    //this.props.history.push('/dashboard/oilcollection/pendingPickUps')
+    window.location.pathname = `/dashboard/oilcollection`
+}
+
 
 showModal = () => {
   this.setState({
@@ -80,7 +106,7 @@ removeMaterialHandler = (type) => {
     console.log(this.state)
     console.log('Collection Builder------>', this.props)
     console.log('Collection Builder--ID Test--->', this.props.collection.oilCollectionRecords["0"].id)
-    
+    console.log('Cycle------>', this.props.collection.serviceCycle)
   const disabledInfo = {
       ...this.state.payloads
   };
@@ -99,7 +125,7 @@ removeMaterialHandler = (type) => {
         <Modal 
           title="Collection Details"
           visible={this.state.visible}
-          onOk={this.handleOk}
+          onOk={this.onSubmit}
           onCancel={this.handleCancel}
         >
         <ContainerOutline>
@@ -138,4 +164,31 @@ removeMaterialHandler = (type) => {
   }
 }
 
-export default CollectionBuilder
+const UpdateAndCreateCollectionRecordMutation = gql`
+mutation UpdateAndCreateCollectionRecord($id: ID!, $oilServiceId: ID, $scheduledCollectionDate: DateTime, $oilAmount: Int, $wasteAmount: Int, $waterAmount: Int, $collected: Boolean) {
+  update: updateOilCollectionRecord(id: $id, oilAmount: $oilAmount, wasteAmount: $wasteAmount, waterAmount: $waterAmount, collected: $collected) {
+    id
+    oilAmount
+    wasteAmount
+    waterAmount
+    scheduledCollectionDate
+    updatedAt
+    collected
+      
+  }
+  create: createOilCollectionRecord(oilServiceId: $oilServiceId, scheduledCollectionDate: $scheduledCollectionDate) {
+    id
+    oilAmount
+    wasteAmount
+    scheduledCollectionDate
+    updatedAt
+    collected
+  }
+}
+`
+export default graphql(UpdateAndCreateCollectionRecordMutation, {
+  name: 'UpdateAndCreateCollectionRecord'
+})(CollectionBuilder)
+
+
+

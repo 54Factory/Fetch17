@@ -1,5 +1,5 @@
 import { client } from "../../client";
-import { PENDING_COLLECTIONS_QUERY, UNASSIGNED_COLLECTIONS_QUERY } from "../../graphql/queries";
+import { ALL_OIL_COLLECTIONS_QUERY, UNASSIGNED_COLLECTIONS_QUERY } from "../../graphql/queries";
 export const FETCH_COLLECTIONS = "FETCH_COLLECTIONS";
 export const FETCH_UNASSIGNED_COLLECTIONS = "FETCH_UNASSIGNED_COLLECTIONS";
 export const FETCH_COLLECTION = "FETCH_COLLECTION";
@@ -16,7 +16,7 @@ export const MAP_VIEW = 'MAP_VIEW';
 
 
 export function fetchCollections() {
-  return client.query({ query: PENDING_COLLECTIONS_QUERY })
+  return client.query({ query: ALL_OIL_COLLECTIONS_QUERY })
     .then((response) => {
       return {
         type: FETCH_COLLECTIONS,

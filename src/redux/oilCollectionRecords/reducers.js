@@ -1,5 +1,5 @@
 import { 
-	FETCH_ALL_COLLECTIONS
+	FETCH_ALL_COLLECTION_RECORDS
 } from "./actions";
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
 
 export default function collectionsReducer(state = initialState, action) {
   switch (action.type) {
-		case FETCH_ALL_COLLECTIONS: 
+		case FETCH_ALL_COLLECTION_RECORDS: 
 			return {	
 				...state,			
 				fetched: true,

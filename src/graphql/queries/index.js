@@ -348,7 +348,7 @@ export const UNASSIGNED_COLLECTIONS_QUERY = gql`
   }
 `
 
-export const PENDING_COLLECTIONS_QUERY = gql`
+export const ALL_OIL_COLLECTIONS_QUERY = gql`
   query AllOilCollections {
     allOilCollectionServices(filter: {
       oilCollectionState: {
@@ -356,6 +356,8 @@ export const PENDING_COLLECTIONS_QUERY = gql`
       }
     }) {
       id
+      serviceCycle
+      serviceType
       oilCollectionRecords {
         id
         scheduledCollectionDate
@@ -404,7 +406,7 @@ export const PENDING_COLLECTIONS_QUERY = gql`
   }
 `
 
-export const ALL_COLLECTIONS_QUERY = gql`
+export const ALL_COLLECTION_RECORDS_QUERY = gql`
   query allOilCollectionRecords {
     allOilCollectionRecords {
       id
