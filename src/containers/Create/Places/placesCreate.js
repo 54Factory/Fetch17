@@ -41,11 +41,7 @@ class Places extends React.Component {
     }
     this.handleSelect = this.handleSelect.bind(this)
     this.handleAddress = this.handleAddress.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    // this.handleInputChange = this.handleInputChange.bind(this)
-    // this.handleCustomerFirstName = this.handleCustomerFirstName.bind(this)
-    // this.handleCustomerLastName = this.handleCustomerLastName.bind(this)
-    
+    this.handleChange = this.handleChange.bind(this)    
     this.renderGeocodeFailure = this.renderGeocodeFailure.bind(this)
     this.renderGeocodeSuccess = this.renderGeocodeSuccess.bind(this)
     
@@ -148,36 +144,6 @@ class Places extends React.Component {
       this.props.history.push('/dashboard/pendingSetups')
     //window.location.pathname = `/dashboard/pendingSetups`
   }
-  // handleCustomerFormChange(e) {
-  //   this.setState({
-  //     firstName: e.target.value,
-  //     lastName: e.target.value
-  //   })
-  // }
-
-  // handleInputChange(event) {
-  //   const target = event.target;
-  //   const value = target.value;
-  //   const name = target.name;
-
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
-
-
-  // handleCustomerFirstName(firstName, lastName) {
-  //   this.setState({
-  //     firstName,
-  //     lastName
-  //   })
-  // }
-  // handleCustomerLastName(lastName) {
-  //   this.setState({
-  //     lastName
-  //   })
-  // }
-
 
   getLatLng(result) {
     console.log(result)

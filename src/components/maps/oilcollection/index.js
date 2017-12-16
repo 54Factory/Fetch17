@@ -56,6 +56,7 @@ const FetchV2GoogleMap = compose(
             )}
           </Marker>
         ))}
+        
         {/*<TrafficLayer autoUpdate />*/}
       </GoogleMap>
     )
