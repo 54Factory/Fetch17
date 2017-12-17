@@ -47,7 +47,10 @@ containerTypeSelectorChange(value) {
         </Select>
         <Select name='type' style={{ width: 120 }} onChange={this.containerTypeSelectorChange.bind(this)}>
           <Option value="55 Gallon Drum">55 Gallon Drum</Option>
+          <Option value="150 Gallon Container">100 Gallon Container</Option>
           <Option value="150 Gallon Container">150 Gallon Container</Option>
+          <Option value="150 Gallon Container">200 Gallon Container</Option>
+          <Option value="150 Gallon Container">300 Gallon Container</Option>
         </Select>
         {/* <Input 
         placeholder='First Name'
