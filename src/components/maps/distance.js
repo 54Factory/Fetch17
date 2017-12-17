@@ -32,7 +32,7 @@ export const FetchV2DirectionsMap = compose(
               this.setState({
                 directions: result,
               });
-              this.props.handleNewState("directions", result)
+              this.props.distance("directions", result)
               //this.props.getDetails(result)
             } else {
               console.error(`error fetching directions ${result}`);
@@ -59,55 +59,3 @@ export const FetchV2DirectionsMap = compose(
       </GoogleMap>
     )
   );
-
-
-// export default class DistanceMap extends Component {
-
-
-//   state = {
-//     directions: null,
-//     markers: [],
-//     customerId: undefined,
-//     location: undefined,
-//   };
-  
-//   handleMapLoad = this.handleMapLoad.bind(this);
-//   setMapCenter = this.setMapCenter.bind(this);
-//   setDirections = this.setDirections.bind(this)
- 
-//   setMapCenter() {
-//     return 
-//   }
-
-//   handleMapLoad(map) {
-//     this._mapComponent = map
-//   }
-
-//   setDirections(result) {
-//     this.setState({
-//       directions: result
-//     })
-//   }
-
-//   render() {
-//     // const { markers } = this.props
-//     return (
-//       <div style={{height: `100%`}}>
-//         <FetchV2DirectionsMap
-//           onMapLoad={this.handleMapLoad}
-//           center={{ lat: 39.849557, lng: -75.3557457 }}
-//           directions={this.setDirections}          
-//           // markers={[{
-//           //   position: {
-//           //     lat: markers.lat,
-//           //     lng: markers.lng,
-//           //   },
-//           //   key: `id`,
-//           //   defaultAnimation: 3,
-//           // }]}
-//         />
-//       </div>
-//     )
-//   }
-// }
-

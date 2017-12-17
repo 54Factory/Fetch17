@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import AdminSetUpExpenseTracker from './Admin'
 import LayoutContentWrapper from '../components/utility/layoutWrapper';
 import LayoutContent from '../components/utility/layoutContent';
 
-export default class extends Component {
+export default class AdminDashboard extends React.Component {
   
 //   componentDidMount () {
 
@@ -29,9 +29,7 @@ export default class extends Component {
       <LayoutContentWrapper style={{ height: '100vh' }}>
         <LayoutContent>
           <h1>FETCH ADMIN DASHBOARD HOME</h1>
-          <div style={{height: `100%`}}>
-            
-          </div>
+          <AdminSetUpExpenseTracker />
           
         </LayoutContent>
       </LayoutContentWrapper>
