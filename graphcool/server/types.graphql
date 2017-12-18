@@ -149,6 +149,12 @@ type Service @model {
   updatedAt: DateTime!
 }
 
+type SetUpTruck @model {
+  id: ID! @isUnique
+  truck: Truck @relation(name: "SetUpTruckOnTruck")
+  truckName: String!
+}
+
 type SetUpNote @model {
   createdAt: DateTime!
   id: ID! @isUnique
@@ -179,6 +185,7 @@ type Truck @model {
   nickname: String
   oilCollectionServices: [OilCollectionService!]! @relation(name: "OilCollectionServiceOnTruck")
   setUpServices: [SetUpService!]! @relation(name: "SetUpServiceOnTruck")
+  setUpTruck: SetUpTruck @relation(name: "SetUpTruckOnTruck")
   updatedAt: DateTime!
   oilCollectionRecords: [OilCollectionRecord!]! @relation(name: "TruckOnOilCollectionRecord")
 }

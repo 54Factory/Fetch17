@@ -1,5 +1,18 @@
 import gql from 'graphql-tag'
 
+export const SET_UP_TRUCK_QUERY = gql`
+  query allSetUpTrucks {
+    allSetUpTrucks {
+      id
+      truckName
+      truck {
+        id
+      }
+    }
+  }
+`
+
+
 export const USER_QUERY_FOR_SIDEBAR = gql`
   query User ($id: ID!) {
     User(id: $id) {
