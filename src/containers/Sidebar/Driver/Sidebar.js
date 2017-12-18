@@ -192,7 +192,7 @@ componentWillMount() {
               <span className="MenuHolder" style={submenuColor}>
                 <i className="ion-android-bus" />
                 <span className="nav-text">
-                  <IntlMessages id="sidebar.trucks" />
+                  <IntlMessages id="sidebar.driver.truck" />
                 </span>
               </span>
             </Link>
@@ -276,7 +276,7 @@ componentWillMount() {
             <span className="MenuHolder" style={submenuColor}>
               <i className="ion-android-bus" />
               <span className="nav-text">
-                <IntlMessages id="sidebar.trucks" />
+                <IntlMessages id="sidebar.driver.truck" />
               </span>
             </span>
           </Link>

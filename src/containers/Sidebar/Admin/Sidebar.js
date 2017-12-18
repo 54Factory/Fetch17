@@ -188,7 +188,7 @@ class Sidebar extends Component {
                 <i className="ion-android-checkbox-outline" />
                 <span className="nav-text">            
                   <Link style={submenuColor} to={`${url.path}/completedSetUps`}>
-                    <IntlMessages id="sidebar.completedSetUps" />
+                    <IntlMessages id="sidebar.completedSetups" />
                   </Link>
                 </span>
               </span>
