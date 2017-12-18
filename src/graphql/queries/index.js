@@ -358,10 +358,12 @@ export const ALL_OIL_COLLECTIONS_QUERY = gql`
       id
       serviceCycle
       serviceType
-      oilCollectionRecords {
+      oilCollectionRecords(filter: {
+        collected: false
+      }) {
         id
         scheduledCollectionDate
-    }
+      }
       containment {
         id
         containerType

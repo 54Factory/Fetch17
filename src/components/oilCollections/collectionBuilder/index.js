@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Modal } from 'antd';
 import Collection from './collection/collection';
-import ContainerOutline from'./container.style';
+import { ContainerOutline, ContainerOutlineFiftyFive, ContainerOutlineOneHundred, ContainerOutlineOneHundredFifty, ContainerOutlineTwoHundred, ContainerOutlineThreeHundred } from'./container.style';
 import { BuildControls, BuildControlsFiftyFive, BuildControlsOneHundred, BuildControlsOneHundredFifty, BuildControlsTwoHundred, BuildControlsThreeHundred } from './buildControls/buildControls';
 import moment from 'moment';
 import { CollectionCardWrapper } from '../collectionCard.style';
@@ -60,7 +60,8 @@ onSubmitFiftyFive = async () => {
     variables: 
       { 
         id: this.props.collection.oilCollectionRecords["0"].id, 
-        oilServiceId: this.props.collection.id, 
+        oilServiceId: this.props.collection.id,
+        truckId: this.props.collection.truck.id, 
         oilAmount, 
         wasteAmount, 
         waterAmount ,
@@ -85,7 +86,8 @@ onSubmitOneHundred = async () => {
     variables: 
       { 
         id: this.props.collection.oilCollectionRecords["0"].id, 
-        oilServiceId: this.props.collection.id, 
+        oilServiceId: this.props.collection.id,
+        truckId: this.props.collection.truck.id,  
         oilAmount, 
         wasteAmount, 
         waterAmount ,
@@ -110,7 +112,8 @@ onSubmitOneHundredFifty = async () => {
     variables: 
       { 
         id: this.props.collection.oilCollectionRecords["0"].id, 
-        oilServiceId: this.props.collection.id, 
+        oilServiceId: this.props.collection.id,
+        truckId: this.props.collection.truck.id,  
         oilAmount, 
         wasteAmount, 
         waterAmount ,
@@ -136,6 +139,7 @@ onSubmitTwoHundred = async () => {
       { 
         id: this.props.collection.oilCollectionRecords["0"].id, 
         oilServiceId: this.props.collection.id, 
+        truckId: this.props.collection.truck.id, 
         oilAmount, 
         wasteAmount, 
         waterAmount ,
@@ -161,6 +165,7 @@ onSubmitThreeHundred = async () => {
       { 
         id: this.props.collection.oilCollectionRecords["0"].id, 
         oilServiceId: this.props.collection.id, 
+        truckId: this.props.collection.truck.id, 
         oilAmount, 
         wasteAmount, 
         waterAmount ,
@@ -340,9 +345,9 @@ removeMaterialHandlerThreeHundred = (type) => {
                   onOk={this.onSubmitFiftyFive}
                   onCancel={this.handleCancel}
                 >
-                <ContainerOutline>
+                <ContainerOutlineFiftyFive>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineFiftyFive>
                   <ul>
                     <li>For Record ID: {this.props.collection.oilCollectionRecords["0"].id}</li>
                     <li>Oil Amount: {oilGallonsFiftyFive}</li>
@@ -351,9 +356,10 @@ removeMaterialHandlerThreeHundred = (type) => {
                     <li>Total Gallons: {this.state.totalCollected}</li>
                   </ul>
                 </Modal>
-                <ContainerOutline>
+                <ContainerOutlineFiftyFive>
+                  <p style={{ textAlign: 'center', marginBottom: '0px', fontWeight: '500' }}>Total Gallons: {this.state.totalCollected}</p>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineFiftyFive>
                 </div>
                 {/* <h1 className="CollectionName">{name}</h1>
                 <p className="CollectionAddress">{streetAddress}</p>
@@ -385,9 +391,9 @@ removeMaterialHandlerThreeHundred = (type) => {
                   onOk={this.onSubmitOneHundred}
                   onCancel={this.handleCancel}
                 >
-                <ContainerOutline>
+                <ContainerOutlineOneHundred>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineOneHundred>
                   <ul>
                     <li>For Record ID: {this.props.collection.oilCollectionRecords["0"].id}</li>
                     <li>Oil Amount: {oilGallonsOneHundred}</li>
@@ -396,9 +402,10 @@ removeMaterialHandlerThreeHundred = (type) => {
                     <li>Total Gallons: {this.state.totalCollected}</li>
                   </ul>
                 </Modal>
-                <ContainerOutline>
+                <ContainerOutlineOneHundred>
+                  <p style={{ textAlign: 'center', marginBottom: '0px', fontWeight: '500' }}>Total Gallons: {this.state.totalCollected}</p>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineOneHundred>
                 </div>
                 {/* <h1 className="CollectionName">{name}</h1>
                 <p className="CollectionAddress">{streetAddress}</p>
@@ -430,9 +437,9 @@ removeMaterialHandlerThreeHundred = (type) => {
                   onOk={this.onSubmitOneHundredFifty}
                   onCancel={this.handleCancel}
                 >
-                <ContainerOutline>
+                <ContainerOutlineOneHundredFifty>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineOneHundredFifty>
                   <ul>
                     <li>For Record ID: {this.props.collection.oilCollectionRecords["0"].id}</li>
                     <li>Oil Amount: {oilGallonsOneHundredFifty}</li>
@@ -441,9 +448,10 @@ removeMaterialHandlerThreeHundred = (type) => {
                     <li>Total Gallons: {this.state.totalCollected}</li>
                   </ul>
                 </Modal>
-                <ContainerOutline>
+                <ContainerOutlineOneHundredFifty>
+                <p style={{ textAlign: 'center', marginBottom: '0px', fontWeight: '500' }}>Total Gallons: {this.state.totalCollected}</p>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineOneHundredFifty>
                 </div>
                 {/* <h1 className="CollectionName">{name}</h1>
                 <p className="CollectionAddress">{streetAddress}</p>
@@ -475,9 +483,9 @@ removeMaterialHandlerThreeHundred = (type) => {
                   onOk={this.onSubmitTwoHundred}
                   onCancel={this.handleCancel}
                 >
-                <ContainerOutline>
+                <ContainerOutlineTwoHundred>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineTwoHundred>
                   <ul>
                     <li>For Record ID: {this.props.collection.oilCollectionRecords["0"].id}</li>
                     <li>Oil Amount: {oilGallonsTwoHundred}</li>
@@ -486,9 +494,10 @@ removeMaterialHandlerThreeHundred = (type) => {
                     <li>Total Gallons: {this.state.totalCollected}</li>
                   </ul>
                 </Modal>
-                <ContainerOutline>
+                <ContainerOutlineTwoHundred>
+                  <p style={{ textAlign: 'center', marginBottom: '0px', fontWeight: '500' }}>Total Gallons: {this.state.totalCollected}</p>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineTwoHundred>
                 </div>
                 {/* <h1 className="CollectionName">{name}</h1>
                 <p className="CollectionAddress">{streetAddress}</p>
@@ -520,9 +529,9 @@ removeMaterialHandlerThreeHundred = (type) => {
                   onOk={this.onSubmitThreeHundred}
                   onCancel={this.handleCancel}
                 >
-                <ContainerOutline>
+                <ContainerOutlineThreeHundred>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineThreeHundred>
                   <ul>
                     <li>For Record ID: {this.props.collection.oilCollectionRecords["0"].id}</li>
                     <li>Oil Amount: {oilGallonsThreeHundred}</li>
@@ -531,9 +540,10 @@ removeMaterialHandlerThreeHundred = (type) => {
                     <li>Total Gallons: {this.state.totalCollected}</li>
                   </ul>
                 </Modal>
-                <ContainerOutline>
+                <ContainerOutlineThreeHundred>
+                  <p style={{ textAlign: 'center', marginBottom: '0px', fontWeight: '500' }}>Total Gallons: {this.state.totalCollected}</p>
                   <Collection payloads={this.state.payloads} />
-                </ContainerOutline>
+                </ContainerOutlineThreeHundred>
                 </div>
                 {/* <h1 className="CollectionName">{name}</h1>
                 <p className="CollectionAddress">{streetAddress}</p>
@@ -577,6 +587,7 @@ removeMaterialHandlerThreeHundred = (type) => {
                   </ul>
                 </Modal>
                 <ContainerOutline>
+                  <p style={{ textAlign: 'center', marginBottom: '0px', fontWeight: '500' }}>Total Gallons: {this.state.totalCollected}</p>
                   <Collection payloads={this.state.payloads} />
                 </ContainerOutline>
                 </div>
@@ -604,8 +615,8 @@ removeMaterialHandlerThreeHundred = (type) => {
 }
 
 const UpdateAndCreateCollectionRecordMutation = gql`
-mutation UpdateAndCreateCollectionRecord($id: ID!, $oilServiceId: ID, $scheduledCollectionDate: DateTime, $oilAmount: Int, $wasteAmount: Int, $waterAmount: Int, $collected: Boolean) {
-  update: updateOilCollectionRecord(id: $id, oilAmount: $oilAmount, wasteAmount: $wasteAmount, waterAmount: $waterAmount, collected: $collected) {
+mutation UpdateAndCreateCollectionRecord($id: ID!, $oilServiceId: ID, $scheduledCollectionDate: DateTime, $oilAmount: Int, $wasteAmount: Int, $waterAmount: Int, $collected: Boolean, $truckId: ID) {
+  update: updateOilCollectionRecord(id: $id, oilAmount: $oilAmount, wasteAmount: $wasteAmount, waterAmount: $waterAmount, collected: $collected, truckId: $truckId) {
     id
     oilAmount
     wasteAmount

@@ -13,7 +13,7 @@ const collection = (props) => {
       return arr.concat(el)
   }, []);
 if (transformedPayloads.length === 0) {
-  transformedPayloads = <p>Add Collection Contents</p>;
+  transformedPayloads = <p style={{ textAlign: 'center', marginBottom: '25px', fontWeight: '500' }}>Add Material!</p>;
 }
   return (
       <div className={Collection}>

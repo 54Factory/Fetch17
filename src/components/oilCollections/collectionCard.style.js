@@ -31,9 +31,14 @@ const WDOilCollectionCardWrapper = styled.div`
     margin-right: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '50px')};
     margin-left: ${props => (props['data-rtl'] === 'rtl' ? '50px' : 'inherit')};
     flex-shrink: 0;
+    overflow: hidden;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+      height: 235px;
       margin-bottom: 20px;
+      margin-right: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '0px')};
+      margin-left: ${props => (props['data-rtl'] === 'rtl' ? '0px' : 'inherit')};
     }
 
     @media only screen and (min-width: 767px) and (max-width: 990px) {
@@ -49,6 +54,12 @@ const WDOilCollectionCardWrapper = styled.div`
       width: 200px;
       height: 200px;
       align-items: center;
+
+      @media only screen and (max-width: 500px) {
+        width: 200px;
+        height: 235px;
+        align-items: center;
+      }
     }
 
     .CollectionName {
@@ -82,9 +93,9 @@ const WDOilCollectionCardWrapper = styled.div`
       flex-shrink: 0;
       align-items: baseline;
       flex-direction: row;
-      margin-bottom: 15px;
 
-      @media only screen and (max-width: 430px) {
+
+      @media only screen and (max-width: 500px) {
         flex-direction: column;
         margin-bottom: 20px;
       }
