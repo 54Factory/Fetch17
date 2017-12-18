@@ -46,7 +46,7 @@ export class DriverApp extends Component {
                 </Debounce>
                 <Topbar url={this.props.url} />
                 <Layout style={{ flexDirection: 'row', overflowX: 'hidden' }}>
-                  <Sidebar url={this.props.url} />
+                  <Sidebar url={this.props.url} user={this.props.auth}/>
                   <Layout
                     className="ContentMainLayout"
                     style={{

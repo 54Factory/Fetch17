@@ -8,6 +8,7 @@ import Drivers from './drivers/reducer'
 import Services from './services/reducers'
 import Collections from './oilCollections/reducers'
 import OilCollectionRecords from './oilCollectionRecords/reducers'
+import Sidebar from './sidebar/reducers'
 
 export default {
   App,
@@ -21,5 +22,6 @@ export default {
   Drivers,
   Services,
   Collections,
-  OilCollectionRecords
+  OilCollectionRecords,
+  Sidebar
 };

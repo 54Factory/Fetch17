@@ -6,8 +6,8 @@ import { Layout } from 'antd';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Menu from '../../../components/uielements/menu';
 import IntlMessages from '../../../components/utility/intlMessages';
-import SidebarWrapper from './sidebar.style';
-
+import SidebarWrapper from '../sidebar.style';
+import * as SidebarAction from '../../../redux/sidebar/actions';
 import appActions from '../../../redux/app/actions';
 import Logo from '../../../components/utility/logo';
 import { rtl } from '../../../config/withDirection';
@@ -22,6 +22,7 @@ const {
   toggleCollapsed,
 } = appActions;
 
+const { fetchUserForSidebar } = SidebarAction
 
 
 class Sidebar extends Component {
@@ -30,6 +31,13 @@ class Sidebar extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.onOpenChange = this.onOpenChange.bind(this);
   }
+
+componentWillMount() {
+  
+  this.props.fetchUserForSidebar(this.props.user.userId)
+  console.log('Will Mount ---->', this.props)
+}
+
   handleClick(e) {
     this.props.changeCurrent([e.key]);
     if (this.props.app.view === 'MobileView') {
@@ -76,8 +84,9 @@ class Sidebar extends Component {
   }
 
   render() {
-    console.log(this.props)
-    const { url, app, toggleOpenDrawer } = this.props;
+    
+    const { url, app, toggleOpenDrawer, truckType, fetched } = this.props;
+    console.log(truckType)    
     const customizedTheme = getCurrentTheme('sidebarTheme', themeConfig.theme);
     const collapsed = clone(app.collapsed) && !clone(app.openDrawer);
     const { openDrawer } = app;
@@ -106,6 +115,21 @@ class Sidebar extends Component {
       backgroundColor: 'rgba(0,0,0,0.3)',
       color: customizedTheme.textColor
     };
+
+
+    // if(truckType) {
+    //   switch (role) {
+    //     case 'ADMIN':
+    //       console.log('ADMIN Route')
+    //       return <AdminApp url={url}/>
+    //     case 'DRIVER':
+    //       console.log('DRIVER Route')
+    //       return <DriverApp url={url}/>
+    //     default:
+    //       console.log('No Roles Defined')
+    //       return <SignIn />
+    //   }
+    // }
     return (
       <SidebarWrapper>
         <Sider
@@ -113,7 +137,7 @@ class Sidebar extends Component {
           collapsible={true}
           collapsed={collapsed}
           width="240"
-          className="isomorphicSidebar"
+          className="Sidebar"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           style={styling}
@@ -123,89 +147,153 @@ class Sidebar extends Component {
             renderView={this.renderView}
             style={{ height: scrollheight - 70 }}
           >
+          {truckType === 'Oil Collection' && fetched ?
             <Menu
-              onClick={this.handleClick}
-              theme="dark"
-              mode={mode}
-              openKeys={collapsed ? [] : app.openKeys}
-              selectedKeys={app.current}
-              onOpenChange={this.onOpenChange}
-              className="isoDashboardMenu"
-            >
-            <Menu.Item key="dashboard">
-              <Link to={`${url.path}`}>
-                <span className="isoMenuHolder" style={submenuColor}>
-                  <i className="ion-ios-speedometer" />
+            onClick={this.handleClick}
+            theme="dark"
+            mode={mode}
+            openKeys={collapsed ? [] : app.openKeys}
+            selectedKeys={app.current}
+            onOpenChange={this.onOpenChange}
+            className="DashboardMenu"
+          >
+          <Menu.Item key="dashboard">
+            <Link to={`${url.path}`}>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-ios-speedometer" />
+                <span className="nav-text">
+                  <IntlMessages id="sidebar.dashboard" />
+                </span>
+              </span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="locations">
+            <Link to={`${url.path}/locations`}>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-location" />
+                <span className="nav-text">
+                  <IntlMessages id="sidebar.locations" />
+                </span>
+              </span>
+            </Link>
+          </Menu.Item>        
+          <Menu.Item key="oilcollection">
+            <Link to={`${url.path}/oilcollection`}>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-waterdrop" />
+                <span className="nav-text">
+                  <IntlMessages id="sidebar.oilCollection" />
+                </span>
+              </span>
+            </Link>
+          </Menu.Item>            
+        <Menu.Item key="trucks">
+          <Link to={`${url.path}/trucks`}>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-android-bus" />
+                <span className="nav-text">
+                  <IntlMessages id="sidebar.trucks" />
+                </span>
+              </span>
+            </Link>
+          </Menu.Item>
+            <Menu.Item key="driverPage">
+              <Link to={`${url.path}/driverPage`}>
+                <span className="MenuHolder" style={submenuColor}>
+                  <i className="ion-document" />
                   <span className="nav-text">
-                    <IntlMessages id="sidebar.dashboard" />
+                    <IntlMessages id="sidebar.driver.driverPage" />
                   </span>
                 </span>
               </Link>
             </Menu.Item>
-            <Menu.Item key="locations">
-              <Link to={`${url.path}/locations`}>
-                <span className="isoMenuHolder" style={submenuColor}>
-                  <i className="ion-location" />
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.locations" />
-                  </span>
+          </Menu>          
+          : 
+          <Menu
+          onClick={this.handleClick}
+          theme="dark"
+          mode={mode}
+          openKeys={collapsed ? [] : app.openKeys}
+          selectedKeys={app.current}
+          onOpenChange={this.onOpenChange}
+          className="DashboardMenu"
+        >
+        <Menu.Item key="dashboard">
+          <Link to={`${url.path}`}>
+            <span className="MenuHolder" style={submenuColor}>
+              <i className="ion-ios-speedometer" />
+              <span className="nav-text">
+                <IntlMessages id="sidebar.dashboard" />
+              </span>
+            </span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="locations">
+          <Link to={`${url.path}/locations`}>
+            <span className="MenuHolder" style={submenuColor}>
+              <i className="ion-location" />
+              <span className="nav-text">
+                <IntlMessages id="sidebar.locations" />
+              </span>
+            </span>
+          </Link>
+        </Menu.Item>        
+        <Menu.Item key="oilcollection">
+          <Link to={`${url.path}/oilcollection`}>
+            <span className="MenuHolder" style={submenuColor}>
+              <i className="ion-waterdrop" />
+              <span className="nav-text">
+                <IntlMessages id="sidebar.oilCollection" />
+              </span>
+            </span>
+          </Link>
+        </Menu.Item>
+        <SubMenu
+          key="setups"
+          title={
+          (
+            <span className="MenuHolder" style={submenuColor}>
+              <i className="ion-cube" />
+              <span className="nav-text">
+                <IntlMessages id="sidebar.setups" />
+              </span>
+            </span>
+          )
+        }>
+          <Menu.Item style={submenuStyle} key="pendingSetUps">
+            <Link style={submenuColor} to={`${url.path}/pendingSetups`}>
+              <IntlMessages id="sidebar.pendingSetups" />
+            </Link>
+          </Menu.Item>
+          <Menu.Item style={submenuStyle} key="completedSetUps">
+            <Link style={submenuColor} to={`${url.path}/completedSetups`}>
+              <IntlMessages id="sidebar.completedSetups" />
+            </Link>
+          </Menu.Item>
+        </SubMenu>             
+      <Menu.Item key="trucks">
+        <Link to={`${url.path}/trucks`}>
+            <span className="MenuHolder" style={submenuColor}>
+              <i className="ion-android-bus" />
+              <span className="nav-text">
+                <IntlMessages id="sidebar.trucks" />
+              </span>
+            </span>
+          </Link>
+        </Menu.Item>
+          <Menu.Item key="driverPage">
+            <Link to={`${url.path}/driverPage`}>
+              <span className="MenuHolder" style={submenuColor}>
+                <i className="ion-document" />
+                <span className="nav-text">
+                  <IntlMessages id="sidebar.driver.driverPage" />
                 </span>
-              </Link>
-            </Menu.Item>
-            <SubMenu
-              key="setups"
-              title={
-              (
-                <span className="isoMenuHolder" style={submenuColor}>
-                  <i className="ion-cube" />
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.setups" />
-                  </span>
-                </span>
-              )
-            }>
-            <Menu.Item style={submenuStyle} key="pendingSetUps">
-              <Link style={submenuColor} to={`${url.path}/pendingSetups`}>
-                <IntlMessages id="sidebar.pendingSetups" />
-              </Link>
-            </Menu.Item>
-            <Menu.Item style={submenuStyle} key="completedSetUps">
-              <Link style={submenuColor} to={`${url.path}/completedSetups`}>
-                <IntlMessages id="sidebar.completedSetups" />
-              </Link>
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item key="trucks">
-            <Link to={`${url.path}/trucks`}>
-                <span className="isoMenuHolder" style={submenuColor}>
-                  <i className="ion-android-bus" />
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.trucks" />
-                  </span>
-                </span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="oilcollection">
-              <Link to={`${url.path}/oilcollection`}>
-                <span className="isoMenuHolder" style={submenuColor}>
-                  <i className="ion-waterdrop" />
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.oilCollection" />
-                  </span>
-                </span>
-              </Link>
-            </Menu.Item>
-              <Menu.Item key="driverPage">
-                <Link to={`${url.path}/driverPage`}>
-                  <span className="isoMenuHolder" style={submenuColor}>
-                    <i className="ion-document" />
-                    <span className="nav-text">
-                      <IntlMessages id="sidebar.driver.driverPage" />
-                    </span>
-                  </span>
-                </Link>
-              </Menu.Item>
-            </Menu>
+              </span>
+            </Link>
+          </Menu.Item>
+        </Menu>          
+          }
+
           </Scrollbars>
         </Sider>
       </SidebarWrapper>
@@ -213,9 +301,33 @@ class Sidebar extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    app: state.App.toJS()
-  }),
-  { toggleOpenDrawer, changeOpenKeys, changeCurrent, toggleCollapsed }
+function mapStateToProps(state) {
+  const app = state.App.toJS()
+  const { truckType, fetched } = state.Sidebar;
+  return {
+    app,
+    truckType,
+    fetched
+  };
+}
+
+export default connect(mapStateToProps,
+  { toggleOpenDrawer, changeOpenKeys, changeCurrent, toggleCollapsed, fetchUserForSidebar }
 )(Sidebar);
+
+// function mapStateToProps(state) {
+//   const { truckType, fetched } = state.Sidebar;
+//   const { app } = state.App
+//   return {
+//     app,
+//     truckType,
+//     fetched
+//   };
+// }
+// export default connect(mapStateToProps, {
+//   fetchUserForSidebar,
+//   toggleOpenDrawer, 
+//   changeOpenKeys, 
+//   changeCurrent, 
+//   toggleCollapsed
+// })(Sidebar);

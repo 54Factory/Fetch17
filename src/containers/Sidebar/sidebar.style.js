@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { palette } from 'styled-theme';
-import { transition, borderRadius } from '../../../config/style-util';
-import WithDirection from '../../../config/withDirection';
+import { transition, borderRadius } from '../../config/style-util';
+import WithDirection from '../../config/withDirection';
 
 const SidebarWrapper = styled.div`
-  .isomorphicSidebar {
+  .Sidebar {
     z-index: 1000;
     background: ${palette('secondary', 0)};
     width: 280px;
@@ -24,7 +24,7 @@ const SidebarWrapper = styled.div`
       }
     }
 
-    .isoLogoWrapper {
+    .LogoWrapper {
       height: 70px;
       background: rgba(0, 0, 0, 0.3);
       margin: 0;
@@ -48,7 +48,7 @@ const SidebarWrapper = styled.div`
     }
 
     &.ant-layout-sider-collapsed {
-      .isoLogoWrapper {
+      .LogoWrapper {
         padding: 0;
 
         h3 {
@@ -61,7 +61,7 @@ const SidebarWrapper = styled.div`
       }
     }
 
-    .isoDashboardMenu {
+    .DashboardMenu {
       padding-top: 35px;
       padding-bottom: 35px;
       background: transparent;
@@ -80,7 +80,7 @@ const SidebarWrapper = styled.div`
         padding: 0 24px;
       }
 
-      .isoMenuHolder {
+      .MenuHolder {
         display: flex;
         align-items: center;
       }

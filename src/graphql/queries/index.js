@@ -1,5 +1,22 @@
 import gql from 'graphql-tag'
 
+export const USER_QUERY_FOR_SIDEBAR = gql`
+  query User ($id: ID!) {
+    User(id: $id) {
+      id
+      driver {
+        id
+        truck {
+          id 
+          name
+          type
+        }
+      }
+    }
+  }
+`
+
+
 export const USER_QUERY = gql`
   query allUsers {
     allUsers {
