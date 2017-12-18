@@ -3,11 +3,11 @@ import { DriverCardWrapper } from './driverCard.style';
 
 export default class SingleDriverView extends Component {
   render() {
-    const { driver, otherAttributes, driverAttributes } = this.props;
+    const { driver, otherAttributes, truckAttributes } = this.props;
     const name = driver.user.username ? driver.user.username : 'No Name';
     const truck = driver.truck
     const extraInfos = [];
-    const driverInfos = [];
+    const truckInfos = [];
     otherAttributes.forEach(attribute => {
       const value = driver[attribute.value];
       if (value) {
@@ -21,10 +21,11 @@ export default class SingleDriverView extends Component {
         );
       }
     });
-    driverAttributes.forEach(attribute => {
-      const value = truck[attribute.value];
-      if (value) {
-        driverInfos.push(
+    truckAttributes.forEach(attribute => {
+
+      if (truck != null) {
+        const value = truck[attribute.value];
+        truckInfos.push(
           <div className="DriverCardInfos" key={attribute.value}>
             <p className="DriverInfoLabel">{`${attribute.title}`}</p>
             <p className="DriverInfoDetails">
@@ -32,7 +33,18 @@ export default class SingleDriverView extends Component {
             </p>
           </div>
         );
+      } else {
+        const unassignedDriverTruck = "Unassigned!"
+        truckInfos.push(
+          <div className="DriverCardInfos" key={attribute.value}> 
+              <p className="DriverInfoLabel">{`${attribute.title}`}</p>
+              <p className="DriverInfoDetails" style={{ color: 'red' }}>
+                {unassignedDriverTruck}
+              </p>
+            </div>
+        )
       }
+
     });
     return (
       <DriverCardWrapper className="DriverCard">
@@ -46,7 +58,7 @@ export default class SingleDriverView extends Component {
         </div>
         <div className="DriverInfoWrapper">
           {extraInfos}
-          {driverInfos}
+          {truckInfos}
         </div>
       </DriverCardWrapper>
     );

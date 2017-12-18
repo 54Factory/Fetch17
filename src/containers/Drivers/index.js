@@ -58,8 +58,8 @@ class Drivers extends Component {
       const otherAttributes = [
       { title: 'License #', value: 'dlNumber', type: 'license' }
     ];
-    const driverAttributes = [
-      { title: 'Assigned Truck', value: 'name', type: 'name' }
+    const truckAttributes = [
+      { title: 'Truck', value: 'name', type: 'name' }
     ];
     
     console.log(this.props);
@@ -97,13 +97,13 @@ class Drivers extends Component {
                   driver={selectedDriver}
                   editDriver={editDriver}
                   otherAttributes={otherAttributes}
-                  driverAttributes={driverAttributes}
+                  truckAttributes={truckAttributes}
                 />
               ) : (
                 <SingleDriverView
                   driver={selectedDriver}
                   otherAttributes={otherAttributes}
-                  driverAttributes={driverAttributes}
+                  truckAttributes={truckAttributes}
                 />
               )}
             </Content>
