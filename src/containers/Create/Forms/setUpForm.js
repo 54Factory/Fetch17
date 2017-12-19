@@ -1,10 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import * as SetUpTruckAction from '../../../redux/trucks/setUpTruck/actions'
 import { Select, Input, DatePicker } from 'antd';
 import { FormCardWrapper } from './formCard.style';
 
 const Option = Select.Option;
 
+
+const { 
+  fetchSetUpTruck
+} = SetUpTruckAction;
+
 class SetUpForm extends React.Component {
+
+  componentWillMount() {
+    this.props.fetchSetUpTruck()
+    this.handleTruckId()
+  }
+
+  handleTruckId() {
+    if(this.props.fetched) {
+      const truckId = this.props.setUpTrucks['0'].truck.id
+      this.props.getTruckId(truckId)
+    }
+  }
 
   onFieldChange(event) {
     // for a regular input field, read field name and value from the event
@@ -33,6 +52,7 @@ containerTypeSelectorChange(value) {
 }
 
   render() {
+    console.log(this.props)
     return(
         <FormCardWrapper className="FormCard">
         <div className="FormInfoWrapper">
@@ -81,4 +101,12 @@ containerTypeSelectorChange(value) {
   }
 }
 
-export default SetUpForm
+function mapStateToProps(state) {
+  const { setUpTrucks, fetched } = state.SetUpTruck
+  return {
+    setUpTrucks,
+    fetched
+  }
+}
+
+export default connect(mapStateToProps, { fetchSetUpTruck })(SetUpForm)

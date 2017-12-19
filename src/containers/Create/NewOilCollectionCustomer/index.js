@@ -30,6 +30,7 @@ class NewOilCollectionCustomer extends React.Component {
       role: '',
       customerNoteContent: '',
       //setups
+      truckId: '',
       setUpDate: '',
       quantity: '',
       containerType: '',
@@ -66,6 +67,10 @@ class NewOilCollectionCustomer extends React.Component {
   setLocationNameState(field, value) {
     // parent class change handler is always called with field name and value
     this.setState({[field]: value});
+  }
+  getTruckId(truckId) {
+    // parent class change handler is always called with field name and value
+    this.setState({truckId: truckId});
   }
   setCustomerState(field, value) {
     // parent class change handler is always called with field name and value
@@ -245,14 +250,11 @@ class NewOilCollectionCustomer extends React.Component {
                 if (currentObject.hasOwnProperty(key)) {
                     result[key] = currentObject[key];
                 }
-            }
-
-            
+            }           
             return result;
-        }, {})
-        return addressValues
-
-      }    
+            }, {})
+            return addressValues
+          }    
       })
       .then((addressValues) => {
         if (typeof addressValues === "undefined") {
@@ -385,6 +387,7 @@ class NewOilCollectionCustomer extends React.Component {
             onQuantitySelectorChange={this.setSetUpSelectorState.bind(this)}
             onContainerTypeSelectorChange={this.setSetUpSelectorState.bind(this)}
             onChange={this.setSetUpSelectorState.bind(this)}
+            getTruckId={this.getTruckId.bind(this)}
           />
         <div className="Header">
           <PageHeader>Oil Service Details</PageHeader>
