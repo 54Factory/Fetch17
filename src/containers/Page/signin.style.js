@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from 'styled-theme';
-import bgImage from '../../image/sign.jpg';
+import bgImage from '../../image/signin.jpg';
 import WithDirection from '../../config/withDirection';
 
 const SignInStyleWrapper = styled.div`
@@ -27,14 +27,14 @@ const SignInStyleWrapper = styled.div`
     right: ${props => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
   }
 
-  .isoLoginContentWrapper {
+  .LoginContentWrapper {
     width: 500px;
     height: 100%;
     overflow-y: auto;
     z-index: 10;
   }
 
-  .isoLoginContent {
+  .LoginContent {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ const SignInStyleWrapper = styled.div`
       padding: 70px 20px;
     }
 
-    .isoLogoWrapper {
+    .LogoWrapper {
       width: 100%;
       display: flex;
       margin-bottom: 50px;
@@ -63,13 +63,13 @@ const SignInStyleWrapper = styled.div`
       }
     }
 
-    .isoSignInForm {
+    .SignInForm {
       width: 100%;
       display: flex;
       flex-shrink: 0;
       flex-direction: column;
 
-      .isoInputWrapper {
+      .InputWrapper {
         margin-bottom: 15px;
 
         &:last-of-type {
@@ -94,7 +94,7 @@ const SignInStyleWrapper = styled.div`
         }
       }
 
-      .isoHelperText {
+      .HelperText {
         font-size: 12px;
         font-weight: 400;
         line-height: 1.2;
@@ -121,12 +121,12 @@ const SignInStyleWrapper = styled.div`
         }
       }
 
-      .isoHelperWrapper {
+      .HelperWrapper {
         margin-top: 35px;
         flex-direction: column;
       }
 
-      .isoOtherLogin {
+      .OtherLogin {
         padding-top: 40px;
         margin-top: 35px;
         border-top: 1px dashed ${palette('grayscale', 2)};
@@ -183,7 +183,7 @@ const SignInStyleWrapper = styled.div`
         }
       }
 
-      .isoForgotPass {
+      .ForgotPass {
         font-size: 12px;
         color: ${palette('text', 3)};
         margin-bottom: 10px;

@@ -1,18 +1,26 @@
 import React from 'react';
 
+
 const styles = {
   form: {
     marginBottom: 20,
   },
   input: {
     display: 'block',
-    width: 200,
+    width: '100%',
     margin: '0 auto 10px auto',
-    height: 30,
+    height: '42px',
     fontSize: 14,
     padding: 10,
     outline: 0,
-    borderRadius: '5px'
+    borderRadius: '5px',
+  },
+  button: {
+    width: '100%',
+    height: '42px',
+    border: 0,
+    backgroundColor: '#7ED321',
+ 
   },
   successMessage: {
     backgroundColor: 'rgb(251, 161, 97)',
@@ -67,20 +75,20 @@ const SignInForm = ({
 
     <div>
       <button
+        style={styles.button}
         type="submit"
-        className="btn"
       >Log In
       </button>
     </div>
 
     <div>
       {loading && (
-        <div style={{ margin: 20 }}>Loading...</div>
+        <div style={{ margin: 20 }}>Signing In...</div>
       )}
-
+{/* 
       {successMessage && (
         <div style={styles.successMessage}>{successMessage}</div>
-      )}
+      )} */}
 
       {errorMessage && (
         <div style={styles.errorMessage}>{errorMessage}</div>
@@ -88,15 +96,6 @@ const SignInForm = ({
     </div>
   </form>
 );
-
-// SignInForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-//   loading: PropTypes.bool.isRequired,
-//   submitButtonLabel: PropTypes.string.isRequired,
-//   successMessage: PropTypes.string,
-//   errorMessage: PropTypes.string,
-//   username: PropTypes.string,
-// };
 
 SignInForm.defaultProps = {
   loading: false,

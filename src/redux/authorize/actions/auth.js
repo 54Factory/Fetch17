@@ -33,9 +33,13 @@ export const loginUserRequest = ({ username }) => ({
 // TESTING CODE FOR AUTH SIGN IN RESPONSE PROPS
 // WORKING CODE BELOW...
   export const setUserToken = ({ token, role, userId }) => {
-    localStorage.setItem('token', token);
+
+    localStorage.setItem('token', token, {
+      maxAge: 30 // Will expire after 1hr (value is in number of sec.)
+   });
     localStorage.setItem('role', role);
     localStorage.setItem('userId', userId);
+
     return {
       type: actionTypes.SET_USER_TOKEN,
       token,
@@ -58,6 +62,7 @@ export const logoutUser = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('role');
   localStorage.removeItem('userId');
+
   return {
     type: actionTypes.LOGOUT_USER,
   };
