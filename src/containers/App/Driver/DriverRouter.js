@@ -22,12 +22,17 @@ class DriverRouter extends React.Component {
           exact
           path={`${url}/oilcollection`}
           component={asyncComponent(() => import("../../OilCollection/Driver"))}
-        />
+        /> */}
         <Route
+          exact
+          path={`${url}/mytruck`}
+          component={asyncComponent(() => import("../../Drivers/myTruck"))}
+        />
+        {/* <Route
           path={`${url}/pendingCollections/:truckName`}
           component={asyncComponent(() => import("../../../components/oilCollection/driverComponents/pendingCollections"))}
-        />
-        <Route
+        /> */}
+        {/* <Route
           path={`${url}/collectionRecord/:id`}
           component={asyncComponent(() => import("../../../components/oilCollection/driverComponents/records"))}
         /> */}

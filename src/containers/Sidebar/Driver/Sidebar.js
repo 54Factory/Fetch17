@@ -188,7 +188,7 @@ componentWillMount() {
             </Link>
           </Menu.Item>            
         <Menu.Item key="trucks">
-          <Link to={`${url.path}/trucks`}>
+          <Link to={`${url.path}/mytruck`}>
               <span className="MenuHolder" style={submenuColor}>
                 <i className="ion-android-bus" />
                 <span className="nav-text">
@@ -197,7 +197,7 @@ componentWillMount() {
               </span>
             </Link>
           </Menu.Item>
-            <Menu.Item key="driverPage">
+            {/* <Menu.Item key="driverPage">
               <Link to={`${url.path}/driverPage`}>
                 <span className="MenuHolder" style={submenuColor}>
                   <i className="ion-document" />
@@ -206,7 +206,7 @@ componentWillMount() {
                   </span>
                 </span>
               </Link>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>          
           : 
           <Menu
@@ -281,7 +281,7 @@ componentWillMount() {
             </span>
           </Link>
         </Menu.Item>
-          <Menu.Item key="driverPage">
+          {/* <Menu.Item key="driverPage">
             <Link to={`${url.path}/driverPage`}>
               <span className="MenuHolder" style={submenuColor}>
                 <i className="ion-document" />
@@ -290,7 +290,7 @@ componentWillMount() {
                 </span>
               </span>
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>          
           }
 

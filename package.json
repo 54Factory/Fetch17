@@ -43,6 +43,7 @@
     "react-perfect-scrollbar": "^0.2.0",
     "react-placeholder": "^1.0.5",
     "react-places-autocomplete": "^5.4.3",
+    "react-progress-label": "^1.2.2",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.0",

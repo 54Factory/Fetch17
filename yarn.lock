@@ -6537,6 +6537,10 @@ react-places-autocomplete@^5.4.3:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.8"
 
+react-progress-label@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-progress-label/-/react-progress-label-1.2.2.tgz#b40145fd1dec5130da66dc3789667b6de8a2f45e"
+
 react-pure-render@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-pure-render/-/react-pure-render-1.0.2.tgz#9d8a928c7f2c37513c2d064e57b3e3c356e9fabb"
