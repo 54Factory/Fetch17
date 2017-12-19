@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import appActions from '../../redux/app/actions';
@@ -10,7 +10,7 @@ import { themeConfig } from '../../config';
 const { Header } = Layout;
 const { toggleCollapsed } = appActions;
 
-class Topbar extends Component {
+class Topbar extends React.Component {
   render() {
     const { toggleCollapsed } = this.props;
     const customizedTheme = getCurrentTheme('topbarTheme', themeConfig.theme);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as RecordsAction from '../../redux/oilCollectionRecords/actions';
 import ReactTable from 'react-table';
@@ -11,7 +11,7 @@ const {
 } = RecordsAction;
 
 
-class OilCollectionRecords extends Component {
+class OilCollectionRecords extends React.Component {
 
   
   componentWillMount() {

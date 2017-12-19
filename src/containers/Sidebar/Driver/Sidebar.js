@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import clone from 'clone';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,7 @@ const {
 const { fetchUserForSidebar } = SidebarAction
 
 
-class Sidebar extends Component {
+class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

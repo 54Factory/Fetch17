@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import clone from 'clone';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import Menu from '../../../components/uielements/menu';
 import IntlMessages from '../../../components/utility/intlMessages';
 import SidebarWrapper from '../sidebar.style';
-
 import appActions from '../../../redux/app/actions';
 import Logo from '../../../components/utility/logo';
 import { rtl } from '../../../config/withDirection';
@@ -22,7 +21,7 @@ const {
   toggleCollapsed,
 } = appActions;
 
-class Sidebar extends Component {
+class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

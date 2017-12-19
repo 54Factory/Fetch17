@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as CollectionsAction from '../../redux/oilCollections/actions';
 import { Layout, Icon } from 'antd';
@@ -21,7 +21,7 @@ const {
 } = CollectionsAction;
 
 const { Content } = Layout;
-class Collections extends Component {
+class Collections extends React.Component {
   componentWillMount() {
     this.props.fetchCollections()
     this.props.fetchUnassignedCollections()

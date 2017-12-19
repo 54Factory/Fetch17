@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as ServicesAction from '../../redux/services/actions';
 import { Layout, Icon } from 'antd';
@@ -20,7 +20,7 @@ const {
 } = ServicesAction;
 
 const { Content } = Layout;
-class Services extends Component {
+class Services extends React.Component {
   componentWillMount() {
     this.props.fetchServices()
   }

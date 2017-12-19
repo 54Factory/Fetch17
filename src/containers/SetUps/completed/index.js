@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as SetUpsAction from '../../../redux/setups/actions';
 import { Layout } from 'antd';
@@ -17,7 +17,7 @@ const {
 } = SetUpsAction;
 
 const { Content } = Layout;
-class SetUps extends Component {
+class SetUps extends React.Component {
   componentWillMount() {
     this.props.fetchCompletedSetUps()
   }

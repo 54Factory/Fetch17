@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as CollectionsAction from '../../../redux/oilCollections/actions';
 import * as TruckAction from '../../../redux/trucks/actions';
@@ -26,7 +26,7 @@ const {
 } = TruckAction
 
 const { Content } = Layout;
-class AssignTruck extends Component {
+class AssignTruck extends React.Component {
   componentWillMount() {
     this.props.fetchUnassignedCollections()
     this.props.fetchTrucks()

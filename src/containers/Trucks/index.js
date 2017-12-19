@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as TruckAction from '../../redux/trucks/actions';
 import { Layout, Icon } from 'antd';
@@ -23,7 +23,7 @@ const {
 
 
 const { Content } = Layout;
-class Trucks extends Component {
+class Trucks extends React.Component {
   componentWillMount() {
     this.props.fetchTrucks()
   }

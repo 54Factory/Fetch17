@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as UserAction from '../../redux/users/actions';
 import { Layout, Icon } from 'antd';
@@ -19,10 +19,9 @@ const {
   viewChange
 } = UserAction;
 
-
-
 const { Content } = Layout;
-class Users extends Component {
+
+class Users extends React.Component {
   componentWillMount() {
     this.props.fetchUsers()
   }

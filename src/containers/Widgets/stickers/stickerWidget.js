@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StickerWidgetWrapper } from './style';
 
-export default class StickerWidget extends Component {
+export default class StickerWidget extends React.Component {
   render() {
     const { fontColor, bgColor, width, icon, number, text } = this.props;
 

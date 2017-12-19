@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Layout, LocaleProvider } from 'antd';
 import { IntlProvider } from 'react-intl';
@@ -20,7 +20,7 @@ const { Content, Footer } = Layout;
 const { logoutUser } = actionTypes;
 const { toggleAll } = appActions;
 
-export class DriverApp extends Component {
+export class DriverApp extends React.Component {
 
   render() {
     console.log(this.props);

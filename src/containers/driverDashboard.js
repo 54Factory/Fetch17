@@ -7,14 +7,9 @@ import { graphql } from 'react-apollo';
 import LayoutContentWrapper from '../components/utility/layoutWrapper';
 import LayoutContent from '../components/utility/layoutContent';
 import Loading from './Loading';
-// import PendingPickUpsStickerWidget from '../components/oilCollection/stickers/pendingPickUpSticker'
-// import IntlMessages from '../components/utility/intlMessages';
 
 
 
-//const { Content } = Layout;
-
-//const dateToday = new Date();
 let dateTodayIso = "2017-12-01T09:05:09.807Z"
 //const dateTodayIso = dateToday.toISOString()
 

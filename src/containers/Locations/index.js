@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as LocationAction from '../../redux/locations/actions';
 import { Layout, Icon } from 'antd';
@@ -22,7 +22,7 @@ const {
 
 
 const { Content } = Layout;
-class Locations extends Component {
+class Locations extends React.Component {
   componentWillMount() {
     this.props.fetchLocations()
   }

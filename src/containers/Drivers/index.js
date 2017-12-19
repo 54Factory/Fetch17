@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as DriverAction from '../../redux/drivers/actions';
 import { Layout, Icon } from 'antd';
@@ -25,7 +25,7 @@ const {
 
 
 
-class Drivers extends Component {
+class Drivers extends React.Component {
   componentWillMount() {
     this.props.fetchDrivers()
     this.props.fetchDriverUser()

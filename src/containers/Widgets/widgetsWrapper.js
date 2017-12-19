@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { WidgetWrapper } from './style';
 
-export default class WidgetsWrapper extends Component {
+export default class WidgetsWrapper extends React.Component {
   render() {
     const {
       width,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd';
 import basicStyle from '../../../config/basicStyle';
@@ -7,7 +7,7 @@ import StickerWidget from '../stickers/stickerWidget';
 import IntlMessages from '../../../components/utility/intlMessages';
 
 
-export default class OilCollectionWidgets extends Component {
+export default class OilCollectionWidgets extends React.Component {
 
  
 

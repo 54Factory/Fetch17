@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Col } from 'antd';
 import Spin from '../../components/uielements/spin';
 // import PageHeader from '../../components/utility/pageHeader';
@@ -8,7 +8,7 @@ import ContentHolder from '../../components/utility/contentHolder';
 import basicStyle from '../../config/basicStyle';
 //import IntlMessages from '../../components/utility/intlMessages';
 
-export default class AntdSpin extends Component {
+export default class Spinner extends React.Component {
   state = { loading: false }
   toggle = (value) => {
     this.setState({ loading: value });

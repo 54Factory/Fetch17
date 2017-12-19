@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Layout, LocaleProvider } from 'antd';
 import { IntlProvider } from 'react-intl';
@@ -22,7 +22,7 @@ const { logoutUser } = actionTypes;
 const { toggleAll } = appActions;
 
 
-export class AdminApp extends Component {
+export class AdminApp extends React.Component {
   render() {
     console.log(this.props);
     const currentAppLocale = AppLocale.en;
