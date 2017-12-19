@@ -18,11 +18,11 @@ class DriverRouter extends React.Component {
           path={`${url}/locations`}
           component={asyncComponent(() => import('../../Locations'))}
         />
-        {/* <Route
+        <Route
           exact
-          path={`${url}/oilcollection`}
+          path={`${url}/driver/oilcollection`}
           component={asyncComponent(() => import("../../OilCollection/Driver"))}
-        /> */}
+        />
         <Route
           exact
           path={`${url}/mytruck`}

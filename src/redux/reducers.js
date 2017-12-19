@@ -8,6 +8,7 @@ import SetUps from './setups/reducers'
 import Drivers from './drivers/reducer'
 import Services from './services/reducers'
 import Collections from './oilCollections/reducers'
+import DriverCollections from './oilCollections/driverCollections/reducers'
 import OilCollectionRecords from './oilCollectionRecords/reducers'
 import Sidebar from './sidebar/reducers'
 
@@ -23,6 +24,7 @@ export default {
   Drivers,
   Services,
   Collections,
+  DriverCollections,
   OilCollectionRecords,
   SetUpTruck,
   Sidebar

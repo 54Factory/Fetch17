@@ -178,7 +178,7 @@ componentWillMount() {
             </Link>
           </Menu.Item>        
           <Menu.Item key="oilcollection">
-            <Link to={`${url.path}/oilcollection`}>
+            <Link to={`${url.path}/driver/oilcollection`}>
               <span className="MenuHolder" style={submenuColor}>
                 <i className="ion-waterdrop" />
                 <span className="nav-text">

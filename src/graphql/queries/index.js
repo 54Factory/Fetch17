@@ -466,3 +466,61 @@ export const ALL_COLLECTION_RECORDS_QUERY = gql`
     }
   }
 `
+export const OIL_COLLECTIONS_BY_DRIVER_QUERY = gql`
+  query OilCollectionByDriver{
+    User(id: "cjal07apu6azd01653qbtqdsf") {
+      id
+      driver {
+        id
+        truck {
+          id
+          oilCollectionServices {
+            id
+            oilCollectionState {
+              id
+              active
+              suspended
+            }
+            oilCollectionRecords(filter: {
+              collected: false
+              scheduledCollectionDate_lte: "2017-12-20T00:00:00.000Z"
+            }) {
+              id
+              collected
+              scheduledCollectionDate
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export const COMPLETED_COLLECTIONS_QUERY = gql`
+  query OilCollectionByDriver{
+    User(id: "cjal07apu6azd01653qbtqdsf") {
+      id
+      driver {
+        id
+        truck {
+          id
+          oilCollectionServices {
+            id
+            oilCollectionState {
+              id
+              active
+              suspended
+            }
+            oilCollectionRecords(filter: {
+              collected: true
+            }) {
+              id
+              collected
+              updatedAt
+            }
+          }
+        }
+      }
+    }
+  }
+`
