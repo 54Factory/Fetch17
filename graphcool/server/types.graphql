@@ -126,6 +126,7 @@ type OilCollectionService @model {
   serviceCycle: Int!
   serviceType: String!
   startDate: DateTime!
+  nextCollection: DateTime
   truck: Truck @relation(name: "OilCollectionServiceOnTruck")
   updatedAt: DateTime!
 }

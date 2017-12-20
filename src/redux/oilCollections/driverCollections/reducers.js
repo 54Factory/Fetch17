@@ -22,7 +22,7 @@ export default function driverCollectionsReducer(state = initialState, action) {
 			return {	
 				...state,			
 				fetched: true,
-				collections: action.payload.data.User
+				collections: action.payload.data.User.driver.truck.oilCollectionServices
 			};
 		case FETCH_COMPLETED_COLLECTIONS: 
 			return {	

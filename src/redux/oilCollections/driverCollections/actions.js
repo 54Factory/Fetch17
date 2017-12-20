@@ -7,8 +7,8 @@ export const EDIT_VIEW = 'EDIT_VIEW';
 export const MAP_VIEW = 'MAP_VIEW';
 
 
-export function fetchCollectionsByDriver() {
-  return client.query({ query: OIL_COLLECTIONS_BY_DRIVER_QUERY })
+export function fetchCollectionsByDriver(userId) {
+  return client.query({ query: OIL_COLLECTIONS_BY_DRIVER_QUERY, variables: { id: userId } })
     .then((response) => {
       return {
         type: FETCH_COLLECTIONS_BY_DRIVER,

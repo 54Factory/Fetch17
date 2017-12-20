@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import * as DriverCollectionsAction from '../../../redux/oilCollections/driverCollections/actions';
 import { Layout, Icon } from 'antd';
 import Button from '../../../components/uielements/button';
-import CollectionList from '../../../components/oilCollections/collectionList';
-import SingleCollectionView from '../../../components/oilCollections/singleView';
-import CollectionBuilderView from '../../../components/oilCollections/collectionBuilderView';
+import DriverCollectionList from '../../../components/oilCollections/driverComponents/driverCollectionList';
+import SingleCollectionView from '../../../components/oilCollections/driverComponents/singleView';
+import CollectionBuilderView from '../../../components/oilCollections/driverComponents/collectionBuilderView';
 import IntlMessages from '../../../components/utility/intlMessages';
 import OilCollectionMap from '../../../components/maps/oilcollection'
 import { CollectionsWrapper } from '../oilCollection.style';
@@ -20,9 +20,11 @@ const {
 } = DriverCollectionsAction;
 
 const { Content } = Layout;
-class Collections extends React.Component {
+class DriverCollections extends React.Component {
   componentWillMount() {
-    this.props.fetchCollectionsByDriver()
+    const id = this.props.userId
+    console.log("Will Mount------>", id)
+    this.props.fetchCollectionsByDriver(id)
     this.props.fetchCompletedCollections()
   }
   // componentDidMount() {
@@ -70,6 +72,7 @@ class Collections extends React.Component {
     console.log(this.props);
     return (
       <div>
+      
       {/* <OilCollectionWidgets 
          activeAccounts={collections}
 
@@ -79,8 +82,8 @@ class Collections extends React.Component {
         style={{ background: 'none' }}
       >        
         <div className="CollectionListBar">
-          <CollectionList
-            // collections={collections}
+          <DriverCollectionList
+            collections={collections}
             selectedId={selectedId}
             changeCollection={changeCollection}
           />
@@ -106,20 +109,20 @@ class Collections extends React.Component {
                 />
               ) : (
                 <SingleCollectionView
-                  // collection={selectedCollection}
-                  // containerAttributes={containerAttributes}
-                  // setUpAttributes={setUpAttributes}
-                  // truckAttributes={truckAttributes}
-                  // collectionAttributes={collectionAttributes}
-                  // collections={collections}
-                />
+                  collection={selectedCollection}
+                  containerAttributes={containerAttributes}
+                  setUpAttributes={setUpAttributes}
+                  truckAttributes={truckAttributes}
+                  collectionAttributes={collectionAttributes}
+                  collections={collections}
+                  />
               )}
             </Content>
           ) : (
             <Content className="CollectionBox">
-            {/* <OilCollectionMap 
-              // markers={collections}
-            /> */}
+            <OilCollectionMap 
+              markers={collections}
+            />
           </Content>
           )}
         </Layout>
@@ -130,8 +133,10 @@ class Collections extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { collections, completedCollections, selectedId, editView } = state.Collections;
+  const { collections, completedCollections, selectedId, editView } = state.DriverCollections;
+  const { userId } = state.user
   return {
+    userId,
     collections,
     completedCollections,
     selectedId,
@@ -144,4 +149,4 @@ export default connect(mapStateToProps, {
   changeCollection,
   viewChange,
   viewMap
-})(Collections);
+})(DriverCollections);

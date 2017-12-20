@@ -467,27 +467,75 @@ export const ALL_COLLECTION_RECORDS_QUERY = gql`
   }
 `
 export const OIL_COLLECTIONS_BY_DRIVER_QUERY = gql`
-  query OilCollectionByDriver{
-    User(id: "cjal07apu6azd01653qbtqdsf") {
+  query User ($id: ID!) {
+    User(id: $id) {
       id
+      firstName
+      lastName
       driver {
         id
         truck {
           id
+          description
           oilCollectionServices {
             id
-            oilCollectionState {
+            serviceCycle
+            serviceType
+            nextCollection
+            oilCollectionState (filter:{
+              active: true
+              suspended: false
+            }){
               id
               active
               suspended
             }
             oilCollectionRecords(filter: {
               collected: false
-              scheduledCollectionDate_lte: "2017-12-20T00:00:00.000Z"
+              scheduledCollectionDate_lte: "2017-12-27T00:00:00.000Z"
             }) {
               id
               collected
               scheduledCollectionDate
+            }
+            truck {
+              id
+              description
+              driver {
+                id
+                user {
+                  id
+                  firstName
+                  lastName
+                }
+              }
+            }
+            service{
+              id
+              setUpService {
+                id
+                actualSetUpDate
+                setUpNotes {
+                  id
+                  setUpNoteContent
+                }
+              }
+              location{
+              id
+              locationName
+              streetNumber
+              street
+              city
+              state
+              zip
+              lat
+              lng
+              }
+            }
+            containment {
+              id
+              containerType
+              quantity
             }
           }
         }
