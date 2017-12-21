@@ -1,5 +1,5 @@
 export default {
-  apiUrl: 'http://yoursite.com/api/',
+  apiUrl: 'http://fetch17.herokuapp.com',
 };
 // Fetch GraphCool DB
 //const apiEndpoint = 'https://api.graph.cool/simple/v1/cj8wu1j3a0jg1014149tcyk4l'
