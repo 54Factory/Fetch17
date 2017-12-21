@@ -1,7 +1,7 @@
 {
   "name": "fetch",
   "version": "1.0.0",
-  "homepage" : "https://fetch17.herokuapp.com",
+  "homepage" : "https://fetch17.herokuapp.com/",
   "private": true,
   "dependencies": {
     "antd": "^2.12.2",
